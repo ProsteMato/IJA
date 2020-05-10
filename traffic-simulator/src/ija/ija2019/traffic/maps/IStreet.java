@@ -16,4 +16,12 @@ public interface IStreet {
     public String getId();
 
     public List<Stop> getStops();
+
+    public double getTraffic();
+
+    public void setTraffic(double traffic);
+
+    public boolean isOpen();
+
+    public void setOpen(boolean open);
 }

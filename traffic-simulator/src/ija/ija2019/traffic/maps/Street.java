@@ -10,12 +10,30 @@ public class Street implements IStreet {
     private Coordinate begin;
     private Coordinate end;
     private List<Stop> stops;
+    private double traffic;
+    private boolean isOpen;
 
     public Street(String id, Coordinate begin, Coordinate end) {
         this.id = id;
         this.begin = begin;
         this.end = end;
         stops = new ArrayList<>();
+    }
+
+    public double getTraffic() {
+        return traffic;
+    }
+
+    public void setTraffic(double traffic) {
+        this.traffic = traffic;
+    }
+
+    public boolean isOpen() {
+        return isOpen;
+    }
+
+    public void setOpen(boolean open) {
+        isOpen = open;
     }
 
     public boolean addStop(Stop stop) {

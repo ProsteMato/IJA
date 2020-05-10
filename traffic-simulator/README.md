@@ -1,11 +1,11 @@
 # Traffic simulator todo list
-- [ ]  zobrať implementované veci z projektov a rozšíriť ich
-- [ ]  class map
-- [ ]  class line
-- [ ]  class stop
-- [ ]  class street
-- [ ]  class coordinate
-- [ ]  class vehicle
+- [X]  class map 
+- [X]  class line 
+- [X]  class stop
+- [X]  class street
+- [X]  class coordinate 
+- zaklad class vyššie spravený možno bude treba upraviť
+- [ ]  class vehicle/Connections neviem ktorý názov je lepší
 - [ ]  interface ku všetkým triedam vyššie
 - [ ]  javadoc ku všetkým interface
 - [ ]  mapa - rozpis ciest (.yml)
