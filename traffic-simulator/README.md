@@ -1,1 +1,16 @@
-# IJA
+# Traffic simulator todo list
+- [ ]  zobrať implementované veci z projektov a rozšíriť ich
+- [ ]  class map
+- [ ]  class line
+- [ ]  class stop
+- [ ]  class street
+- [ ]  class coordinate
+- [ ]  class vehicle
+- [ ]  interface ku všetkým triedam vyššie
+- [ ]  javadoc ku všetkým interface
+- [ ]  mapa - rozpis ciest (.yml)
+- [ ]  mapa - implementovanie zobrazenia ciest a zastávok
+- [ ]  linky - zobrazenie vozidla
+- [ ]  linky - implementovanie pohybu vozidla
+- [ ]  cestovné poriadky (.yml)
+- [ ]  zobrazenie zastávok spoja.
