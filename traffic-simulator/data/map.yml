@@ -1,467 +1,467 @@
 stops:
 - &Stop0 id: "Amfiteáter"
-  coordinates:
+  coordinate:
     x: 386.8195361776147
     y: 272.46676733841304
 - &Stop1 id: "Nová Nemocnica"
-  coordinates:
+  coordinate:
     x: 331.70119054367854
     y: 254.69201088495691
 - &Stop2 id: "Dom Umenia"
-  coordinates:
+  coordinate:
     x: 277.08062369756584
     y: 151.65186424532862
 - &Stop3 id: "OC Cassovia"
-  coordinates:
+  coordinate:
     x: 215.01080608985586
     y: 126.00752621745362
 - &Stop4 id: "Spoločenský pavilón"
-  coordinates:
+  coordinate:
     x: 81.0
     y: 205.78879288759478
 - &Stop5 id: "Námestie Maratónu Mieru"
-  coordinates:
+  coordinate:
     x: 82.65902177987462
     y: 470.35169733083416
 - &Stop6 id: "Magistrát"
-  coordinates:
+  coordinate:
     x: 168.46210482902148
     y: 510.5582685402164
 - &Stop7 id: "Verejný cintorín"
-  coordinates:
+  coordinate:
     x: 199.3667268479477
     y: 512.5359010732276
 - &Stop8 id: "OC Optima"
-  coordinates:
+  coordinate:
     x: 334.99912836580944
     y: 269.72488162116997
 - &Stop9 id: "Poľovská"
-  coordinates:
+  coordinate:
     x: 462.74112731720174
     y: 375.4903744134582
 - &Stop10 id: "Janigova"
-  coordinates:
+  coordinate:
     x: 581.4050152014547
     y: 277.94983551606134
 - &Stop11 id: "Námestie Osloboditeľov"
-  coordinates:
+  coordinate:
     x: 583.3610875882017
     y: 361.0738848368086
 - &Stop12 id: "Húskova"
-  coordinates:
+  coordinate:
     x: 518.7679386858912
     y: 415.6468375022891
 - &Stop13 id: "Radnica starého mesta"
-  coordinates:
+  coordinate:
     x: 336.2884119537841
     y: 398.70418876637694
 - &Stop14 id: "Kulturpark"
-  coordinates:
+  coordinate:
     x: 303.28592412828567
     y: 468.58443450441524
 - &Stop15 id: "Botanická záhrada"
-  coordinates:
+  coordinate:
     x: 91.8788318535813
     y: 401.39562045257884
 - &Stop16 id: "Staničné námestie"
-  coordinates:
+  coordinate:
     x: 235.71776588536352
     y: 395.78833082822564
 - &Stop17 id: "Senny trh"
-  coordinates:
+  coordinate:
     x: 594.3547140201081
     y: 245.7326876614423
 - &Stop18 id: "Tepláreň"
-  coordinates:
+  coordinate:
     x: 665.3164380650034
     y: 83.66676950973573
 - &Stop19 id: "Prešovská"
-  coordinates:
+  coordinate:
     x: 778.990946305649
     y: 73.00496249532361
-- &Stop20 id: "Tomášíkova"
-  coordinates:
+- &Stop20 id: "tomášíkova"
+  coordinate:
     x: 783.3713918317998
     y: 107.35221479948542
 - &Stop21 id: "Krajskú súd"
-  coordinates:
+  coordinate:
     x: 595.3753505289534
     y: 447.0606730155904
 - &Stop22 id: "Miestny úrad"
-  coordinates:
+  coordinate:
     x: 672.6779419705913
     y: 603.3603243458089
 - &Stop23 id: "EcoPoint"
-  coordinates:
+  coordinate:
     x: 681.2159954607388
     y: 624.4228230527333
 - &Stop24 id: "Kino Družba"
-  coordinates:
+  coordinate:
     x: 509.0843078912284
     y: 689.8123387823853
 - &Stop25 id: "Zimný štadión"
-  coordinates:
+  coordinate:
     x: 397.16144219787486
     y: 611.2869377632886
 - &Stop26 id: "Malá stanica"
-  coordinates:
+  coordinate:
     x: 746.9315897185227
     y: 496.9914902678913
 - &Stop27 id: "Slovenský rozhlas"
-  coordinates:
+  coordinate:
     x: 753.9773558677401
     y: 333.80409990491677
 - &Stop28 id: "Poliklinika Sever"
-  coordinates:
+  coordinate:
     x: 616.7240685965783
     y: 270.69398285085543
 - &Stop29 id: "Lingov"
-  coordinates:
+  coordinate:
     x: 702.0657566647226
     y: 246.5706821430872
 - &Stop30 id: "Jakabov palác"
-  coordinates:
+  coordinate:
     x: 763.1847492954224
     y: 486.3297525730315
 streets:
-- &Street0 name: "Mäsiarska"
+- &Street0 id: "Mäsiarska"
   stops:
   - *Stop0
-  from:
+  begin:
     x: 335.0
     y: 269.5
-  to:
+  end:
     x: 466.0
     y: 277.0
-  closed: false
+  isOpen: true
   traffic: 0.0
-- &Street1 name: "Mojzesová"
+- &Street1 id: "Mojzesová"
   stops:
   - *Stop1
-  from:
+  begin:
     x: 335.0
     y: 269.5
-  to:
+  end:
     x: 312.5
     y: 168.5
-  closed: false
+  isOpen: true
   traffic: 0.0
-- &Street2 name: "Branisková"
+- &Street2 id: "Branisková"
   stops:
   - *Stop2
-  from:
+  begin:
     x: 312.5
     y: 168.5
-  to:
+  end:
     x: 220.0
     y: 124.5
-  closed: false
+  isOpen: true
   traffic: 0.0
-- &Street3 name: "Tatranská"
+- &Street3 id: "Tatranská"
   stops:
   - *Stop3
-  from:
+  begin:
     x: 220.0
     y: 124.5
-  to:
+  end:
     x: 81.0
     y: 166.5
-  closed: false
+  isOpen: true
   traffic: 0.0
-- &Street4 name: "Bernoláková"
+- &Street4 id: "Bernoláková"
   stops:
   - *Stop4
-  from:
+  begin:
     x: 81.0
     y: 166.5
-  to:
+  end:
     x: 81.0
     y: 402.0
-  closed: false
+  isOpen: true
   traffic: 0.0
-- &Street5 name: "Dargovských hrdinov"
+- &Street5 id: "Dargovských hrdinov"
   stops:
   - *Stop5
-  from:
+  begin:
     x: 81.0
     y: 402.0
-  to:
+  end:
     x: 83.5
     y: 505.0
-  closed: false
+  isOpen: true
   traffic: 0.0
-- &Street6 name: "Havlíčková"
+- &Street6 id: "Havlíčková"
   stops:
   - *Stop6
-  from:
+  begin:
     x: 83.5
     y: 505.0
-  to:
+  end:
     x: 190.5
     y: 512.0
-  closed: false
+  isOpen: true
   traffic: 0.0
-- &Street7 name: "Vodárenská"
+- &Street7 id: "Vodárenská"
   stops:
   - *Stop7
-  from:
+  begin:
     x: 281.5
     y: 517.5
-  to:
+  end:
     x: 190.5
     y: 512.0
-  closed: false
+  isOpen: true
   traffic: 0.0
-- &Street8 name: "Hronská"
+- &Street8 id: "Hronská"
   stops:
   - *Stop8
-  from:
+  begin:
     x: 335.0
     y: 269.5
-  to:
+  end:
     x: 334.5
     y: 398.5
-  closed: false
+  isOpen: true
   traffic: 0.0
-- &Street9 name: "Poľovská"
+- &Street9 id: "Poľovská"
   stops:
   - *Stop9
-  from:
+  begin:
     x: 466.0
     y: 277.0
-  to:
+  end:
     x: 461.5
     y: 413.0
-  closed: false
+  isOpen: true
   traffic: 0.0
-- &Street10 name: "Janigova"
+- &Street10 id: "Janigova"
   stops:
   - *Stop10
-  from:
+  begin:
     x: 466.0
     y: 277.0
-  to:
+  end:
     x: 587.5
     y: 278.0
-  closed: false
+  isOpen: true
   traffic: 0.0
-- &Street11 name: "Klimkovičova"
+- &Street11 id: "Klimkovičova"
   stops:
   - *Stop11
-  from:
+  begin:
     x: 587.5
     y: 278.0
-  to:
+  end:
     x: 580.5
     y: 418.5
-  closed: false
+  isOpen: true
   traffic: 0.0
-- &Street12 name: "Húskova"
+- &Street12 id: "Húskova"
   stops:
   - *Stop12
-  from:
+  begin:
     x: 580.5
     y: 418.5
-  to:
+  end:
     x: 461.5
     y: 413.0
-  closed: false
+  isOpen: true
   traffic: 0.0
-- &Street13 name: "Starozagorská"
+- &Street13 id: "Starozagorská"
   stops:
   - *Stop13
-  from:
+  begin:
     x: 334.5
     y: 398.5
-  to:
+  end:
     x: 461.5
     y: 413.0
-  closed: false
+  isOpen: true
   traffic: 0.0
-- &Street14 name: "Mlynská"
+- &Street14 id: "Mlynská"
   stops:
   - *Stop14
-  from:
+  begin:
     x: 334.5
     y: 398.5
-  to:
+  end:
     x: 281.5
     y: 517.5
-  closed: false
+  isOpen: true
   traffic: 0.0
-- &Street15 name: "Vodná"
+- &Street15 id: "Vodná"
   stops:
   - *Stop15
-  from:
+  begin:
     x: 81.0
     y: 402.0
-  to:
+  end:
     x: 207.0
     y: 395.0
-  closed: false
+  isOpen: true
   traffic: 0.0
-- &Street16 name: "Palackého"
+- &Street16 id: "Palackého"
   stops:
   - *Stop16
-  from:
+  begin:
     x: 207.0
     y: 395.0
-  to:
+  end:
     x: 334.5
     y: 398.5
-  closed: false
+  isOpen: true
   traffic: 0.0
-- &Street17 name: "Ovsená"
+- &Street17 id: "Ovsená"
   stops:
   - *Stop17
-  from:
+  begin:
     x: 587.5
     y: 278.0
-  to:
+  end:
     x: 608.0
     y: 181.5
-  closed: false
+  isOpen: true
   traffic: 0.0
-- &Street18 name: "Sečovská"
+- &Street18 id: "Sečovská"
   stops:
   - *Stop18
-  from:
+  begin:
     x: 608.0
     y: 181.5
-  to:
+  end:
     x: 666.0
     y: 82.5
-  closed: false
+  isOpen: true
   traffic: 0.0
-- &Street19 name: "Prešovská"
+- &Street19 id: "Prešovská"
   stops:
   - *Stop19
-  from:
+  begin:
     x: 666.0
     y: 82.5
-  to:
+  end:
     x: 785.0
     y: 72.5
-  closed: false
+  isOpen: true
   traffic: 0.0
-- &Street20 name: "Tomášiková"
+- &Street20 id: "tomášiková"
   stops:
   - *Stop20
-  from:
+  begin:
     x: 785.0
     y: 72.5
-  to:
+  end:
     x: 780.0
     y: 179.5
-  closed: false
+  isOpen: true
   traffic: 0.0
-- &Street21 name: "Ťahanovká"
+- &Street21 id: "Ťahanovká"
   stops:
   - *Stop21
-  from:
+  begin:
     x: 580.5
     y: 418.5
-  to:
+  end:
     x: 630.5
     y: 514.5
-  closed: false
+  isOpen: true
   traffic: 0.0
-- &Street22 name: "Madridská"
+- &Street22 id: "Madridská"
   stops:
   - *Stop22
-  from:
+  begin:
     x: 630.5
     y: 514.5
-  to:
+  end:
     x: 682.0
     y: 623.0
-  closed: false
+  isOpen: true
   traffic: 0.0
-- &Street23 name: "Jahodná"
+- &Street23 id: "Jahodná"
   stops:
   - *Stop23
-  from:
+  begin:
     x: 682.0
     y: 623.0
-  to:
+  end:
     x: 641.5
     y: 696.5
-  closed: false
+  isOpen: true
   traffic: 0.0
-- &Street24 name: "Štrbská"
+- &Street24 id: "Štrbská"
   stops:
   - *Stop24
-  from:
+  begin:
     x: 641.5
     y: 696.5
-  to:
+  end:
     x: 493.0
     y: 689.0
-  closed: false
+  isOpen: true
   traffic: 0.0
-- &Street25 name: "Exnárová"
+- &Street25 id: "Exnárová"
   stops:
   - *Stop25
-  from:
+  begin:
     x: 493.0
     y: 689.0
-  to:
+  end:
     x: 281.5
     y: 517.5
-  closed: false
+  isOpen: true
   traffic: 0.0
-- &Street26 name: "Zupkova"
+- &Street26 id: "Zupkova"
   stops:
   - *Stop26
-  from:
+  begin:
     x: 630.5
     y: 514.5
-  to:
+  end:
     x: 763.5
     y: 494.5
-  closed: false
+  isOpen: true
   traffic: 0.0
-- &Street27 name: "Mliečna"
+- &Street27 id: "Mliečna"
   stops:
   - *Stop27
-  from:
+  begin:
     x: 757.5
     y: 339.0
-  to:
+  end:
     x: 697.5
     y: 250.5
-  closed: false
+  isOpen: true
   traffic: 0.0
-- &Street28 name: "Vo výmoli"
+- &Street28 id: "Vo výmoli"
   stops:
   - *Stop28
-  from:
+  begin:
     x: 587.5
     y: 278.0
-  to:
+  end:
     x: 697.5
     y: 250.5
-  closed: false
+  isOpen: true
   traffic: 0.0
-- &Street29 name: "Dneperská"
+- &Street29 id: "Dneperská"
   stops:
   - *Stop29
-  from:
+  begin:
     x: 780.0
     y: 179.5
-  to:
+  end:
     x: 697.5
     y: 250.5
-  closed: false
+  isOpen: true
   traffic: 0.0
-- &Street30 name: "Holubyho"
+- &Street30 id: "Holubyho"
   stops:
   - *Stop30
-  from:
+  begin:
     x: 763.5
     y: 494.5
-  to:
+  end:
     x: 757.5
     y: 339.0
-  closed: false
+  isOpen: true
   traffic: 0.0
