@@ -2,18 +2,29 @@ package ija.ija2019.traffic.maps;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Shape;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class Stop implements IStop {
+public class Stop implements IStop, Drawable{
     private String id;
     private Coordinate coordinate;
     private Street street;
+    private List<Shape> drawableObjects = new ArrayList<>();
 
     public Stop(String id, Coordinate coordinate, Street street) {
         this.id = id;
         this.coordinate = coordinate;
         this.street = street;
+    }
+
+    public void setDrawableObjects() {
+        drawableObjects.add(new Circle(coordinate.getX(), coordinate.getY(), 4, Color.RED));
     }
 
     private Stop(){}
@@ -50,5 +61,10 @@ public class Stop implements IStop {
     @Override
     public String toString() {
         return "stop(" + id  + ")";
+    }
+
+    @Override
+    public List<Shape> getDrawableObjects() {
+        return drawableObjects;
     }
 }

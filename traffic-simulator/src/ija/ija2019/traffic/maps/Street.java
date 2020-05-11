@@ -1,23 +1,31 @@
 package ija.ija2019.traffic.maps;
 
+import javafx.scene.shape.Line;
+import javafx.scene.shape.Shape;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-public class Street implements IStreet {
+public class Street implements IStreet, Drawable {
     private String id;
     private Coordinate begin;
     private Coordinate end;
     private List<Stop> stops;
     private double traffic;
     private boolean isOpen;
+    private List<Shape> drawableObjects = new ArrayList<>();
 
     public Street(String id, Coordinate begin, Coordinate end) {
         this.id = id;
         this.begin = begin;
         this.end = end;
         stops = new ArrayList<>();
+    }
+
+    public void setDrawableObjects() {
+        drawableObjects.add(new Line(begin.getX(), begin.getY(), end.getX(), end.getY()));
     }
 
     private Street(){}
@@ -109,5 +117,10 @@ public class Street implements IStreet {
     @Override
     public String toString() {
         return id;
+    }
+
+    @Override
+    public List<Shape> getDrawableObjects() {
+        return drawableObjects;
     }
 }
