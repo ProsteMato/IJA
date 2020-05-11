@@ -7,6 +7,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 
 import ija.ija2019.traffic.maps.Stop;
@@ -18,22 +20,28 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        // ------- demonstracia citacia yaml ---------
         YAMLFactory yaml_factory = new YAMLFactory();
         ObjectMapper obj_mapper = new ObjectMapper(yaml_factory);
         Data data = obj_mapper.readValue(new File("data/map.yml"), Data.class);
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("layout.fxml"));
+        BorderPane root = loader.load();
+        Scene scene = new Scene(root);
+        primaryStage.setTitle("Traffic Simulator");
+        primaryStage.setScene(scene);
+
+        Controller controller = loader.getController();
+
         for (Street s : data.getStreets()){
-            System.out.println(s);
+            s.setDrawableObjects();
+            controller.draw(s.getDrawableObjects());
         }
 
-        for (Stop s : data.getStops()){
-            System.out.println(s);
+        for (Stop s : data.getStops()) {
+            s.setDrawableObjects();
+            controller.draw(s.getDrawableObjects());
         }
-        // -----------------------------------------------------
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Traffic Simulator");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        
         primaryStage.show();
     }
 
