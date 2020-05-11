@@ -11,6 +11,8 @@ public class Coordinate {
         this.y = y;
     }
 
+    private Coordinate(){}
+
     public static Coordinate create(double x, double y) {
         if (x >= 0 && y >= 0) {
             return new Coordinate(x, y);

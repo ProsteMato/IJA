@@ -1,7 +1,10 @@
 package ija.ija2019.traffic.maps;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.util.Objects;
 
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Stop implements IStop {
     private String id;
     private Coordinate coordinate;
@@ -12,6 +15,8 @@ public class Stop implements IStop {
         this.coordinate = coordinate;
         this.street = street;
     }
+
+    private Stop(){}
 
     public Coordinate getCoordinate() {
         return this.coordinate;

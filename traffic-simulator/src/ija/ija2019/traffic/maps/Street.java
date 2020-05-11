@@ -20,6 +20,20 @@ public class Street implements IStreet {
         stops = new ArrayList<>();
     }
 
+    private Street(){}
+
+    public Coordinate getBegin() {
+        return this.begin;
+    }
+
+    public Coordinate getEnd() {
+        return this.end;
+    }
+
+    public boolean getIsOpen() {
+        return this.isOpen;
+    }
+
     public double getTraffic() {
         return traffic;
     }
