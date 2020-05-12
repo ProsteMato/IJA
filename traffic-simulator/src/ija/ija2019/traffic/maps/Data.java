@@ -5,6 +5,7 @@ import java.util.List;
 public class Data {
     private List<Street> streets;
     private List<Stop> stops;
+    private List<Line> lines;
 
     public Data(List<Street> streets, List<Stop> stops) {
         this.streets = streets;
@@ -12,6 +13,10 @@ public class Data {
     }
 
     private Data(){}
+
+    public List<Line> getLines() {
+        return lines;
+    }
 
     public List<Street> getStreets() {
         return streets;

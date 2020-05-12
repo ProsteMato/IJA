@@ -14,6 +14,20 @@ public class Line implements ILine {
         streets = new ArrayList<>();
     }
 
+    private Line(){}
+
+    public String getId() {
+        return id;
+    }
+
+    public List<Stop> getStops() {
+        return stops;
+    }
+
+    public List<Street> getStreets() {
+        return streets;
+    }
+
     public boolean addStop(Stop stop) {
         if ((stops.isEmpty() && streets.isEmpty()) || stop.getStreet().follows(streets.get(streets.size() - 1))) {
             stops.add(stop);
@@ -30,5 +44,14 @@ public class Line implements ILine {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "id='" + id + '\'' +
+                ", stops=" + stops +
+                ", streets=" + streets +
+                '}';
     }
 }

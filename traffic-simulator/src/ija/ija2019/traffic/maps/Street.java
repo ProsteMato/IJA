@@ -1,13 +1,17 @@
 package ija.ija2019.traffic.maps;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
+import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Street implements IStreet, Drawable {
     private String id;
     private Coordinate begin;
@@ -26,6 +30,7 @@ public class Street implements IStreet, Drawable {
 
     public void setDrawableObjects() {
         drawableObjects.add(new Line(begin.getX(), begin.getY(), end.getX(), end.getY()));
+        //drawableObjects.add(new Text((begin.getX() + end.getX())/2, (begin.getY() + end.getY())/2, id));
     }
 
     private Street(){}
