@@ -22,7 +22,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         YAMLFactory yaml_factory = new YAMLFactory();
         ObjectMapper obj_mapper = new ObjectMapper(yaml_factory);
-        Data data = obj_mapper.readValue(new File("data/map.yml"), Data.class);
+        Data data = obj_mapper.readValue(new File("data/data.yml"), Data.class);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("layout.fxml"));
         BorderPane root = loader.load();
