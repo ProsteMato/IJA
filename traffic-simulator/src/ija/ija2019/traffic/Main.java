@@ -2,8 +2,7 @@ package ija.ija2019.traffic;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-import ija.ija2019.traffic.maps.Data;
-import ija.ija2019.traffic.maps.Drawable;
+import ija.ija2019.traffic.maps.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,9 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
-
-import ija.ija2019.traffic.maps.Stop;
-import ija.ija2019.traffic.maps.Street;
 
 import java.io.File;
 
@@ -36,6 +32,9 @@ public class Main extends Application {
         for (Drawable drawable : data.getDrawables()){
             controller.draw(drawable.getDrawableObjects());
         }
+
+        Line line = data.getLines().get(0);
+        System.out.println(line.getPath());
         
         primaryStage.show();
     }

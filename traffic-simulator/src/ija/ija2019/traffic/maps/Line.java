@@ -28,22 +28,26 @@ public class Line implements ILine {
         return streets;
     }
 
-    public boolean addStop(Stop stop) {
-        if ((stops.isEmpty() && streets.isEmpty()) || stop.getStreet().follows(streets.get(streets.size() - 1))) {
-            stops.add(stop);
-            streets.add(stop.getStreet());
-            return true;
+    public List<Coordinate> getPath() {
+        List<Coordinate> path = new ArrayList<>();
+        Street lastStreet = null;
+        for (int i = 0; i < streets.size(); i++) {
+            if (lastStreet != null && !lastStreet.equals(streets.get(i))) {
+                path.add(lastStreet.end());
+                lastStreet = streets.get(i);
+            }
+            if (lastStreet == null) {
+                path.add(streets.get(i).begin());
+                lastStreet = streets.get(i);
+            }
+            if (i == streets.size() - 1) {
+                path.add(streets.get(i).end());
+            }
+            if (stops.get(i) != null) {
+                path.add(stops.get(i).getCoordinate());
+            }
         }
-        return false;
-    }
-
-    public boolean addStreet(Street street) {
-        if (street.getStops().isEmpty() && !stops.isEmpty()) {
-            streets.add(street);
-            stops.add(null);
-            return true;
-        }
-        return false;
+        return path;
     }
 
     @Override

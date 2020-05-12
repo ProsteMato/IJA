@@ -7,6 +7,7 @@ public class Data {
     private List<Street> streets;
     private List<Stop> stops;
     private List<Line> lines;
+    //private List<Connection> connections;
 
     public Data(List<Street> streets, List<Stop> stops) {
         this.streets = streets;
@@ -17,6 +18,10 @@ public class Data {
 
     public List<Line> getLines() {
         return lines;
+    }
+
+    public List<Connection> getConnections() {
+        return null;
     }
 
     public List<Street> getStreets() {
@@ -30,6 +35,7 @@ public class Data {
     public List<Drawable> getDrawables() {
         List<Drawable> drawables = new ArrayList<>(streets);
         drawables.addAll(stops);
+        //drawables.addAll(connections);
         return drawables;
     }
 
