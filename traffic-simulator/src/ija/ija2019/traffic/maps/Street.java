@@ -2,6 +2,8 @@ package ija.ija2019.traffic.maps;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.util.StdConverter;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
@@ -12,6 +14,7 @@ import java.util.List;
 import java.util.Objects;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+@JsonDeserialize(converter = Street.StreetDeserialize.class)
 public class Street implements IStreet, Drawable {
     private String id;
     private Coordinate begin;
@@ -26,6 +29,7 @@ public class Street implements IStreet, Drawable {
         this.begin = begin;
         this.end = end;
         stops = new ArrayList<>();
+        setDrawableObjects();
     }
 
     public void setDrawableObjects() {
@@ -127,5 +131,14 @@ public class Street implements IStreet, Drawable {
     @Override
     public List<Shape> getDrawableObjects() {
         return drawableObjects;
+    }
+
+    static class StreetDeserialize extends StdConverter<Street, Street> {
+
+        @Override
+        public Street convert(Street street) {
+            street.setDrawableObjects();
+            return street;
+        }
     }
 }

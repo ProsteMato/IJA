@@ -1,5 +1,6 @@
 package ija.ija2019.traffic.maps;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Data {
@@ -22,16 +23,14 @@ public class Data {
         return streets;
     }
 
-    public void setStreets(List<Street> streets) {
-        this.streets = streets;
-    }
-
     public List<Stop> getStops() {
         return stops;
     }
 
-    public void setStops(List<Stop> stops) {
-        this.stops = stops;
+    public List<Drawable> getDrawables() {
+        List<Drawable> drawables = new ArrayList<>(streets);
+        drawables.addAll(stops);
+        return drawables;
     }
 
     @Override

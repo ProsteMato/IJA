@@ -31,6 +31,6 @@ public class Controller {
 
     public void draw(List<Shape> shapes){
         for (Shape s : shapes)
-        map.getChildren().addAll(s);
+            map.getChildren().addAll(s);
     }
 }

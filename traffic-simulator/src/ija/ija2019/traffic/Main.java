@@ -3,6 +3,7 @@ package ija.ija2019.traffic;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import ija.ija2019.traffic.maps.Data;
+import ija.ija2019.traffic.maps.Drawable;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -32,14 +33,8 @@ public class Main extends Application {
 
         Controller controller = loader.getController();
 
-        for (Street s : data.getStreets()){
-            s.setDrawableObjects();
-            controller.draw(s.getDrawableObjects());
-        }
-
-        for (Stop s : data.getStops()) {
-            s.setDrawableObjects();
-            controller.draw(s.getDrawableObjects());
+        for (Drawable drawable : data.getDrawables()){
+            controller.draw(drawable.getDrawableObjects());
         }
         
         primaryStage.show();
