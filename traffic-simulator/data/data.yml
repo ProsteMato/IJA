@@ -929,41 +929,61 @@ streets:
 lines:
 - &Line0 id: "lajna ein"
   path:
-    *Street0:
+    u0:
       - *Stop0
-    *Street1:
+    u1:
       - *Stop7
       - *Stop9
-    *Street2:
+    u2:
       - *Stop13
-    *Street7:
+    u7:
       - *Stop35
-    *Street19:
+    u19:
       - *Stop95
       - *Stop99
-    *Street31:
+    u31:
       - *Stop156
       - *Stop157
-    *Street32:
+    u32:
       - *Stop164
       - *Stop163
-    *Street37:
+    u37:
       null
-    *Street36:
+    u36:
       null
-    *Street35:
+    u35:
       null
-    *Street40:
+    u40:
       - *Stop201
-    *Street51:
+    u51:
       - *Stop258
       - *Stop259
-    *Street50:
+    u50:
       - *Stop253
-    *Street49:
+    u49:
       - *Stop245
       - *Stop247
 
+  streets:
+  - *Street0
+  - *Street1
+  - *Street2
+  - *Street7
+  - *Street19
+  - *Street31
+  - *Street32
+  - *Street37
+  - *Street36
+  - *Street35
+  - *Street40
+  - *Street51
+  - *Street50
+  - *Street49
+
+connections:
+- id: "c1"
+  speed: 10.0
+  line: *Line0
 
 #  stops:
 #  - *Stop0
