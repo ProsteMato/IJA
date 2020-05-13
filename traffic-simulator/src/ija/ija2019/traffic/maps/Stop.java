@@ -64,7 +64,10 @@ public class Stop implements IStop, Drawable{
 
     @Override
     public String toString() {
-        return "stop(" + id  + ")";
+        return "Stop{" +
+                "id='" + id + '\'' +
+                ", coordinate=" + coordinate +
+                '}';
     }
 
     @Override
