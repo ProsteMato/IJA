@@ -5,10 +5,8 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import ija.ija2019.traffic.maps.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -31,12 +29,13 @@ public class Main extends Application {
 
         for (Drawable drawable : data.getDrawables()){
             controller.draw(drawable.getDrawableObjects());
+            if (drawable instanceof DrawableUpdate)
+                controller.addUpdate((DrawableUpdate) drawable);
         }
 
-        Line line = data.getLines().get(0);
-        System.out.println(line.getPath());
-        
         primaryStage.show();
+        controller.runTime();
+
     }
 
 
