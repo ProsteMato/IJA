@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.util.StdConverter;
+import ija.ija2019.traffic.Controller;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
@@ -22,11 +24,9 @@ public class Connection implements Drawable, DrawableUpdate {
     private Coordinate currentDestination;
     private double currentLength;
     private double length;
-
-
     private List<Shape> drawableObjects;
 
-    private Connection(){}
+    public Connection(){}
 
     public Connection(String id, Coordinate position) {
         this.id = id;
@@ -35,7 +35,9 @@ public class Connection implements Drawable, DrawableUpdate {
 
     public void setDrawableObjects() {
         drawableObjects = new ArrayList<>();
-        drawableObjects.add(new Circle(position.getX(), position.getY(), 8.0, Color.BLUE));
+        Circle bus = new Circle(position.getX(), position.getY(), 8.0, Color.BLUE);
+        bus.setId(id);
+        drawableObjects.add(bus);
     }
 
     public Line getLine() {
