@@ -28,6 +28,22 @@ public class Coordinate {
         return this.y - c.y;
     }
 
+    public Coordinate subCoordinate(Coordinate c) {
+        return new Coordinate(this.diffX(c), this.diffY(c));
+    }
+
+    public Coordinate sumCoordinate(Coordinate c) {
+        return new Coordinate(this.x + c.getX(), this.y + c.getY());
+    }
+
+    public Coordinate normalizeCoordinate() {
+        return new Coordinate(x / Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)), y / Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)));
+    }
+
+    public Coordinate timesCoordinate(double number) {
+        return new Coordinate(x * number, y * number);
+    }
+
     public double getX() {
         return this.x;
     }
