@@ -21,7 +21,7 @@ public class Data {
     }
 
     public List<Connection> getConnections() {
-        return null;
+        return connections;
     }
 
     public List<Street> getStreets() {
