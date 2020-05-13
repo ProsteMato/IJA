@@ -1,31 +1,135 @@
 package ija.ija2019.traffic;
 
-import ija.ija2019.traffic.maps.DrawableUpdate;
+import ija.ija2019.traffic.maps.*;
+import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.Slider;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
+import javafx.scene.text.Text;
+import sun.awt.windows.WPrinterJob;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class Controller {
     public AnchorPane getMap() {
         return map;
     }
-
+    private Data data;
+    private long timeSpeed = 1;
+    @FXML
+    private AnchorPane infoPanel;
+    @FXML
+    private AnchorPane connectionListPanel;
+    @FXML
+    private Slider speedSlider;
+    @FXML
+    private Label speedLabel;
+    @FXML
+    private Label infoLabel;
+    @FXML
+    private Label timeLabel;
     @FXML
     private AnchorPane map;
     private List<DrawableUpdate> drawableUpdatesElements = new ArrayList<>();
     private Timer timer;
     private LocalTime time = LocalTime.now();
+    private List<Node> infoPanelObjects = new ArrayList<Node>();
 
+    Runnable updateTimer = new Runnable() {
+        @Override
+        public void run() {
+            timeLabel.setText(time.toString().substring(0,8));
+        }
+    };
     public void addUpdate(DrawableUpdate drawableUpdate) {
         drawableUpdatesElements.add(drawableUpdate);
     }
+
+    public void setLabelText(String labelText) {
+        this.infoLabel.setText(labelText);
+    }
+
+    public void setupSpeedSlider() {
+        speedLabel.textProperty().bind(
+                Bindings.format("%.0fx", speedSlider.valueProperty())
+        );
+        speedSlider.addEventHandler(MouseEvent.MOUSE_DRAGGED, this::changeSpeed);
+    }
+
+    private void changeSpeed(MouseEvent me){
+        me.consume();
+        timeSpeed = (long) speedSlider.getValue();
+    }
+
+    public void giveData(Data data){
+        this.data = data;
+    }
+
+    public void showConnectionInfo(MouseEvent me){
+        me.consume();
+        Circle bus = (Circle) me.getSource();
+        // finding the connection
+        for (Connection con : data.getConnections()) {
+            if (con.getId() == bus.getId()) {
+                double yOffset = 20;
+                infoPanel.setVisible(true);
+                infoLabel.setText(con.getId());
+                for (Street street : con.getLine().getStreets()) {
+                    List<Stop> stops = con.getLine().getPath().get(street.getId());
+                    try {
+                        for (Stop stop : con.getLine().getPath().get(street.getId())) {
+                            Label label = new Label(stop.getId());
+                            label.setLayoutX(80);
+                            label.setLayoutY(yOffset);
+                            ProgressIndicator progressIndicator = new ProgressIndicator(0.3);
+                            progressIndicator.setLayoutX(10);
+                            progressIndicator.setLayoutY(yOffset);
+                            infoPanelObjects.add(new Group(progressIndicator, label));
+                            yOffset += 30;
+                        }
+                    } catch (NullPointerException eNull){
+                        continue;
+                    }
+                }
+            }
+        }
+        for (Node node : infoPanelObjects){
+            connectionListPanel.getChildren().add(node);
+        }
+    }
+    /**
+    public final EventHandler<MouseEvent> showConnectionInfo = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            Circle bus = (Circle) event.getSource();
+            // finding the connection
+            for (Connection con : data.getConnections()) {
+                if (con.getId() == bus.getId()) {
+                    for (Street street : con.getLine().getStreets()) {
+                        for (Stop stop : con.getLine().getPath().get(street.getId())) {
+                            System.out.println(stop.getId());
+                        }
+                    }
+                }
+            }
+        }
+    };
+     **/
 
     @FXML
     private void changeZoom(ScrollEvent event){
@@ -51,10 +155,12 @@ public class Controller {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                time = time.plusSeconds(1);
+                time = time.plusSeconds(timeSpeed);
                 for (DrawableUpdate drawableUpdate : drawableUpdatesElements) {
                     drawableUpdate.update(time);
                 }
+                // timer update
+                Platform.runLater(updateTimer);
             }
         }, 0, 1000);
     }

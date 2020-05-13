@@ -6,13 +6,17 @@ import ija.ija2019.traffic.maps.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 
 import java.io.File;
 
-public class Main extends Application {
+import ija.ija2019.traffic.Controller;
 
+public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         YAMLFactory yaml_factory = new YAMLFactory();
@@ -26,8 +30,17 @@ public class Main extends Application {
         primaryStage.setScene(scene);
 
         Controller controller = loader.getController();
+        controller.setupSpeedSlider();
+        controller.giveData(data);
 
         for (Drawable drawable : data.getDrawables()){
+            if (drawable instanceof Connection){
+                for (Shape shape :drawable.getDrawableObjects()){
+                    if (shape instanceof Circle){
+                        shape.addEventHandler(MouseEvent.MOUSE_PRESSED, controller::showConnectionInfo);
+                    }
+                }
+            }
             controller.draw(drawable.getDrawableObjects());
             if (drawable instanceof DrawableUpdate)
                 controller.addUpdate((DrawableUpdate) drawable);
@@ -37,7 +50,6 @@ public class Main extends Application {
         controller.runTime();
 
     }
-
 
     public static void main(String[] args) {
         launch(args);
