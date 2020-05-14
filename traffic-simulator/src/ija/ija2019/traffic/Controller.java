@@ -88,7 +88,7 @@ public class Controller {
         // finding the connection
         for (Connection con : data.getConnections()) {
             if (con.getId() == bus.getId()) {
-                double yOffset = 20;
+                double yOffset = 5;
                 infoPanel.setVisible(true);
                 infoLabel.setText(con.getId());
                 for (Street street : con.getLine().getStreets()) {
@@ -96,10 +96,10 @@ public class Controller {
                     try {
                         for (Stop stop : con.getLine().getPath().get(street.getId())) {
                             Label label = new Label(stop.getId());
-                            label.setLayoutX(80);
+                            label.setLayoutX(39);
                             label.setLayoutY(yOffset);
                             ProgressIndicator progressIndicator = new ProgressIndicator(0.3);
-                            progressIndicator.setLayoutX(10);
+                            progressIndicator.setLayoutX(8);
                             progressIndicator.setLayoutY(yOffset);
                             infoPanelObjects.add(new Group(progressIndicator, label));
                             yOffset += 30;
@@ -114,24 +114,6 @@ public class Controller {
             connectionListPanel.getChildren().add(node);
         }
     }
-    /**
-    public final EventHandler<MouseEvent> showConnectionInfo = new EventHandler<MouseEvent>() {
-        @Override
-        public void handle(MouseEvent event) {
-            Circle bus = (Circle) event.getSource();
-            // finding the connection
-            for (Connection con : data.getConnections()) {
-                if (con.getId() == bus.getId()) {
-                    for (Street street : con.getLine().getStreets()) {
-                        for (Stop stop : con.getLine().getPath().get(street.getId())) {
-                            System.out.println(stop.getId());
-                        }
-                    }
-                }
-            }
-        }
-    };
-     **/
 
     @FXML
     private void changeZoom(ScrollEvent event){
