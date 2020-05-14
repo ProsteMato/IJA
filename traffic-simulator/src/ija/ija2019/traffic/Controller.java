@@ -68,12 +68,14 @@ public class Controller {
         speedLabel.textProperty().bind(
                 Bindings.format("%.0fx", speedSlider.valueProperty())
         );
-        speedSlider.addEventHandler(MouseEvent.MOUSE_DRAGGED, this::changeSpeed);
+        speedSlider.addEventHandler(MouseEvent.MOUSE_RELEASED, this::changeSpeed);
     }
 
     private void changeSpeed(MouseEvent me){
         me.consume();
         timeSpeed = (long) speedSlider.getValue();
+        timer.cancel();
+        runTime();
     }
 
     public void giveData(Data data){
@@ -155,13 +157,13 @@ public class Controller {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                time = time.plusSeconds(timeSpeed);
+                time = time.plusSeconds(1);
                 for (DrawableUpdate drawableUpdate : drawableUpdatesElements) {
                     drawableUpdate.update(time);
                 }
                 // timer update
                 Platform.runLater(updateTimer);
             }
-        }, 0, 1000);
+        }, 0, 1000 / timeSpeed);
     }
 }

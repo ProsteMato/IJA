@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.Slider?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="750.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ija.ija2019.traffic.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="750.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ija.ija2019.traffic.Controller">
     <center>
-        <ScrollPane hbarPolicy="NEVER" hvalue="0.5" pannable="true" prefHeight="200.0" prefWidth="200.0" vbarPolicy="NEVER" vvalue="0.5" BorderPane.alignment="CENTER">
-            <content>
-                <AnchorPane fx:id="map" minHeight="0.0" minWidth="0.0" onScroll="#changeZoom" prefHeight="1000.0" prefWidth="1500.0" scaleX="0.65" scaleY="0.65" translateX="220.0" translateY="100.0" />
-            </content>
+        <ScrollPane hbarPolicy="NEVER" hvalue="0.5" pannable="true" prefHeight="200.0" prefWidth="200.0"
+                    vbarPolicy="NEVER" vvalue="0.5" BorderPane.alignment="CENTER">
+            <AnchorPane fx:id="map" minHeight="0.0" minWidth="0.0" onScroll="#changeZoom" prefHeight="1000.0"
+                        prefWidth="1500.0" scaleX="0.65" scaleY="0.65" translateX="220.0" translateY="100.0"/>
         </ScrollPane>
     </center>
    <right>
