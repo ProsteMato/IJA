@@ -98,21 +98,21 @@ public class Connection implements Drawable, DrawableUpdate {
 
     @Override
     public void update(LocalTime time) {
-        double speed = currentLength / 10;
+        double speed = currentLength / 20.0;
         length += speed;
         System.out.format("%s - %f - %f\n", currentDestination, currentLength, length);
         if (length > currentLength) {
+            updateGui(currentDestination);
             setPosition(currentDestination);
             if(line.getCoordinates().indexOf(currentDestination) + 1 == line.getCoordinates().size()) {
                 return;
             }
             setCurrentDestination(line.getCoordinates().get(line.getCoordinates().indexOf(currentDestination) + 1));
             setCurrentLength(calculateTotalLength());
-            setLength(0);
-            speed = currentLength / 10;
+            setLength(0.0);
+            speed = currentLength / 20.0;
             length += speed;
         }
-
         Coordinate newPosition = line.calculateNewPosition(position, currentDestination, speed);
         updateGui(newPosition);
         position = newPosition;
@@ -125,7 +125,7 @@ public class Connection implements Drawable, DrawableUpdate {
             connection.setPosition(connection.getLine().getCoordinates().get(0));
             connection.setCurrentDestination(connection.getLine().getCoordinates().get(1));
             connection.setCurrentLength(connection.calculateTotalLength());
-            connection.setLength(0);
+            connection.setLength(0.0d);
             connection.setDrawableObjects();
             return connection;
         }
