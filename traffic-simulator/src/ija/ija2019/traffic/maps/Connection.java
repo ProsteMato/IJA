@@ -104,10 +104,11 @@ public class Connection implements Drawable, DrawableUpdate {
         double pathLength = currentPath.getPathLength();
         double speed = pathLength / 20.0;
         length += speed;
-        if (!line.getPathsIterator().hasNext()) {
-            return;
-        }
+
         if (length > pathLength) {
+            if (!line.getPathsIterator().hasNext()) {
+                return;
+            }
             currentPath = line.getPathsIterator().next();
             updateGui(currentDestination);
             coordinateListIterator = currentPath.getPath().listIterator();
@@ -115,6 +116,8 @@ public class Connection implements Drawable, DrawableUpdate {
             currentDestination = coordinateListIterator.next();
             length = 0.0;
             currentTotalLength = currentLength(position, currentDestination);
+            speed = pathLength / 20.0;
+            length += speed;
         }
         if (length > currentTotalLength) {
             speed = length - currentTotalLength;
