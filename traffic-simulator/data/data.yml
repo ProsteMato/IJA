@@ -423,7 +423,7 @@ streets:
   - *Stop46
   begin:
     x: 467.0
-    y: 55.0
+         y: 55.0
   end:
     x: 462.5
     y: 162.5
@@ -632,7 +632,7 @@ streets:
     y: 47.5
   end:
     x: 748.0
-    y: 273.5
+         y: 273.5
   isOpen: true
   traffic: 0.0
 - &Street28 id: "u28"
@@ -1017,141 +1017,182 @@ lines:
       source: *Stop245
       destination: *Stop247
       coordinates: null
+- &Line1 id: "lajna zwei"
+  paths:
+    -
+      source: *Stop230
+      destination: *Stop233
+      coordinates: null
+    -
+      source: *Stop233
+      destination: *Stop231
+      coordinates: null
+    -
+      source: *Stop231
+      destination: *Stop236
+      coordinates:
+        - x: 53.0
+          y: 693.5
+    -
+      source: *Stop236
+      destination: *Stop239
+      coordinates: null
+    -
+      source: *Stop239
+      destination: *Stop235
+      coordinates: null
+    -
+      source: *Stop235
+      destination: *Stop244
+      coordinates:
+        - x: 427.0
+          y: 702.5
+    -
+      source: *Stop244
+      destination: *Stop243
+      coordinates: null
+    -
+      source: *Stop243
+      destination: *Stop124
+      coordinates:
+        - x: 446.0
+          y: 566.0
+    -
+      source: *Stop124
+      destination: *Stop110
+      coordinates:
+        - x: 447.0
+          y: 491.5
+    -
+      source: *Stop110
+      destination: *Stop102
+      coordinates:
+        - x: 451.5
+          y: 409.0
+    -
+      source: *Stop102
+      destination: *Stop101
+      coordinates: null
+    -
+      source: *Stop101
+      destination: *Stop125
+      coordinates:
+        - x: 459.5
+          y: 271.0
+    -
+      source: *Stop125
+      destination: *Stop46
+      coordinates:
+        - x: 462.5
+          y: 162.5
+    -
+      source: *Stop46
+      destination: *Stop131
+      coordinates:
+        - x: 467.0
+          y: 55.0
+    -
+      source: *Stop131
+      destination: *Stop136
+      coordinates:
+        - x: 754.5
+          y: 47.5
+    -
+      source: *Stop136
+      destination: *Stop138
+      coordinates: null
+    -
+      source: *Stop138
+      destination: *Stop144
+      coordinates:
+        - x: 748.0
+          y: 273.5
 
-#  streets:
-#  - *Street0
-#  - *Street1
-#  - *Street2
-#  - *Street7
-#  - *Street19
-#  - *Street31
-#  - *Street32
-#  - *Street37
-#  - *Street36
-#  - *Street35
-#  - *Street40
-#  - *Street51
-#  - *Street50
-#  - *Street49
+- &Line2 id: "lajna drei"
+  paths:
+    -
+      source: *Stop75
+      destination: *Stop81
+      coordinates:
+        - x: 56.5
+          y: 511.5
+    -
+      source: *Stop81
+      destination: *Stop86
+      coordinates:
+        - x: 182.0
+          y: 507.5
+    -
+      source: *Stop86
+      destination: *Stop93
+      coordinates:
+        - x: 184.0
+          y: 575.5
+    -
+      source: *Stop93
+      destination: *Stop55
+      coordinates:
+        - x: 292.5
+          y: 563.5
+    -
+      source: *Stop55
+      destination: *Stop58
+      coordinates: null
+    -
+      source: *Stop58
+      destination: *Stop59
+      coordinates: null
+    -
+      source: *Stop59
+      destination: *Stop35
+      coordinates:
+        - x: 297.0
+          y: 267.5
+    -
+      source: *Stop35
+      destination: *Stop13
+      coordinates:
+        - x: 307.0
+          y: 161.0
+    -
+      source: *Stop13
+      destination: *Stop9
+      coordinates:
+        - x: 317.5
+          y: 59.5
+    -
+      source: *Stop9
+      destination: *Stop7
+      coordinates: null
+    -
+      source: *Stop7
+      destination: *Stop0
+      coordinates:
+        - x: 65.5
+          y: 65.5
+    -
+      source: *Stop0
+      destination: *Stop4
+      coordinates: null
+    -
+      source: *Stop4
+      destination: *Stop70
+      coordinates:
+        - x: 66.5
+          y: 260.0
+    -
+      source: *Stop70
+      destination: *Stop71
+      coordinates: null
+    -
+      source: *Stop71
+      destination: *Stop75
+      coordinates:
+        - x: 63.0
+          y: 359.5
 
 connections:
 - id: "c1"
   speed: 10.0
   line: *Line0
 
-#  stops:
-#  - *Stop0
-#  - *Stop7
-#  - *Stop9
-#  - *Stop13
-#  - *Stop35
-#  - *Stop95
-#  - *Stop99
-#  - *Stop156
-#  - *Stop157
-#  - *Stop164
-#  - *Stop163
-#  - null
-#  - null
-#  - null
-#  - *Stop201
-#  - *Stop258
-#  - *Stop259
-#  - *Stop253
-#  - *Stop245
-#  - *Stop247
-#  streets:
-#  - *Street0
-#  - *Street1
-#  - *Street1
-#  - *Street2
-#  - *Street7
-#  - *Street19
-#  - *Street19
-#  - *Street31
-#  - *Street31
-#  - *Street32
-#  - *Street32
-#  - *Street37
-#  - *Street36
-#  - *Street35
-#  - *Street40
-#  - *Street51
-#  - *Street51
-#  - *Street50
-#  - *Street49
-#  - *Street49
-#- &Line1 id: "lajna zwei"
-#  stops:
-#  - *Stop230
-#  - *Stop233
-#  - *Stop231
-#  - *Stop236
-#  - *Stop239
-#  - *Stop235
-#  - *Stop244
-#  - *Stop243
-#  - *Stop124
-#  - *Stop110
-#  - *Stop102
-#  - *Stop101
-#  - *Stop125
-#  - *Stop46
-#  - *Stop131
-#  - *Stop136
-#  - *Stop138
-#  - *Stop144
-#  streets:
-#  - *Street46
-#  - *Street46
-#  - *Street46
-#  - *Street47
-#  - *Street47
-#  - *Street47
-#  - *Street48
-#  - *Street48
-#  - *Street24
-#  - *Street22
-#  - *Street20
-#  - *Street20
-#  - *Street25
-#  - *Street9
-#  - *Street26
-#  - *Street27
-#  - *Street27
-#  - *Street28
-#- &Line2 id: "lajna drei"
-#  stops:
-#  - *Stop75
-#  - *Stop81
-#  - *Stop86
-#  - *Stop93
-#  - *Stop55
-#  - *Stop58
-#  - *Stop59
-#  - *Stop35
-#  - *Stop13
-#  - *Stop9
-#  - *Stop7
-#  - *Stop0
-#  - *Stop4
-#  - *Stop70
-#  - *Stop71
-#  - *Stop75
-#  streets:
-#  - *Street15
-#  - *Street16
-#  - *Street17
-#  - *Street18
-#  - *Street11
-#  - *Street11
-#  - *Street11
-#  - *Street7
-#  - *Street2
-#  - *Street1
-#  - *Street1
-#  - *Street0
-#  - *Street0
-#  - *Street14
-#  - *Street14
-#  - *Street15
