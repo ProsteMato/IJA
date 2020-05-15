@@ -75,7 +75,6 @@ stops:
   coordinate:
     x: 188.57568749472554
     y: 315.06193760021495
-
 - &Stop66 id: "z66"
   coordinate:
     x: 179.77016609622433
@@ -321,7 +320,7 @@ streets:
   stops:
   - *Stop0
   - *Stop4
-  begin:
+  &street0begin begin:
     x: 65.5
     y: 65.5
   end:
@@ -344,7 +343,7 @@ streets:
 - &Street2 id: "u2"
   stops:
   - *Stop13
-  begin:
+  &street2begin begin:
     x: 317.5
     y: 59.5
   end:
@@ -399,7 +398,7 @@ streets:
 - &Street7 id: "u7"
   stops:
   - *Stop35
-  begin:
+  &street7begin begin:
     x: 307.0
     y: 161.0
   end:
@@ -537,7 +536,7 @@ streets:
   stops:
   - *Stop95
   - *Stop99
-  begin:
+  &street19begin begin:
     x: 297.0
     y: 267.5
   end:
@@ -674,7 +673,7 @@ streets:
   stops:
   - *Stop156
   - *Stop157
-  begin:
+  &street31begin begin:
     x: 459.5
     y: 271.0
   end:
@@ -686,10 +685,10 @@ streets:
   stops:
   - *Stop163
   - *Stop164
-  begin:
+  &street32begin begin:
     x: 610.5
     y: 408.0
-  end:
+  &street32end end:
     x: 617.5
     y: 264.0
   isOpen: true
@@ -733,10 +732,10 @@ streets:
 - &Street36 id: "u36"
   stops:
   - *Stop183
-  begin:
+  &street36begin begin:
     x: 682.5
     y: 501.0
-  end:
+  &street36end end:
     x: 676.0
     y: 406.0
   isOpen: true
@@ -777,10 +776,10 @@ streets:
 - &Street40 id: "u40"
   stops:
   - *Stop201
-  begin:
+  &street40begin begin:
     x: 746.0
     y: 503.0
-  end:
+  &street40end end:
     x: 749.0
     y: 597.0
   isOpen: true
@@ -820,7 +819,6 @@ streets:
   traffic: 0.0
 - &Street44 id: "u44"
   stops:
-
   - *Stop223
   begin:
     x: 619.5
@@ -894,10 +892,10 @@ streets:
 - &Street50 id: "u50"
   stops:
   - *Stop253
-  begin:
+  &street50begin begin:
     x: 610.5
     y: 699.0
-  end:
+  &street50end end:
     x: 748.5
     y: 699.5
   isOpen: true
@@ -928,41 +926,84 @@ streets:
   traffic: 0.0
 lines:
 - &Line0 id: "lajna ein"
-  path:
-    u0:
-      - *Stop0
-    u1:
-      - *Stop7
-      - *Stop9
-    u2:
-      - *Stop13
-    u7:
-      - *Stop35
-    u19:
-      - *Stop95
-      - *Stop99
-    u31:
-      - *Stop156
-      - *Stop157
-    u32:
-      - *Stop164
-      - *Stop163
-    u37:
-      null
-    u36:
-      null
-    u35:
-      null
-    u40:
-      - *Stop201
-    u51:
-      - *Stop258
-      - *Stop259
-    u50:
-      - *Stop253
-    u49:
-      - *Stop245
-      - *Stop247
+  paths:
+    - p0:
+        source: *Stop0
+        destination: *Stop7
+        coordinates:
+          - *street0begin
+    - p1:
+        source: *Stop7
+        destination: *Stop9
+        coordinates: null
+    - p2:
+        source: *Stop9
+        destination: *Stop13
+      	coordinates:
+	      - *street2begin
+    - p3:
+        source: *Stop13
+        destination: *Stop35
+        coordinates:
+          - *street7begin
+    - p4:
+        source: *Stop35
+        destination: *Stop95
+        coordinates:
+          - *street19begin
+    - p5:
+        source: *Stop95
+        destination: *Stop99
+        coordinates: null
+    - p6:
+        source: *Stop99
+        destination: *Stop156
+        coordinates:
+          - *street31begin
+    - p7:
+        source: *Stop156
+        destination: *Stop157
+        coordinates: null
+    - p8:
+        source: *Stop157
+        destination: *Stop164
+        coordinates:
+          -  *street32end
+    - p9:
+        source: *Stop164
+        destination: *Stop163
+        coordinates: null
+    - p10:
+        source: *Stop163
+        destination: *Stop201
+        coordinates:
+          -  *street32begin
+          -  *street36end
+          -  *street36begin
+          -  *street40begin
+    - p11:
+        source: *Stop201
+        destination: *Stop258
+        coordinates:
+          - *street40end
+    - p12:
+        source: *Stop258
+        destination: *Stop259
+        coordinates: null
+    - p13:
+        source: *Stop259
+        destination: *Stop253
+        coordinates:
+          - *street50end
+    - p14:
+        source: *Stop253
+        destination: *Stop245
+        coordinates:
+          - *street50begin
+    - p15:
+        source: *Stop245
+        destination: *Stop247
+        coordinates: null
 
   streets:
   - *Street0
