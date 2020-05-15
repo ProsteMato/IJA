@@ -83,7 +83,7 @@ public class Controller {
     }
 
     public void showConnectionInfo(MouseEvent me){
-        me.consume();
+        /*me.consume();
         Circle bus = (Circle) me.getSource();
         // finding the connection
         for (Connection con : data.getConnections()) {
@@ -112,7 +112,7 @@ public class Controller {
         }
         for (Node node : infoPanelObjects){
             connectionListPanel.getChildren().add(node);
-        }
+        }*/
     }
 
     @FXML

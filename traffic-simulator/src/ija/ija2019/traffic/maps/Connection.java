@@ -1,6 +1,8 @@
 package ija.ija2019.traffic.maps;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.util.StdConverter;
@@ -14,8 +16,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-@JsonDeserialize(converter= Connection.ConnectionDeserialize.class)
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//@JsonDeserialize(converter= Connection.ConnectionDeserialize.class)
 public class Connection implements Drawable, DrawableUpdate {
     private String id;
     private double speed;
@@ -28,9 +30,16 @@ public class Connection implements Drawable, DrawableUpdate {
 
     public Connection(){}
 
-    public Connection(String id, Coordinate position) {
+    @JsonCreator
+    public Connection(@JsonProperty("id") String id, @JsonProperty("speed") double speed, @JsonProperty("line") Line line) {
         this.id = id;
-        this.position = position;
+        this.speed = speed;
+        this.line = line;
+        this.position = line.getPathsIterator().next().getSource().getCoordinate();
+        this.currentDestination = line.getPathsIterator().next().getDestination().getCoordinate();
+        this.currentLength = line.getPathsIterator().next().getPathLength();
+        this.length = 0.0;
+        setDrawableObjects();
     }
 
     public void setDrawableObjects() {
@@ -38,6 +47,14 @@ public class Connection implements Drawable, DrawableUpdate {
         Circle bus = new Circle(position.getX(), position.getY(), 8.0, Color.BLUE);
         bus.setId(id);
         drawableObjects.add(bus);
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setLine(Line line) {
+        this.line = line;
     }
 
     public Line getLine() {
@@ -92,10 +109,6 @@ public class Connection implements Drawable, DrawableUpdate {
         return drawableObjects;
     }
 
-    private double calculateTotalLength() {
-        return Math.sqrt(Math.pow(position.diffX(currentDestination), 2) + Math.pow(position.diffY(currentDestination), 2));
-    }
-
     @Override
     public void update(LocalTime time) {
         double speed = currentLength / 20.0;
@@ -104,11 +117,11 @@ public class Connection implements Drawable, DrawableUpdate {
         if (length > currentLength) {
             updateGui(currentDestination);
             setPosition(currentDestination);
-            if(line.getCoordinates().indexOf(currentDestination) + 1 == line.getCoordinates().size()) {
+            if(!line.getPathsIterator().hasNext()) {
                 return;
             }
-            setCurrentDestination(line.getCoordinates().get(line.getCoordinates().indexOf(currentDestination) + 1));
-            setCurrentLength(calculateTotalLength());
+            setCurrentDestination(line.getPathsIterator().next().getDestination().getCoordinate());
+            setCurrentLength(line.getPathsIterator().next().getPathLength());
             setLength(0.0);
             speed = currentLength / 20.0;
             length += speed;
@@ -118,7 +131,7 @@ public class Connection implements Drawable, DrawableUpdate {
         position = newPosition;
     }
 
-    static class ConnectionDeserialize extends StdConverter<Connection, Connection> {
+    /*static class ConnectionDeserialize extends StdConverter<Connection, Connection> {
 
         @Override
         public Connection convert(Connection connection) {
@@ -129,5 +142,5 @@ public class Connection implements Drawable, DrawableUpdate {
             connection.setDrawableObjects();
             return connection;
         }
-    }
+    }*/
 }
