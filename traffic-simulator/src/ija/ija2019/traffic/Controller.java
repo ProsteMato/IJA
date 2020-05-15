@@ -3,24 +3,14 @@ package ija.ija2019.traffic;
 import ija.ija2019.traffic.maps.*;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
-import javafx.scene.text.Text;
-import sun.awt.windows.WPrinterJob;
 
 import java.time.LocalTime;
 import java.util.*;
@@ -45,7 +35,7 @@ public class Controller {
     private Label timeLabel;
     @FXML
     private AnchorPane map;
-    private List<DrawableUpdate> drawableUpdatesElements = new ArrayList<>();
+    private List<Connection> drawableUpdatesElements = new ArrayList<>();
     private Timer timer;
     private LocalTime time = LocalTime.now();
     private List<Node> infoPanelObjects = new ArrayList<Node>();
@@ -56,7 +46,7 @@ public class Controller {
             timeLabel.setText(time.toString().substring(0,8));
         }
     };
-    public void addUpdate(DrawableUpdate drawableUpdate) {
+    public void addUpdate(Connection drawableUpdate) {
         drawableUpdatesElements.add(drawableUpdate);
     }
 
@@ -140,8 +130,11 @@ public class Controller {
             @Override
             public void run() {
                 time = time.plusSeconds(1);
-                for (DrawableUpdate drawableUpdate : drawableUpdatesElements) {
-                    drawableUpdate.update(time);
+                for (Connection drawableUpdate : drawableUpdatesElements) {
+                    if (drawableUpdate.update(time) == 1) {
+                        Platform.runLater(() -> map.getChildren().removeAll(drawableUpdate.getDrawableObjects()));
+                        Platform.runLater(() -> drawableUpdatesElements.remove(drawableUpdate));
+                    }
                 }
                 // timer update
                 Platform.runLater(updateTimer);

@@ -423,7 +423,7 @@ streets:
   - *Stop46
   begin:
     x: 467.0
-         y: 55.0
+    y: 55.0
   end:
     x: 462.5
     y: 162.5
@@ -632,7 +632,7 @@ streets:
     y: 47.5
   end:
     x: 748.0
-         y: 273.5
+    y: 273.5
   isOpen: true
   traffic: 0.0
 - &Street28 id: "u28"
@@ -981,7 +981,7 @@ lines:
       coordinates: null
     -
       source: *Stop163
-      destination: *Stop201
+      destination: *Stop178
       coordinates:
         - x: 610.5
           y: 408.0
@@ -989,30 +989,7 @@ lines:
           y: 406.0
         - x: 682.5
           y: 501.0
-        - x: 746.0
-          y: 503.0
-    -
-      source: *Stop201
-      destination: *Stop258
-      coordinates:
-        - x: 749.0
-          y: 597.0
-    -
-      source: *Stop258
-      destination: *Stop253
-      coordinates:
-        - x: 748.5
-          y: 699.5
-    -
-      source: *Stop253
-      destination: *Stop245
-      coordinates:
-        - x: 610.5
-          y: 699.0
-    -
-      source: *Stop245
-      destination: *Stop247
-      coordinates: null
+
 - &Line1 id: "lajna zwei"
   paths:
     -
@@ -1191,4 +1168,10 @@ connections:
 - id: "c1"
   speed: 10.0
   line: *Line0
+#- id: "c2"
+#  speed: 10.0
+#  line: *Line1
+#- id: "c3"
+#  speed: 10.0
+#  line: *Line2
 

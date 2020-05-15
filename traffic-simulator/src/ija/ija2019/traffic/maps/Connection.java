@@ -100,22 +100,22 @@ public class Connection implements Drawable, DrawableUpdate {
     }
 
     @Override
-    public void update(LocalTime time) {
+    public int update(LocalTime time) {
         double pathLength = currentPath.getPathLength();
         double speed = pathLength / 20.0;
         length += speed;
-
         if (length > pathLength) {
+            updateGui(currentDestination);
             if (!line.getPathsIterator().hasNext()) {
-                return;
+                return 1;
             }
             currentPath = line.getPathsIterator().next();
-            updateGui(currentDestination);
             coordinateListIterator = currentPath.getPath().listIterator();
             position = coordinateListIterator.next();
             currentDestination = coordinateListIterator.next();
             length = 0.0;
             currentTotalLength = currentLength(position, currentDestination);
+            pathLength = currentPath.getPathLength();
             speed = pathLength / 20.0;
             length += speed;
         }
@@ -125,16 +125,10 @@ public class Connection implements Drawable, DrawableUpdate {
             position = currentDestination;
             currentDestination = coordinateListIterator.next();
             currentTotalLength = currentLength(position, currentDestination) + length;
-            Coordinate newPosition = line.calculateNewPosition(position, currentDestination, speed);
-            updateGui(newPosition);
-            position = newPosition;
-        } else {
-            Coordinate newPosition = line.calculateNewPosition(position, currentDestination, speed);
-            updateGui(newPosition);
-            position = newPosition;
         }
-
-        System.out.format("%s - %f - %f\n", currentDestination, pathLength, length);
-
+        Coordinate newPosition = line.calculateNewPosition(position, currentDestination, speed);
+        updateGui(newPosition);
+        position = newPosition;
+        return 0;
     }
 }
