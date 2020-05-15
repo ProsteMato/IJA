@@ -67,6 +67,46 @@ public class Connection implements Drawable, DrawableUpdate {
         return speed;
     }
 
+    public Coordinate getCurrentDestination() {
+        return currentDestination;
+    }
+
+    public void setCurrentDestination(Coordinate currentDestination) {
+        this.currentDestination = currentDestination;
+    }
+
+    public Path getCurrentPath() {
+        return currentPath;
+    }
+
+    public void setCurrentPath(Path currentPath) {
+        this.currentPath = currentPath;
+    }
+
+    public ListIterator<Coordinate> getCoordinateListIterator() {
+        return coordinateListIterator;
+    }
+
+    public void setCoordinateListIterator(ListIterator<Coordinate> coordinateListIterator) {
+        this.coordinateListIterator = coordinateListIterator;
+    }
+
+    public double getCurrentTotalLength() {
+        return currentTotalLength;
+    }
+
+    public void setCurrentTotalLength(double currentTotalLength) {
+        this.currentTotalLength = currentTotalLength;
+    }
+
+    public double getLength() {
+        return length;
+    }
+
+    public void setDrawableObjects(List<Shape> drawableObjects) {
+        this.drawableObjects = drawableObjects;
+    }
+
     public void setLength(double length) {
         this.length = length;
     }
