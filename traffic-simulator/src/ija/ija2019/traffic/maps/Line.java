@@ -32,6 +32,15 @@ public class Line implements ILine {
         return id;
     }
 
+    public List<Stop> getStops(){
+        List<Stop> stops = new ArrayList<>();
+        for (Path path : paths) {
+            stops.add(path.getSource());
+        }
+        stops.add(paths.get(paths.size() - 1).getDestination());
+        return stops;
+    }
+
     public List<Path> getPaths() {
         return paths;
     }
