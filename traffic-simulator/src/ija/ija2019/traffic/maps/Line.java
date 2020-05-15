@@ -32,7 +32,7 @@ public class Line implements ILine {
         return id;
     }
 
-    public List<Path> getPath() {
+    public List<Path> getPaths() {
         return paths;
     }
 
@@ -50,11 +50,11 @@ public class Line implements ILine {
                 '}';
     }
 
-    class LineDeserialize extends StdConverter<Line, Line> {
+    static class LineDeserialize extends StdConverter<Line, Line> {
 
         @Override
         public Line convert(Line line) {
-            line.pathsIterator = paths.listIterator();
+            line.pathsIterator = line.getPaths().listIterator();
             return line;
         }
     }

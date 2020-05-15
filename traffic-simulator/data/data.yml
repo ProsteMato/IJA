@@ -927,99 +927,112 @@ streets:
 lines:
 - &Line0 id: "lajna ein"
   paths:
-    - p0:
-        source: *Stop0
-        destination: *Stop7
-        coordinates:
-          - *street0begin
-    - p1:
-        source: *Stop7
-        destination: *Stop9
-        coordinates: null
-    - p2:
-        source: *Stop9
-        destination: *Stop13
-      	coordinates:
-	      - *street2begin
-    - p3:
-        source: *Stop13
-        destination: *Stop35
-        coordinates:
-          - *street7begin
-    - p4:
-        source: *Stop35
-        destination: *Stop95
-        coordinates:
-          - *street19begin
-    - p5:
-        source: *Stop95
-        destination: *Stop99
-        coordinates: null
-    - p6:
-        source: *Stop99
-        destination: *Stop156
-        coordinates:
-          - *street31begin
-    - p7:
-        source: *Stop156
-        destination: *Stop157
-        coordinates: null
-    - p8:
-        source: *Stop157
-        destination: *Stop164
-        coordinates:
-          -  *street32end
-    - p9:
-        source: *Stop164
-        destination: *Stop163
-        coordinates: null
-    - p10:
-        source: *Stop163
-        destination: *Stop201
-        coordinates:
-          -  *street32begin
-          -  *street36end
-          -  *street36begin
-          -  *street40begin
-    - p11:
-        source: *Stop201
-        destination: *Stop258
-        coordinates:
-          - *street40end
-    - p12:
-        source: *Stop258
-        destination: *Stop259
-        coordinates: null
-    - p13:
-        source: *Stop259
-        destination: *Stop253
-        coordinates:
-          - *street50end
-    - p14:
-        source: *Stop253
-        destination: *Stop245
-        coordinates:
-          - *street50begin
-    - p15:
-        source: *Stop245
-        destination: *Stop247
-        coordinates: null
+    -
+      source: *Stop0
+      destination: *Stop7
+      coordinates:
+        - x: 65.5
+          y: 65.5
+    -
+      source: *Stop7
+      destination: *Stop9
+      coordinates: null
+    -
+      source: *Stop9
+      destination: *Stop13
+      coordinates:
+        - x: 317.5
+          y: 59.5
+    -
+      source: *Stop13
+      destination: *Stop35
+      coordinates:
+        - x: 307.0
+          y: 161.0
+    -
+      source: *Stop35
+      destination: *Stop95
+      coordinates:
+        - x: 297.0
+          y: 267.5
+    -
+      source: *Stop95
+      destination: *Stop99
+      coordinates: null
+    -
+      source: *Stop99
+      destination: *Stop156
+      coordinates:
+        - x: 459.5
+          y: 271.0
+    -
+      source: *Stop156
+      destination: *Stop157
+      coordinates: null
+    -
+      source: *Stop157
+      destination: *Stop164
+      coordinates:
+        - x: 617.5
+          y: 264.0
+    -
+      source: *Stop164
+      destination: *Stop163
+      coordinates: null
+    -
+      source: *Stop163
+      destination: *Stop201
+      coordinates:
+        - x: 610.5
+          y: 408.0
+        - x: 676.0
+          y: 406.0
+        - x: 682.5
+          y: 501.0
+        - x: 746.0
+          y: 503.0
+    -
+      source: *Stop201
+      destination: *Stop258
+      coordinates:
+        - x: 749.0
+          y: 597.0
+    -
+      source: *Stop258
+      destination: *Stop259
+      coordinates: null
+    -
+      source: *Stop259
+      destination: *Stop253
+      coordinates:
+        - x: 748.5
+          y: 699.5
+    -
+      source: *Stop253
+      destination: *Stop245
+      coordinates:
+        - x: 610.5
+          y: 699.0
+    -
+      source: *Stop245
+      destination: *Stop247
+      coordinates: null
 
-  streets:
-  - *Street0
-  - *Street1
-  - *Street2
-  - *Street7
-  - *Street19
-  - *Street31
-  - *Street32
-  - *Street37
-  - *Street36
-  - *Street35
-  - *Street40
-  - *Street51
-  - *Street50
-  - *Street49
+#  streets:
+#  - *Street0
+#  - *Street1
+#  - *Street2
+#  - *Street7
+#  - *Street19
+#  - *Street31
+#  - *Street32
+#  - *Street37
+#  - *Street36
+#  - *Street35
+#  - *Street40
+#  - *Street51
+#  - *Street50
+#  - *Street49
 
 connections:
 - id: "c1"
