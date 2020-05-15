@@ -72,8 +72,8 @@ public class Controller {
         this.data = data;
     }
 
-    public void showConnectionInfo(MouseEvent me){
-        /*me.consume();
+    public void showConnectionInfo(MouseEvent me) {
+        me.consume();
         Circle bus = (Circle) me.getSource();
         // finding the connection
         for (Connection con : data.getConnections()) {
@@ -81,28 +81,23 @@ public class Controller {
                 double yOffset = 5;
                 infoPanel.setVisible(true);
                 infoLabel.setText(con.getId());
-                for (Street street : con.getLine().getStreets()) {
-                    List<Stop> stops = con.getLine().getPath().get(street.getId());
-                    try {
-                        for (Stop stop : con.getLine().getPath().get(street.getId())) {
-                            Label label = new Label(stop.getId());
-                            label.setLayoutX(39);
-                            label.setLayoutY(yOffset);
-                            ProgressIndicator progressIndicator = new ProgressIndicator(0.3);
-                            progressIndicator.setLayoutX(8);
-                            progressIndicator.setLayoutY(yOffset);
-                            infoPanelObjects.add(new Group(progressIndicator, label));
-                            yOffset += 30;
-                        }
-                    } catch (NullPointerException eNull){
-                        continue;
-                    }
+                Line line = con.getLine();
+                List<Stop> stops = line.getStops();
+                for (Stop s : stops){
+                    Label label = new Label(s.getId());
+                    label.setLayoutX(39);
+                    label.setLayoutY(yOffset);
+                    ProgressIndicator progressIndicator = new ProgressIndicator(0.3);
+                    progressIndicator.setLayoutX(8);
+                    progressIndicator.setLayoutY(yOffset);
+                    infoPanelObjects.add(new Group(progressIndicator, label));
+                    yOffset += 30;
                 }
             }
         }
         for (Node node : infoPanelObjects){
             connectionListPanel.getChildren().add(node);
-        }*/
+        }
     }
 
     @FXML
