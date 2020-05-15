@@ -1,13 +1,7 @@
 package ija.ija2019.traffic.maps;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.util.StdConverter;
-import ija.ija2019.traffic.Controller;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
@@ -15,16 +9,18 @@ import javafx.scene.shape.Shape;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
-//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-//@JsonDeserialize(converter= Connection.ConnectionDeserialize.class)
+
 public class Connection implements Drawable, DrawableUpdate {
     private String id;
     private double speed;
     private Line line;
     private Coordinate position;
     private Coordinate currentDestination;
-    private double currentLength;
+    private Path currentPath;
+    private ListIterator<Coordinate> coordinateListIterator;
+    private double currentTotalLength;
     private double length;
     private List<Shape> drawableObjects;
 
@@ -35,9 +31,11 @@ public class Connection implements Drawable, DrawableUpdate {
         this.id = id;
         this.speed = speed;
         this.line = line;
-        this.position = line.getPathsIterator().next().getSource().getCoordinate();
-        this.currentDestination = line.getPathsIterator().next().getDestination().getCoordinate();
-        this.currentLength = line.getPathsIterator().next().getPathLength();
+        this.currentPath = line.getPathsIterator().next();
+        this.coordinateListIterator = currentPath.getPath().listIterator();
+        this.position = coordinateListIterator.next();
+        this.currentDestination = coordinateListIterator.next();
+        this.currentTotalLength = currentLength(position, currentDestination);
         this.length = 0.0;
         setDrawableObjects();
     }
@@ -77,20 +75,8 @@ public class Connection implements Drawable, DrawableUpdate {
         this.speed = speed;
     }
 
-    public void setCurrentLength(double currentLength) {
-        this.currentLength = currentLength;
-    }
-
     public Coordinate getPosition() {
         return position;
-    }
-
-    public Coordinate getCurrentDestination() {
-        return currentDestination;
-    }
-
-    public void setCurrentDestination(Coordinate currentDestination) {
-        this.currentDestination = currentDestination;
     }
 
     public void setPosition(Coordinate position) {
@@ -109,38 +95,43 @@ public class Connection implements Drawable, DrawableUpdate {
         return drawableObjects;
     }
 
-    @Override
-    public void update(LocalTime time) {
-        double speed = currentLength / 20.0;
-        length += speed;
-        System.out.format("%s - %f - %f\n", currentDestination, currentLength, length);
-        if (length > currentLength) {
-            updateGui(currentDestination);
-            setPosition(currentDestination);
-            if(!line.getPathsIterator().hasNext()) {
-                return;
-            }
-            setCurrentDestination(line.getPathsIterator().next().getDestination().getCoordinate());
-            setCurrentLength(line.getPathsIterator().next().getPathLength());
-            setLength(0.0);
-            speed = currentLength / 20.0;
-            length += speed;
-        }
-        Coordinate newPosition = line.calculateNewPosition(position, currentDestination, speed);
-        updateGui(newPosition);
-        position = newPosition;
+    private double currentLength(Coordinate source, Coordinate destination) {
+        return Math.sqrt(Math.pow(source.diffX(destination), 2) + Math.pow(source.diffY(destination), 2));
     }
 
-    /*static class ConnectionDeserialize extends StdConverter<Connection, Connection> {
-
-        @Override
-        public Connection convert(Connection connection) {
-            connection.setPosition(connection.getLine().getCoordinates().get(0));
-            connection.setCurrentDestination(connection.getLine().getCoordinates().get(1));
-            connection.setCurrentLength(connection.calculateTotalLength());
-            connection.setLength(0.0d);
-            connection.setDrawableObjects();
-            return connection;
+    @Override
+    public void update(LocalTime time) {
+        double pathLength = currentPath.getPathLength();
+        double speed = pathLength / 20.0;
+        length += speed;
+        if (!line.getPathsIterator().hasNext()) {
+            return;
         }
-    }*/
+        if (length > pathLength) {
+            currentPath = line.getPathsIterator().next();
+            updateGui(currentDestination);
+            coordinateListIterator = currentPath.getPath().listIterator();
+            position = coordinateListIterator.next();
+            currentDestination = coordinateListIterator.next();
+            length = 0.0;
+            currentTotalLength = currentLength(position, currentDestination);
+        }
+        if (length > currentTotalLength) {
+            speed = length - currentTotalLength;
+            updateGui(currentDestination);
+            position = currentDestination;
+            currentDestination = coordinateListIterator.next();
+            currentTotalLength = currentLength(position, currentDestination) + length;
+            Coordinate newPosition = line.calculateNewPosition(position, currentDestination, speed);
+            updateGui(newPosition);
+            position = newPosition;
+        } else {
+            Coordinate newPosition = line.calculateNewPosition(position, currentDestination, speed);
+            updateGui(newPosition);
+            position = newPosition;
+        }
+
+        System.out.format("%s - %f - %f\n", currentDestination, pathLength, length);
+
+    }
 }

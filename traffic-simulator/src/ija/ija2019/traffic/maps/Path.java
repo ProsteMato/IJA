@@ -63,6 +63,7 @@ public class Path {
         } else {
             length += calculateLength(this.source.getCoordinate(), this.coordinates.get(0));
             for (int i = 0; i < coordinates.size() - 1; i++) {
+                System.out.println("hello");
                 length += calculateLength(this.coordinates.get(i), this.coordinates.get(i+1));
             }
             length += calculateLength(coordinates.get(coordinates.size() - 1), this.destination.getCoordinate());
