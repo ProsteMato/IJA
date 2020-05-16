@@ -33,6 +33,7 @@ public class Line implements ILine {
             stops.add(path.getSource());
         }
         stops.add(paths.get(paths.size() - 1).getDestination());
+        System.out.println(stops);
         return stops;
     }
 

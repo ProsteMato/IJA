@@ -15,6 +15,7 @@ import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.time.LocalTime;
 
 import ija.ija2019.traffic.Controller;
 
@@ -52,14 +53,13 @@ public class Main extends Application {
                     }
                 }
             }
-            controller.draw(drawable.getDrawableObjects());
-            if (drawable instanceof DrawableUpdate)
-                controller.addUpdate((DrawableUpdate) drawable);
+            if (!(drawable instanceof Connection)) {
+                controller.draw(drawable.getDrawableObjects());
+            }
         }
 
         primaryStage.show();
         controller.runTime();
-
     }
 
     public static void main(String[] args) {

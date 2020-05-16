@@ -1775,29 +1775,29 @@ connections:
     line: *Line0
     timetable:
       - stop: *Stop0
-        time: "5:01"
+        time: "05:01"
       - stop: *Stop7
-        time: "5:06"
+        time: "05:06"
       - stop: *Stop9
-        time: "5:10"
+        time: "05:10"
       - stop: *Stop13
-        time: "5:17"
+        time: "05:17"
       - stop: *Stop35
-        time: "5:23"
+        time: "05:23"
       - stop: *Stop95
-        time: "5:29"
+        time: "05:29"
       - stop: *Stop99
-        time: "5:32"
+        time: "05:32"
       - stop: *Stop156
-        time: "5:35"
+        time: "05:35"
       - stop: *Stop157
-        time: "5:38"
+        time: "05:38"
       - stop: *Stop164
-        time: "5:42"
+        time: "05:42"
       - stop: *Stop163
-        time: "5:45"
+        time: "05:45"
       - stop: *Stop178
-        time: "5:58"
+        time: "05:58"
   - id: "B8"
     line: *Line1
     timetable:

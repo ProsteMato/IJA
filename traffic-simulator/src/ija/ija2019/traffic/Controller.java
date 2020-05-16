@@ -22,6 +22,8 @@ import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
 
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public class Controller {
@@ -49,12 +51,12 @@ public class Controller {
     private AnchorPane map;
     private List<DrawableUpdate> drawableUpdatesElements = new ArrayList<>();
     private Timer timer;
-    private LocalTime time = LocalTime.now();
+    private LocalTime time = LocalTime.now().truncatedTo(ChronoUnit.SECONDS);
 
     Runnable updateTimer = new Runnable() {
         @Override
         public void run() {
-            timeLabel.setText(time.toString().substring(0,8));
+            timeLabel.setText(time.format(DateTimeFormatter.ofPattern("H:mm:ss")));
         }
     };
     public void addUpdate(DrawableUpdate drawableUpdate) {
@@ -271,12 +273,26 @@ public class Controller {
             map.getChildren().addAll(s);
     }
 
+    public void setUpConnection(Connection connection) {
+        addUpdate(connection);
+        draw(connection.getDrawableObjects());
+    }
+
+    public void checkConnections() {
+        for (Connection connection : data.getConnections()) {
+            if (connection.getStartTime().equals(time)) {
+                setUpConnection(connection);
+            }
+        }
+    }
+
     public void runTime() {
         timer = new Timer(false);
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 time = time.plusSeconds(1);
+                Platform.runLater(() -> checkConnections());
                 for (DrawableUpdate drawableUpdate : drawableUpdatesElements) {
                     if (drawableUpdate.update(time) == 1) {
                         Platform.runLater(() -> map.getChildren().removeAll(drawableUpdate.getDrawableObjects()));

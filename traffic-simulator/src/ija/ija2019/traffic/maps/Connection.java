@@ -64,6 +64,10 @@ public class Connection implements Drawable, DrawableUpdate {
         return timetable;
     }
 
+    public LocalTime getStartTime() {
+        return timetable.get(0).getLocalTime();
+    }
+
     public void setTimetable(List<Timetable> timetable) {
         this.timetable = timetable;
     }
@@ -202,6 +206,7 @@ public class Connection implements Drawable, DrawableUpdate {
         if (length > pathLength) {
             updateGui(currentDestination);
             if (!pathsIterator.hasNext()) {
+                updatePathProgress(pathLength);
                 return 1;
             }
             currentPath = pathsIterator.next();
