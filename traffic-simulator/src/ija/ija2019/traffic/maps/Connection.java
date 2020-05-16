@@ -27,9 +27,8 @@ public class Connection implements Drawable, DrawableUpdate {
     public Connection(){}
 
     @JsonCreator
-    public Connection(@JsonProperty("id") String id, @JsonProperty("speed") double speed, @JsonProperty("line") Line line) {
+    public Connection(@JsonProperty("id") String id, @JsonProperty("line") Line line) {
         this.id = id;
-        this.speed = speed;
         this.line = line;
         this.currentPath = line.getPathsIterator().next();
         this.coordinateListIterator = currentPath.getPath().listIterator();

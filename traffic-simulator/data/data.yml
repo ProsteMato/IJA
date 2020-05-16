@@ -670,7 +670,7 @@ stops:
   coordinate:
     x: 66.11303381552747
     y: 184.73507712009246
-  street: *Street4
+  street: *Street0
 - &Stop7 id: "z7"
   coordinate:
     x: 134.47630581483634
@@ -1286,12 +1286,9 @@ lines:
 
 connections:
 - id: "c1"
-  speed: 10.0
   line: *Line0
-#- id: "c2"
-#  speed: 10.0
-#  line: *Line1
-#- id: "c3"
-#  speed: 10.0
-#  line: *Line2
+- id: "c2"
+  line: *Line1
+- id: "c3"
+  line: *Line2
 
