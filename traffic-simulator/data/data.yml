@@ -11,7 +11,7 @@ streets:
         x: 66.5
         y: 260.0
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street1
       id: "u1"
 #     stops:
@@ -24,7 +24,7 @@ streets:
         x: 317.5
         y: 59.5
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street2 
       id: "u2"
 #     stops:
@@ -36,7 +36,7 @@ streets:
         x: 307.0
         y: 161.0
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street3 
       id: "u3"
 #     stops:
@@ -48,7 +48,7 @@ streets:
         x: 198.0
         y: 151.0
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street4 
       id: "u4"
 #     stops:
@@ -60,7 +60,7 @@ streets:
         x: 191.5
         y: 259.5
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street5 
       id: "u5"
 #     stops:
@@ -72,7 +72,7 @@ streets:
         x: 191.5
         y: 259.5
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street6 
       id: "u6"
 #     stops:
@@ -84,7 +84,7 @@ streets:
         x: 297.0
         y: 267.5
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street7 
       id: "u7"
 #     stops:
@@ -96,7 +96,7 @@ streets:
         x: 297.0
         y: 267.5
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street8 
       id: "u8"
 #     stops:
@@ -109,7 +109,7 @@ streets:
         x: 467.0
         y: 55.0
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street9 
       id: "u9"
 #     stops:
@@ -121,7 +121,7 @@ streets:
         x: 462.5
         y: 162.5
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street10 
       id: "u10"
 #     stops:
@@ -134,7 +134,7 @@ streets:
         x: 307.0
         y: 161.0
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street11 
       id: "u11"
 #     stops:
@@ -148,7 +148,7 @@ streets:
         x: 292.5
         y: 563.5
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street12 
       id: "u12"
 #     stops:
@@ -160,7 +160,7 @@ streets:
         x: 186.5
         y: 354.5
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street13 
       id: "u13"
 #     stops:
@@ -173,7 +173,7 @@ streets:
         x: 63.0
         y: 359.5
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street14 
       id: "u14"
 #     stops:
@@ -185,7 +185,7 @@ streets:
         x: 63.0
         y: 359.5
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street15 
       id: "u15"
 #     stops:
@@ -197,7 +197,7 @@ streets:
         x: 56.5
         y: 511.5
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street16 
       id: "u16"
 #     stops:
@@ -209,7 +209,7 @@ streets:
         x: 182.0
         y: 507.5
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street17 
       id: "u17"
 #     stops:
@@ -221,7 +221,7 @@ streets:
         x: 184.0
         y: 575.5
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street18 
       id: "u18"
 #     stops:
@@ -233,7 +233,7 @@ streets:
         x: 292.5
         y: 563.5
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street19 
       id: "u19"
 #     stops:
@@ -246,7 +246,7 @@ streets:
         x: 459.5
         y: 271.0
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street20 
       id: "u20"
 #     stops:
@@ -259,7 +259,7 @@ streets:
         x: 451.5
         y: 409.0
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street21 
       id: "u21"
 #     stops:
@@ -272,7 +272,7 @@ streets:
         x: 610.5
         y: 408.0
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street22 
       id: "u22"
 #     stops:
@@ -284,7 +284,7 @@ streets:
         x: 447.0
         y: 491.5
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street23 
       id: "u23"
 #     stops:
@@ -296,7 +296,7 @@ streets:
         x: 446.0
         y: 566.0
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street24 
       id: "u24"
 #     stops:
@@ -308,7 +308,7 @@ streets:
         x: 447.0
         y: 491.5
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street25 
       id: "u25"
 #     stops:
@@ -320,7 +320,7 @@ streets:
         x: 462.5
         y: 162.5
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street26 
       id: "u26"
 #     stops:
@@ -332,7 +332,7 @@ streets:
         x: 754.5
         y: 47.5
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street27 
       id: "u27"
 #     stops:
@@ -345,7 +345,7 @@ streets:
         x: 748.0
         y: 273.5
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street28 
       id: "u28"
 #     stops:
@@ -357,7 +357,7 @@ streets:
         x: 617.5
         y: 264.0
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street29 
       id: "u29"
 #     stops:
@@ -370,7 +370,7 @@ streets:
         x: 609.5
         y: 151.5
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street30 
       id: "u30"
 #     stops:
@@ -382,7 +382,7 @@ streets:
         x: 617.5
         y: 264.0
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street31 
       id: "u31"
 #     stops:
@@ -395,7 +395,7 @@ streets:
         x: 617.5
         y: 264.0
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street32 
       id: "u32"
 #     stops:
@@ -408,7 +408,7 @@ streets:
         x: 617.5
         y: 264.0
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street33 
       id: "u33"
 #     stops:
@@ -422,7 +422,7 @@ streets:
         x: 746.0
         y: 503.0
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street34 
       id: "u34"
 #     stops:
@@ -435,7 +435,7 @@ streets:
         x: 619.5
         y: 577.0
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street35 
       id: "u35"
 #     stops:
@@ -447,7 +447,7 @@ streets:
         x: 682.5
         y: 501.0
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street36 
       id: "u36"
 #     stops:
@@ -459,7 +459,7 @@ streets:
         x: 676.0
         y: 406.0
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street37 
       id: "u37"
 #     stops:
@@ -471,7 +471,7 @@ streets:
         x: 676.0
         y: 406.0
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street38 
       id: "u38"
 #     stops:
@@ -483,7 +483,7 @@ streets:
         x: 689.5
         y: 583.5
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street39 
       id: "u39"
 #     stops:
@@ -495,7 +495,7 @@ streets:
         x: 619.5
         y: 577.0
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street40 
       id: "u40"
 #     stops:
@@ -507,7 +507,7 @@ streets:
         x: 749.0
         y: 597.0
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street41 
       id: "u41"
 #     stops:
@@ -519,7 +519,7 @@ streets:
         x: 689.5
         y: 583.5
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street42 
       id: "u42"
 #     stops:
@@ -531,7 +531,7 @@ streets:
         x: 539.5
         y: 493.0
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street43 
       id: "u43"
 #     stops:
@@ -543,7 +543,7 @@ streets:
         x: 535.0
         y: 573.0
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street44 
       id: "u44"
 #     stops:
@@ -555,7 +555,7 @@ streets:
         x: 535.0
         y: 573.0
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street45 
       id: "u45"
 #     stops:
@@ -567,7 +567,7 @@ streets:
         x: 446.0
         y: 566.0
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street46 
       id: "u46"
 #     stops:
@@ -581,7 +581,7 @@ streets:
         x: 53.0
         y: 693.5
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street47 
       id: "u47"
 #     stops:
@@ -595,7 +595,7 @@ streets:
         x: 427.0
         y: 702.5
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street48 
       id: "u48"
 #     stops:
@@ -608,7 +608,7 @@ streets:
         x: 427.0
         y: 702.5
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street49 
       id: "u49"
 #     stops:
@@ -621,7 +621,7 @@ streets:
         x: 610.5
         y: 699.0
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street50 
       id: "u50"
 #     stops:
@@ -633,7 +633,7 @@ streets:
         x: 748.5
         y: 699.5
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street51 
       id: "u51"
 #     stops:
@@ -646,7 +646,7 @@ streets:
         x: 749.0
         y: 597.0
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
   - &Street52 
       id: "u52"
 #     stops:
@@ -659,7 +659,7 @@ streets:
         x: 610.5
         y: 699.0
       isOpen: true
-      traffic: 0.0
+      traffic: 0.6
 stops:
 - &Stop0 id: "z0"
   coordinate:
