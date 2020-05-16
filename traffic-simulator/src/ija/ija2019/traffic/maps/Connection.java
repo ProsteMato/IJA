@@ -10,10 +10,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 
+import java.time.Duration;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.SimpleTimeZone;
 
 
 public class Connection implements Drawable, DrawableUpdate {
@@ -197,13 +200,33 @@ public class Connection implements Drawable, DrawableUpdate {
         return Math.sqrt(Math.pow(source.diffX(destination), 2) + Math.pow(source.diffY(destination), 2));
     }
 
+    private long getTimeForDestination() {
+        long duration = 0;
+        for (int i = 1; i < timetable.size(); i++) {
+            if(timetable.get(i).getStop().equals(currentPath.getDestination())) {
+                LocalTime source = timetable.get(i-1).getLocalTime();
+                LocalTime destination = timetable.get(i).getLocalTime();
+                LocalTime beforeMidNight = LocalTime.parse("23:59:59");
+                LocalTime midNight = LocalTime.parse("00:00");
+                if (source.isAfter(destination)) {
+                    duration += ChronoUnit.SECONDS.between(source, beforeMidNight);
+                    duration += ChronoUnit.SECONDS.between(midNight, destination);
+                } else {
+                    duration = ChronoUnit.SECONDS.between(source, destination);
+                }
+            }
+        }
+        return duration;
+    }
+
     @Override
     public int update(LocalTime time) {
         double pathLength = currentPath.getPathLength();
-        double speed = pathLength / 20.0;
+        double speed = pathLength / getTimeForDestination();
         speed = speed * currentPath.getTraffic(currentDestination);
         length += speed;
         if (length > pathLength) {
+            System.out.println("nastavil som novú path");
             updateGui(currentDestination);
             if (!pathsIterator.hasNext()) {
                 updatePathProgress(pathLength);
@@ -216,7 +239,7 @@ public class Connection implements Drawable, DrawableUpdate {
             length = 0.0;
             currentTotalLength = currentLength(position, currentDestination);
             pathLength = currentPath.getPathLength();
-            speed = pathLength / 20.0;
+            speed = pathLength / getTimeForDestination();
             speed = speed * currentPath.getTraffic(currentDestination);
             length += speed;
             if (indicators.size() > 0){
@@ -224,7 +247,7 @@ public class Connection implements Drawable, DrawableUpdate {
             }
             nextStopIndex += 1;
         }
-        if (length > currentTotalLength) {
+        if (length > currentTotalLength && coordinateListIterator.hasNext()) {
             speed = length - currentTotalLength;
             updateGui(currentDestination);
             position = currentDestination;

@@ -30,7 +30,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <Slider fx:id="speedSlider" blockIncrement="1.0" layoutX="14.0" layoutY="53.0" majorTickUnit="1.0" max="15.0" min="1.0" minorTickCount="0" prefHeight="14.0" prefWidth="141.0" snapToTicks="true" value="1.0" />
+                  <Slider fx:id="speedSlider" blockIncrement="1.0" layoutX="14.0" layoutY="53.0" majorTickUnit="1.0" max="50.0" min="1.0" minorTickCount="0" prefHeight="14.0" prefWidth="141.0" snapToTicks="true" value="25.0" />
                   <Label fx:id="speedLabel" alignment="CENTER" layoutX="149.0" layoutY="50.0" prefHeight="20.0" prefWidth="31.0" text="1">
                      <font>
                         <Font name="System Bold Italic" size="15.0" />

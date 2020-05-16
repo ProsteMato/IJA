@@ -25,6 +25,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Controller {
     public AnchorPane getMap() {
@@ -54,7 +55,7 @@ public class Controller {
     private Label timeLabel;
     @FXML
     private AnchorPane map;
-    private List<DrawableUpdate> drawableUpdatesElements = new ArrayList<>();
+    private List<DrawableUpdate> drawableUpdatesElements = new CopyOnWriteArrayList<>();
     private Timer timer;
     private LocalTime time = LocalTime.now().truncatedTo(ChronoUnit.SECONDS);
 
@@ -85,6 +86,7 @@ public class Controller {
         speedLabel.textProperty().bind(
                 Bindings.format("%.0fx", speedSlider.valueProperty())
         );
+        timeSpeed = (long)speedSlider.getValue();
         speedSlider.addEventHandler(MouseEvent.MOUSE_RELEASED, this::changeSpeed);
     }
 
