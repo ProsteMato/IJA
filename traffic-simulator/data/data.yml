@@ -1,1168 +1,1288 @@
+streets:
+  - &Street0
+      id: "u0"
+    # stops:
+    #   - *Stop0
+    #   - *Stop4
+      begin:
+        x: 65.5
+        y: 65.5
+      end:
+        x: 66.5
+        y: 260.0
+      isOpen: true
+      traffic: 0.0
+  - &Street1
+      id: "u1"
+#     stops:
+#       - *Stop7
+#       - *Stop9
+      begin:
+        x: 65.5
+        y: 65.5
+      end:
+        x: 317.5
+        y: 59.5
+      isOpen: true
+      traffic: 0.0
+  - &Street2 
+      id: "u2"
+#     stops:
+#       - *Stop13
+      begin:
+        x: 317.5
+        y: 59.5
+      end:
+        x: 307.0
+        y: 161.0
+      isOpen: true
+      traffic: 0.0
+  - &Street3 
+      id: "u3"
+#     stops:
+#       - *Stop17
+      begin:
+        x: 307.0
+        y: 161.0
+      end:
+        x: 198.0
+        y: 151.0
+      isOpen: true
+      traffic: 0.0
+  - &Street4 
+      id: "u4"
+#     stops:
+#       - *Stop22
+      begin:
+        x: 198.0
+        y: 151.0
+      end:
+        x: 191.5
+        y: 259.5
+      isOpen: true
+      traffic: 0.0
+  - &Street5 
+      id: "u5"
+#     stops:
+#       - *Stop28
+      begin:
+        x: 66.5
+        y: 260.0
+      end:
+        x: 191.5
+        y: 259.5
+      isOpen: true
+      traffic: 0.0
+  - &Street6 
+      id: "u6"
+#     stops:
+#       - *Stop33
+      begin:
+        x: 191.5
+        y: 259.5
+      end:
+        x: 297.0
+        y: 267.5
+      isOpen: true
+      traffic: 0.0
+  - &Street7 
+      id: "u7"
+#     stops:
+#       - *Stop35
+      begin:
+        x: 307.0
+        y: 161.0
+      end:
+        x: 297.0
+        y: 267.5
+      isOpen: true
+      traffic: 0.0
+  - &Street8 
+      id: "u8"
+#     stops:
+#       - *Stop42
+#       - *Stop41
+      begin:
+        x: 317.5
+        y: 59.5
+      end:
+        x: 467.0
+        y: 55.0
+      isOpen: true
+      traffic: 0.0
+  - &Street9 
+      id: "u9"
+#     stops:
+#       - *Stop46
+      begin:
+        x: 467.0
+        y: 55.0
+      end:
+        x: 462.5
+        y: 162.5
+      isOpen: true
+      traffic: 0.0
+  - &Street10 
+      id: "u10"
+#     stops:
+#       - *Stop51
+#       - *Stop53
+      begin:
+        x: 462.5
+        y: 162.5
+      end:
+        x: 307.0
+        y: 161.0
+      isOpen: true
+      traffic: 0.0
+  - &Street11 
+      id: "u11"
+#     stops:
+#       - *Stop55
+#       - *Stop58
+#       - *Stop59
+      begin:
+        x: 297.0
+        y: 267.5
+      end:
+        x: 292.5
+        y: 563.5
+      isOpen: true
+      traffic: 0.0
+  - &Street12 
+      id: "u12"
+#     stops:
+#       - *Stop64
+      begin:
+        x: 191.5
+        y: 259.5
+      end:
+        x: 186.5
+        y: 354.5
+      isOpen: true
+      traffic: 0.0
+  - &Street13 
+      id: "u13"
+#     stops:
+#       - *Stop66
+#       - *Stop69
+      begin:
+        x: 186.5
+        y: 354.5
+      end:
+        x: 63.0
+        y: 359.5
+      isOpen: true
+      traffic: 0.0
+  - &Street14 
+      id: "u14"
+#     stops:
+#       - *Stop71
+      begin:
+        x: 66.5
+        y: 260.0
+      end:
+        x: 63.0
+        y: 359.5
+      isOpen: true
+      traffic: 0.0
+  - &Street15 
+      id: "u15"
+#     stops:
+#       - *Stop7
+      begin:
+        x: 63.0
+        y: 359.5
+      end:
+        x: 56.5
+        y: 511.5
+      isOpen: true
+      traffic: 0.0
+  - &Street16 
+      id: "u16"
+#     stops:
+#       - *Stop81
+      begin:
+        x: 56.5
+        y: 511.5
+      end:
+        x: 182.0
+        y: 507.5
+      isOpen: true
+      traffic: 0.0
+  - &Street17 
+      id: "u17"
+#     stops:
+#       - *Stop86
+      begin:
+        x: 182.0
+        y: 507.5
+      end:
+        x: 184.0
+        y: 575.5
+      isOpen: true
+      traffic: 0.0
+  - &Street18 
+      id: "u18"
+#     stops:
+#       - *Stop93
+      begin:
+        x: 184.0
+        y: 575.5
+      end:
+        x: 292.5
+        y: 563.5
+      isOpen: true
+      traffic: 0.0
+  - &Street19 
+      id: "u19"
+#     stops:
+#       - *Stop95
+#       - *Stop99
+      begin:
+        x: 297.0
+        y: 267.5
+      end:
+        x: 459.5
+        y: 271.0
+      isOpen: true
+      traffic: 0.0
+  - &Street20 
+      id: "u20"
+#     stops:
+#       - *Stop101
+#       - *Stop102
+      begin:
+        x: 459.5
+        y: 271.0
+      end:
+        x: 451.5
+        y: 409.0
+      isOpen: true
+      traffic: 0.0
+  - &Street21 
+      id: "u21"
+#     stops:
+#       - *Stop108
+#       - *Stop109
+      begin:
+        x: 451.5
+        y: 409.0
+      end:
+        x: 610.5
+        y: 408.0
+      isOpen: true
+      traffic: 0.0
+  - &Street22 
+      id: "u22"
+#     stops:
+#       - *Stop110
+      begin:
+        x: 451.5
+        y: 409.0
+      end:
+        x: 447.0
+        y: 491.5
+      isOpen: true
+      traffic: 0.0
+  - &Street23 
+      id: "u23"
+#     stops:
+#       - *Stop119
+      begin:
+        x: 292.5
+        y: 563.5
+      end:
+        x: 446.0
+        y: 566.0
+      isOpen: true
+      traffic: 0.0
+  - &Street24 
+      id: "u24"
+#     stops:
+#       - *Stop124
+      begin:
+        x: 446.0
+        y: 566.0
+      end:
+        x: 447.0
+        y: 491.5
+      isOpen: true
+      traffic: 0.0
+  - &Street25 
+      id: "u25"
+#     stops:
+#       - *Stop125
+      begin:
+        x: 459.5
+        y: 271.0
+      end:
+        x: 462.5
+        y: 162.5
+      isOpen: true
+      traffic: 0.0
+  - &Street26 
+      id: "u26"
+#     stops:
+#       - *Stop131
+      begin:
+        x: 467.0
+        y: 55.0
+      end:
+        x: 754.5
+        y: 47.5
+      isOpen: true
+      traffic: 0.0
+  - &Street27 
+      id: "u27"
+#     stops:
+#       - *Stop136
+#       - *Stop138
+      begin:
+        x: 754.5
+        y: 47.5
+      end:
+        x: 748.0
+        y: 273.5
+      isOpen: true
+      traffic: 0.0
+  - &Street28 
+      id: "u28"
+#     stops:
+#       - *Stop144
+      begin:
+        x: 748.0
+        y: 273.5
+      end:
+        x: 617.5
+        y: 264.0
+      isOpen: true
+      traffic: 0.0
+  - &Street29 
+      id: "u29"
+#     stops:
+#       - *Stop145
+#       - *Stop146
+      begin:
+        x: 462.5
+        y: 162.5
+      end:
+        x: 609.5
+        y: 151.5
+      isOpen: true
+      traffic: 0.0
+  - &Street30 
+      id: "u30"
+#     stops:
+#       - *Stop151
+      begin:
+        x: 609.5
+        y: 151.5
+      end:
+        x: 617.5
+        y: 264.0
+      isOpen: true
+      traffic: 0.0
+  - &Street31 
+      id: "u31"
+#     stops:
+#       - *Stop156
+#       - *Stop157
+      begin:
+        x: 459.5
+        y: 271.0
+      end:
+        x: 617.5
+        y: 264.0
+      isOpen: true
+      traffic: 0.0
+  - &Street32 
+      id: "u32"
+#     stops:
+#       - *Stop163
+#       - *Stop164
+      begin:
+        x: 610.5
+        y: 408.0
+      end:
+        x: 617.5
+        y: 264.0
+      isOpen: true
+      traffic: 0.0
+  - &Street33 
+      id: "u33"
+#     stops:
+#       - *Stop165
+#       - *Stop166
+#       - *Stop167
+      begin:
+        x: 748.0
+        y: 273.5
+      end:
+        x: 746.0
+        y: 503.0
+      isOpen: true
+      traffic: 0.0
+  - &Street34 
+      id: "u34"
+#     stops:
+#       - *Stop172
+#       - *Stop173
+      begin:
+        x: 610.5
+        y: 408.0
+      end:
+        x: 619.5
+        y: 577.0
+      isOpen: true
+      traffic: 0.0
+  - &Street35 
+      id: "u35"
+#     stops:
+#       - *Stop178
+      begin:
+        x: 746.0
+        y: 503.0
+      end:
+        x: 682.5
+        y: 501.0
+      isOpen: true
+      traffic: 0.0
+  - &Street36 
+      id: "u36"
+#     stops:
+#       - *Stop183
+      begin:
+        x: 682.5
+        y: 501.0
+      end:
+        x: 676.0
+        y: 406.0
+      isOpen: true
+      traffic: 0.0
+  - &Street37 
+      id: "u37"
+#     stops:
+#       - *Stop185
+      begin:
+        x: 610.5
+        y: 408.0
+      end:
+        x: 676.0
+        y: 406.0
+      isOpen: true
+      traffic: 0.0
+  - &Street38 
+      id: "u38"
+#     stops:
+#       - *Stop191
+      begin:
+        x: 682.5
+        y: 501.0
+      end:
+        x: 689.5
+        y: 583.5
+      isOpen: true
+      traffic: 0.0
+  - &Street39 
+      id: "u39"
+#     stops:
+#       - *Stop199
+      begin:
+        x: 689.5
+        y: 583.5
+      end:
+        x: 619.5
+        y: 577.0
+      isOpen: true
+      traffic: 0.0
+  - &Street40 
+      id: "u40"
+#     stops:
+#       - *Stop201
+      begin:
+        x: 746.0
+        y: 503.0
+      end:
+        x: 749.0
+        y: 597.0
+      isOpen: true
+      traffic: 0.0
+  - &Street41 
+      id: "u41"
+#     stops:
+#       - *Stop209
+      begin:
+        x: 749.0
+        y: 597.0
+      end:
+        x: 689.5
+        y: 583.5
+      isOpen: true
+      traffic: 0.0
+  - &Street42 
+      id: "u42"
+#     stops:
+#       - *Stop210
+      begin:
+        x: 447.0
+        y: 491.5
+      end:
+        x: 539.5
+        y: 493.0
+      isOpen: true
+      traffic: 0.0
+  - &Street43 
+      id: "u43"
+#     stops:
+#       - *Stop216
+      begin:
+        x: 539.5
+        y: 493.0
+      end:
+        x: 535.0
+        y: 573.0
+      isOpen: true
+      traffic: 0.0
+  - &Street44 
+      id: "u44"
+#     stops:
+#       - *Stop223
+      begin:
+        x: 619.5
+        y: 577.0
+      end:
+        x: 535.0
+        y: 573.0
+      isOpen: true
+      traffic: 0.0
+  - &Street45 
+      id: "u45"
+#     stops:
+#       - *Stop227
+      begin:
+        x: 535.0
+        y: 573.0
+      end:
+        x: 446.0
+        y: 566.0
+      isOpen: true
+      traffic: 0.0
+  - &Street46 
+      id: "u46"
+#     stops:
+#       - *Stop230
+#       - *Stop231
+#       - *Stop233
+      begin:
+        x: 56.5
+        y: 511.5
+      end:
+        x: 53.0
+        y: 693.5
+      isOpen: true
+      traffic: 0.0
+  - &Street47 
+      id: "u47"
+#     stops:
+#       - *Stop235
+#       - *Stop236
+#       - *Stop239
+      begin:
+        x: 53.0
+        y: 693.5
+      end:
+        x: 427.0
+        y: 702.5
+      isOpen: true
+      traffic: 0.0
+  - &Street48 
+      id: "u48"
+#     stops:
+#       - *Stop243
+#       - *Stop244
+      begin:
+        x: 446.0
+        y: 566.0
+      end:
+        x: 427.0
+        y: 702.5
+      isOpen: true
+      traffic: 0.0
+  - &Street49 
+      id: "u49"
+#     stops:
+#       - *Stop245
+#       - *Stop247
+      begin:
+        x: 427.0
+        y: 702.5
+      end:
+        x: 610.5
+        y: 699.0
+      isOpen: true
+      traffic: 0.0
+  - &Street50 
+      id: "u50"
+#     stops:
+#       - *Stop253
+      begin:
+        x: 610.5
+        y: 699.0
+      end:
+        x: 748.5
+        y: 699.5
+      isOpen: true
+      traffic: 0.0
+  - &Street51 
+      id: "u51"
+#     stops:
+#       - *Stop258
+#       - *Stop259
+      begin:
+        x: 748.5
+        y: 699.5
+      end:
+        x: 749.0
+        y: 597.0
+      isOpen: true
+      traffic: 0.0
+  - &Street52 
+      id: "u52"
+#     stops:
+#       - *Stop261
+#       - *Stop262
+      begin:
+        x: 619.5
+        y: 577.0
+      end:
+        x: 610.5
+        y: 699.0
+      isOpen: true
+      traffic: 0.0
 stops:
 - &Stop0 id: "z0"
   coordinate:
     x: 65.64050139872042
     y: 92.8275220511211
+  street: *Street0
 - &Stop4 id: "z4"
   coordinate:
     x: 66.11303381552747
     y: 184.73507712009246
+  street: *Street4
 - &Stop7 id: "z7"
   coordinate:
     x: 134.47630581483634
     y: 63.85770700440866
+  street: *Street1
 - &Stop9 id: "z9"
   coordinate:
     x: 220.71463498246655
     y: 61.804413452798414
+  street: *Street1
 - &Stop13 id: "z13"
   coordinate:
     x: 312.97965277381815
     y: 103.19668985309127
+  street: *Street2
 - &Stop17 id: "z17"
   coordinate:
     x: 251.0081637555278
     y: 155.86313428949796
+  street: *Street3
 - &Stop22 id: "z22"
   coordinate:
     x: 195.03307541992262
     y: 200.52481799052242
+  street: *Street4
 - &Stop28 id: "z28"
   coordinate:
     x: 125.74618938573943
     y: 259.763015242457
+  street: *Street5
 - &Stop33 id: "z33"
   coordinate:
     x: 247.80281407175013
     y: 263.76940770212326
+  street: *Street6
 - &Stop35 id: "z35"
   coordinate:
     x: 301.17776649282524
     y: 223.00678685141145
+  street: *Street7
 - &Stop41 id: "z41"
   coordinate:
     x: 432.8434685687538
     y: 56.02812301966962
+  street: *Street8
 - &Stop42 id: "z42"
   coordinate:
     x: 345.5003230433586
     y: 58.65718091173837
+  street: *Street8
 - &Stop46 id: "z46"
   coordinate:
     x: 464.6324161096435
     y: 111.55894849185047
+  street: *Street9
 - &Stop51 id: "z51"
   coordinate:
     x: 397.97417212910204
     y: 161.87756436137397
+  street: *Street10
 - &Stop53 id: "z53"
   coordinate:
     x: 319.5513074593064
     y: 161.12107370539525
+  street: *Street10
 - &Stop55 id: "z55"
   coordinate:
     x: 293.4324534403053
     y: 502.16528481547255
+  street: *Street11
 - &Stop58 id: "z58"
   coordinate:
     x: 295.2732188715811
     y: 381.0838253360007
+  street: *Street11
 - &Stop59 id: "z59"
   coordinate:
     x: 296.3324913644885
     y: 311.40723469142654
+  street: *Street11
 - &Stop64 id: "z64"
   coordinate:
     x: 188.57568749472554
     y: 315.06193760021495
+  street: *Street12
 - &Stop66 id: "z66"
   coordinate:
     x: 179.77016609622433
     y: 354.77246291108406
+  street: *Street13
 - &Stop69 id: "z69"
   coordinate:
     x: 86.662060326489
     y: 358.54202184913
+  street: *Street13
 - &Stop70 id: "z70"
   coordinate:
     x: 66.18635339004219
     y: 268.9165250545151
+  street: *Street14
 - &Stop71 id: "z71"
   coordinate:
     x: 64.86650554617108
     y: 306.43791375885064
+  street: *Street14
 - &Stop75 id: "z75"
   coordinate:
     x: 58.80372492925312
     y: 457.6282785774655
+  street: *Street15
 - &Stop81 id: "z81"
   coordinate:
     x: 101.86902469002348
     y: 510.0539753086845
+  street: *Street16
 - &Stop86 id: "z86"
   coordinate:
     x: 183.33491646662844
     y: 552.8871598653667
+  street: *Street17
 - &Stop93 id: "z93"
   coordinate:
     x: 275.3248831570174
     y: 565.3995520932331
+  street: *Street18
 - &Stop95 id: "z95"
   coordinate:
     x: 368.70907065501
     y: 269.0445030602618
+  street: *Street19
 - &Stop99 id: "z99"
   coordinate:
     x: 428.74369200741
     y: 270.3375564432365
+  street: *Street19
 - &Stop101 id: "z101"
   coordinate:
     x: 457.26872523248
     y: 309.48948973971994
+  street: *Street20
 - &Stop102 id: "z102"
   coordinate:
     x: 454.24377326938395
     y: 361.66991110312733
+  street: *Street20
 - &Stop108 id: "z108"
   coordinate:
     x: 554.9741754770579
     y: 408.3492190221569
+  street: *Street21
 - &Stop109 id: "z109"
   coordinate:
     x: 483.7594928485179
     y: 408.79711010787094
+  street: *Street21
 - &Stop110 id: "z110"
   coordinate:
     x: 449.0482009508697
     y: 453.94964923405496
+  street: *Street22
 - &Stop119 id: "z119"
   coordinate:
     x: 378.3528835750062
     y: 564.8982554328177
+  street: *Street23
 - &Stop124 id: "z124"
   coordinate:
     x: 446.37320321678595
     y: 538.1963603494466
+  street: *Street24
 - &Stop125 id: "z125"
   coordinate:
     x: 460.7968102550888
     y: 224.0986957742887
+  street: *Street25
 - &Stop131 id: "z131"
   coordinate:
     x: 619.8462335114903
     y: 51.012706951874165
+  street: *Street26
 - &Stop136 id: "z136"
   coordinate:
     x: 752.6193887552996
     y: 112.88740635419626
+  street: *Street27
 - &Stop138 id: "z138"
   coordinate:
     x: 750.0631613800839
     y: 201.76546586169883
+  street: *Street27
 - &Stop144 id: "z144"
   coordinate:
     x: 678.9641829031425
     y: 268.47440411938584
+  street: *Street28
 - &Stop145 id: "z145"
   coordinate:
     x: 514.4404868572612
     y: 158.6132969018376
+  street: *Street29
 - &Stop146 id: "z146"
   coordinate:
     x: 580.8734903955835
     y: 153.64211976631688
+  street: *Street29
 - &Stop151 id: "z151"
   coordinate:
     x: 613.6522842182983
     y: 209.89149681981974
+  street: *Street30
 - &Stop156 id: "z156"
   coordinate:
     x: 491.21227566315974
     y: 269.59502576175873
+  street: *Street31
 - &Stop157 id: "z157"
   coordinate:
     x: 553.9291199874641
     y: 266.81643139296045
+  street: *Street31
 - &Stop163 id: "z163"
   coordinate:
     x: 614.0987996207989
     y: 333.96755065785123
+  street: *Street32
 - &Stop164 id: "z164"
   coordinate:
     x: 616.5753353583615
     y: 283.0216726279914
+  street: *Street32
 - &Stop165 id: "z165"
   coordinate:
     x: 747.2274625400227
     y: 362.1486735324006
+  street: *Street33
 - &Stop166 id: "z166"
   coordinate:
     x: 746.6252275249803
     y: 431.2551415085083
+  street: *Street33
 - &Stop167 id: "z167"
   coordinate:
     x: 746.177985083165
     y: 482.57621170681597
+  street: *Street33
 - &Stop172 id: "z172"
   coordinate:
     x: 611.9993468231207
     y: 436.15440145637723
+  street: *Street34
 - &Stop173 id: "z173"
   coordinate:
     x: 616.3243458941594
     y: 517.3682729014378
+  street: *Street34
 - &Stop178 id: "z178"
   coordinate:
     x: 698.1620588531025
     y: 501.4932931922237
+  street: *Street35
 - &Stop183 id: "z183"
   coordinate:
     x: 679.7436000193165
     y: 460.71415412847233
+  street: *Street36
 - &Stop185 id: "z185"
   coordinate:
     x: 630.4992100158277
     y: 407.38933709875334
+  street: *Street37
 - &Stop191 id: "z191"
   coordinate:
     x: 686.8967147542184
     y: 552.8184238890016
+  street: *Street38
 - &Stop199 id: "z199"
   coordinate:
     x: 640.9911729633328
     y: 578.9956089180238
+  street: *Street39
 - &Stop201 id: "z201"
   coordinate:
     x: 746.3085538171014
     y: 512.6680196025098
+  street: *Street40
 - &Stop209 id: "z209"
   coordinate:
     x: 703.1127736333289
     y: 586.5886125050409
+  street: *Street41
 - &Stop210 id: "z210"
   coordinate:
     x: 486.18761112656864
     y: 492.13547477502544
+  street: *Street42
 - &Stop216 id: "z216"
   coordinate:
     x: 537.2827899593
     y: 532.4170673902221
+  street: *Street43
 - &Stop223 id: "z223"
   coordinate:
     x: 561.8454508917076
     y: 574.2707905747554
+  street: *Street44
 - &Stop227 id: "z227"
   coordinate:
     x: 490.0191068295677
     y: 569.4621769416514
+  street: *Street45
 - &Stop230 id: "z230"
   coordinate:
     x: 55.83195329629774
     y: 546.2384285925176
+  street: *Street46
 - &Stop231 id: "z231"
   coordinate:
     x: 53.216013057540835
     y: 682.2673210078765
+  street: *Street46
 - &Stop233 id: "z233"
   coordinate:
     x: 54.566108465335155
     y: 612.0623598025719
+  street: *Street46
 - &Stop235 id: "z235"
   coordinate:
     x: 401.14962815680167
     y: 701.8779322283723
+  street: *Street47
 - &Stop236 id: "z236"
   coordinate:
     x: 191.6443811255761
     y: 696.8363621126475
+  street: *Street47
 - &Stop239 id: "z239"
   coordinate:
     x: 315.22843425124364
     y: 699.8103099151368
+  street: *Street47
 - &Stop243 id: "z243"
   coordinate:
     x: 441.66028850474333
     y: 597.1774010053965
+  street: *Street48
 - &Stop244 id: "z244"
   coordinate:
     x: 435.0608159077998
     y: 644.589401504491
+  street: *Street48
 - &Stop245 id: "z245"
   coordinate:
     x: 575.3709223000277
     y: 699.6700369043591
+  street: *Street49
 - &Stop247 id: "z247"
   coordinate:
     x: 526.1101944540821
     y: 700.609614819677
+  street: *Street49
 - &Stop253 id: "z253"
   coordinate:
     x: 626.5721820902571
     y: 699.0582325438053
+  street: *Street50
 - &Stop258 id: "z258"
   coordinate:
     x: 748.9325256931423
     y: 610.8322329058269
+  street: *Street51
 - &Stop259 id: "z259"
   coordinate:
     x: 748.539591939529
     y: 691.3836523965537
+  street: *Street51
 - &Stop261 id: "z261"
   coordinate:
     x: 617.0494861237613
     y: 610.218076989013
+  street: *Street52
 - &Stop262 id: "z262"
   coordinate:
     x: 613.8827663712932
     y: 653.1447225224704
-streets:
-- &Street0 id: "u0"
-  stops:
-  - *Stop0
-  - *Stop4
-  &street0begin begin:
-    x: 65.5
-    y: 65.5
-  end:
-    x: 66.5
-    y: 260.0
-  isOpen: true
-  traffic: 0.0
-- &Street1 id: "u1"
-  stops:
-  - *Stop7
-  - *Stop9
-  begin:
-    x: 65.5
-    y: 65.5
-  end:
-    x: 317.5
-    y: 59.5
-  isOpen: true
-  traffic: 0.0
-- &Street2 id: "u2"
-  stops:
-  - *Stop13
-  &street2begin begin:
-    x: 317.5
-    y: 59.5
-  end:
-    x: 307.0
-    y: 161.0
-  isOpen: true
-  traffic: 0.0
-- &Street3 id: "u3"
-  stops:
-  - *Stop17
-  begin:
-    x: 307.0
-    y: 161.0
-  end:
-    x: 198.0
-    y: 151.0
-  isOpen: true
-  traffic: 0.0
-- &Street4 id: "u4"
-  stops:
-  - *Stop22
-  begin:
-    x: 198.0
-    y: 151.0
-  end:
-    x: 191.5
-    y: 259.5
-  isOpen: true
-  traffic: 0.0
-- &Street5 id: "u5"
-  stops:
-  - *Stop28
-  begin:
-    x: 66.5
-    y: 260.0
-  end:
-    x: 191.5
-    y: 259.5
-  isOpen: true
-  traffic: 0.0
-- &Street6 id: "u6"
-  stops:
-  - *Stop33
-  begin:
-    x: 191.5
-    y: 259.5
-  end:
-    x: 297.0
-    y: 267.5
-  isOpen: true
-  traffic: 0.0
-- &Street7 id: "u7"
-  stops:
-  - *Stop35
-  &street7begin begin:
-    x: 307.0
-    y: 161.0
-  end:
-    x: 297.0
-    y: 267.5
-  isOpen: true
-  traffic: 0.0
-- &Street8 id: "u8"
-  stops:
-  - *Stop42
-  - *Stop41
-  begin:
-    x: 317.5
-    y: 59.5
-  end:
-    x: 467.0
-    y: 55.0
-  isOpen: true
-  traffic: 0.0
-- &Street9 id: "u9"
-  stops:
-  - *Stop46
-  begin:
-    x: 467.0
-    y: 55.0
-  end:
-    x: 462.5
-    y: 162.5
-  isOpen: true
-  traffic: 0.0
-- &Street10 id: "u10"
-  stops:
-  - *Stop51
-  - *Stop53
-  begin:
-    x: 462.5
-    y: 162.5
-  end:
-    x: 307.0
-    y: 161.0
-  isOpen: true
-  traffic: 0.0
-- &Street11 id: "u11"
-  stops:
-  - *Stop55
-  - *Stop58
-  - *Stop59
-  begin:
-    x: 297.0
-    y: 267.5
-  end:
-    x: 292.5
-    y: 563.5
-  isOpen: true
-  traffic: 0.0
-- &Street12 id: "u12"
-  stops:
-  - *Stop64
-  begin:
-    x: 191.5
-    y: 259.5
-  end:
-    x: 186.5
-    y: 354.5
-  isOpen: true
-  traffic: 0.0
-- &Street13 id: "u13"
-  stops:
-  - *Stop66
-  - *Stop69
-  begin:
-    x: 186.5
-    y: 354.5
-  end:
-    x: 63.0
-    y: 359.5
-  isOpen: true
-  traffic: 0.0
-- &Street14 id: "u14"
-  stops:
-  - *Stop71
-  begin:
-    x: 66.5
-    y: 260.0
-  end:
-    x: 63.0
-    y: 359.5
-  isOpen: true
-  traffic: 0.0
-- &Street15 id: "u15"
-  stops:
-  - *Stop75
-  begin:
-    x: 63.0
-    y: 359.5
-  end:
-    x: 56.5
-    y: 511.5
-  isOpen: true
-  traffic: 0.0
-- &Street16 id: "u16"
-  stops:
-  - *Stop81
-  begin:
-    x: 56.5
-    y: 511.5
-  end:
-    x: 182.0
-    y: 507.5
-  isOpen: true
-  traffic: 0.0
-- &Street17 id: "u17"
-  stops:
-  - *Stop86
-  begin:
-    x: 182.0
-    y: 507.5
-  end:
-    x: 184.0
-    y: 575.5
-  isOpen: true
-  traffic: 0.0
-- &Street18 id: "u18"
-  stops:
-  - *Stop93
-  begin:
-    x: 184.0
-    y: 575.5
-  end:
-    x: 292.5
-    y: 563.5
-  isOpen: true
-  traffic: 0.0
-- &Street19 id: "u19"
-  stops:
-  - *Stop95
-  - *Stop99
-  &street19begin begin:
-    x: 297.0
-    y: 267.5
-  end:
-    x: 459.5
-    y: 271.0
-  isOpen: true
-  traffic: 0.0
-- &Street20 id: "u20"
-  stops:
-  - *Stop101
-  - *Stop102
-  begin:
-    x: 459.5
-    y: 271.0
-  end:
-    x: 451.5
-    y: 409.0
-  isOpen: true
-  traffic: 0.0
-- &Street21 id: "u21"
-  stops:
-  - *Stop108
-  - *Stop109
-  begin:
-    x: 451.5
-    y: 409.0
-  end:
-    x: 610.5
-    y: 408.0
-  isOpen: true
-  traffic: 0.0
-- &Street22 id: "u22"
-  stops:
-  - *Stop110
-  begin:
-    x: 451.5
-    y: 409.0
-  end:
-    x: 447.0
-    y: 491.5
-  isOpen: true
-  traffic: 0.0
-- &Street23 id: "u23"
-  stops:
-  - *Stop119
-  begin:
-    x: 292.5
-    y: 563.5
-  end:
-    x: 446.0
-    y: 566.0
-  isOpen: true
-  traffic: 0.0
-- &Street24 id: "u24"
-  stops:
-  - *Stop124
-  begin:
-    x: 446.0
-    y: 566.0
-  end:
-    x: 447.0
-    y: 491.5
-  isOpen: true
-  traffic: 0.0
-- &Street25 id: "u25"
-  stops:
-  - *Stop125
-  begin:
-    x: 459.5
-    y: 271.0
-  end:
-    x: 462.5
-    y: 162.5
-  isOpen: true
-  traffic: 0.0
-- &Street26 id: "u26"
-  stops:
-  - *Stop131
-  begin:
-    x: 467.0
-    y: 55.0
-  end:
-    x: 754.5
-    y: 47.5
-  isOpen: true
-  traffic: 0.0
-- &Street27 id: "u27"
-  stops:
-  - *Stop136
-  - *Stop138
-  begin:
-    x: 754.5
-    y: 47.5
-  end:
-    x: 748.0
-    y: 273.5
-  isOpen: true
-  traffic: 0.0
-- &Street28 id: "u28"
-  stops:
-  - *Stop144
-  begin:
-    x: 748.0
-    y: 273.5
-  end:
-    x: 617.5
-    y: 264.0
-  isOpen: true
-  traffic: 0.0
-- &Street29 id: "u29"
-  stops:
-  - *Stop145
-  - *Stop146
-  begin:
-    x: 462.5
-    y: 162.5
-  end:
-    x: 609.5
-    y: 151.5
-  isOpen: true
-  traffic: 0.0
-- &Street30 id: "u30"
-  stops:
-  - *Stop151
-  begin:
-    x: 609.5
-    y: 151.5
-  end:
-    x: 617.5
-    y: 264.0
-  isOpen: true
-  traffic: 0.0
-- &Street31 id: "u31"
-  stops:
-  - *Stop156
-  - *Stop157
-  &street31begin begin:
-    x: 459.5
-    y: 271.0
-  end:
-    x: 617.5
-    y: 264.0
-  isOpen: true
-  traffic: 0.0
-- &Street32 id: "u32"
-  stops:
-  - *Stop163
-  - *Stop164
-  &street32begin begin:
-    x: 610.5
-    y: 408.0
-  &street32end end:
-    x: 617.5
-    y: 264.0
-  isOpen: true
-  traffic: 0.0
-- &Street33 id: "u33"
-  stops:
-  - *Stop165
-  - *Stop166
-  - *Stop167
-  begin:
-    x: 748.0
-    y: 273.5
-  end:
-    x: 746.0
-    y: 503.0
-  isOpen: true
-  traffic: 0.0
-- &Street34 id: "u34"
-  stops:
-  - *Stop172
-  - *Stop173
-  begin:
-    x: 610.5
-    y: 408.0
-  end:
-    x: 619.5
-    y: 577.0
-  isOpen: true
-  traffic: 0.0
-- &Street35 id: "u35"
-  stops:
-  - *Stop178
-  begin:
-    x: 746.0
-    y: 503.0
-  end:
-    x: 682.5
-    y: 501.0
-  isOpen: true
-  traffic: 0.0
-- &Street36 id: "u36"
-  stops:
-  - *Stop183
-  &street36begin begin:
-    x: 682.5
-    y: 501.0
-  &street36end end:
-    x: 676.0
-    y: 406.0
-  isOpen: true
-  traffic: 0.0
-- &Street37 id: "u37"
-  stops:
-  - *Stop185
-  begin:
-    x: 610.5
-    y: 408.0
-  end:
-    x: 676.0
-    y: 406.0
-  isOpen: true
-  traffic: 0.0
-- &Street38 id: "u38"
-  stops:
-  - *Stop191
-  begin:
-    x: 682.5
-    y: 501.0
-  end:
-    x: 689.5
-    y: 583.5
-  isOpen: true
-  traffic: 0.0
-- &Street39 id: "u39"
-  stops:
-  - *Stop199
-  begin:
-    x: 689.5
-    y: 583.5
-  end:
-    x: 619.5
-    y: 577.0
-  isOpen: true
-  traffic: 0.0
-- &Street40 id: "u40"
-  stops:
-  - *Stop201
-  &street40begin begin:
-    x: 746.0
-    y: 503.0
-  &street40end end:
-    x: 749.0
-    y: 597.0
-  isOpen: true
-  traffic: 0.0
-- &Street41 id: "u41"
-  stops:
-  - *Stop209
-  begin:
-    x: 749.0
-    y: 597.0
-  end:
-    x: 689.5
-    y: 583.5
-  isOpen: true
-  traffic: 0.0
-- &Street42 id: "u42"
-  stops:
-  - *Stop210
-  begin:
-    x: 447.0
-    y: 491.5
-  end:
-    x: 539.5
-    y: 493.0
-  isOpen: true
-  traffic: 0.0
-- &Street43 id: "u43"
-  stops:
-  - *Stop216
-  begin:
-    x: 539.5
-    y: 493.0
-  end:
-    x: 535.0
-    y: 573.0
-  isOpen: true
-  traffic: 0.0
-- &Street44 id: "u44"
-  stops:
-  - *Stop223
-  begin:
-    x: 619.5
-    y: 577.0
-  end:
-    x: 535.0
-    y: 573.0
-  isOpen: true
-  traffic: 0.0
-- &Street45 id: "u45"
-  stops:
-  - *Stop227
-  begin:
-    x: 535.0
-    y: 573.0
-  end:
-    x: 446.0
-    y: 566.0
-  isOpen: true
-  traffic: 0.0
-- &Street46 id: "u46"
-  stops:
-  - *Stop230
-  - *Stop231
-  - *Stop233
-  begin:
-    x: 56.5
-    y: 511.5
-  end:
-    x: 53.0
-    y: 693.5
-  isOpen: true
-  traffic: 0.0
-- &Street47 id: "u47"
-  stops:
-  - *Stop235
-  - *Stop236
-  - *Stop239
-  begin:
-    x: 53.0
-    y: 693.5
-  end:
-    x: 427.0
-    y: 702.5
-  isOpen: true
-  traffic: 0.0
-- &Street48 id: "u48"
-  stops:
-  - *Stop243
-  - *Stop244
-  begin:
-    x: 446.0
-    y: 566.0
-  end:
-    x: 427.0
-    y: 702.5
-  isOpen: true
-  traffic: 0.0
-- &Street49 id: "u49"
-  stops:
-  - *Stop245
-  - *Stop247
-  begin:
-    x: 427.0
-    y: 702.5
-  end:
-    x: 610.5
-    y: 699.0
-  isOpen: true
-  traffic: 0.0
-- &Street50 id: "u50"
-  stops:
-  - *Stop253
-  &street50begin begin:
-    x: 610.5
-    y: 699.0
-  &street50end end:
-    x: 748.5
-    y: 699.5
-  isOpen: true
-  traffic: 0.0
-- &Street51 id: "u51"
-  stops:
-  - *Stop258
-  - *Stop259
-  begin:
-    x: 748.5
-    y: 699.5
-  end:
-    x: 749.0
-    y: 597.0
-  isOpen: true
-  traffic: 0.0
-- &Street52 id: "u52"
-  stops:
-  - *Stop261
-  - *Stop262
-  begin:
-    x: 619.5
-    y: 577.0
-  end:
-    x: 610.5
-    y: 699.0
-  isOpen: true
-  traffic: 0.0
+  street: *Street52
+
 lines:
 - &Line0 id: "lajna ein"
   paths:
     -
       source: *Stop0
       destination: *Stop7
-      coordinates:
-        - x: 65.5
-          y: 65.5
+      sameLine: false
+      coordinates: null
     -
       source: *Stop7
       destination: *Stop9
+      sameLine: true
       coordinates: null
     -
       source: *Stop9
       destination: *Stop13
-      coordinates:
-        - x: 317.5
-          y: 59.5
+      sameLine: false
+      coordinates: null
     -
       source: *Stop13
       destination: *Stop35
-      coordinates:
-        - x: 307.0
-          y: 161.0
+      sameLine: false
+      coordinates: null
     -
       source: *Stop35
       destination: *Stop95
-      coordinates:
-        - x: 297.0
-          y: 267.5
+      sameLine: false
+      coordinates: null
     -
       source: *Stop95
       destination: *Stop99
+      sameLine: true
       coordinates: null
     -
       source: *Stop99
       destination: *Stop156
-      coordinates:
-        - x: 459.5
-          y: 271.0
+      sameLine: false
+      coordinates: null
     -
       source: *Stop156
       destination: *Stop157
+      sameLine: true
       coordinates: null
     -
       source: *Stop157
       destination: *Stop164
-      coordinates:
-        - x: 617.5
-          y: 264.0
+      sameLine: false
+      coordinates: null
     -
       source: *Stop164
       destination: *Stop163
+      sameLine: true
       coordinates: null
     -
       source: *Stop163
       destination: *Stop178
+      sameLine: false
       coordinates:
-        - x: 610.5
-          y: 408.0
-        - x: 676.0
-          y: 406.0
-        - x: 682.5
-          y: 501.0
+        - *Street37
+        - *Street36
 
 - &Line1 id: "lajna zwei"
   paths:
     -
       source: *Stop230
       destination: *Stop233
+      sameLine: true
       coordinates: null
     -
       source: *Stop233
       destination: *Stop231
+      sameLine: true
       coordinates: null
     -
       source: *Stop231
       destination: *Stop236
-      coordinates:
-        - x: 53.0
-          y: 693.5
+      sameLine: false
+      coordinates: null
     -
       source: *Stop236
       destination: *Stop239
+      sameLine: true
       coordinates: null
     -
       source: *Stop239
       destination: *Stop235
+      sameLine: true
       coordinates: null
     -
       source: *Stop235
       destination: *Stop244
-      coordinates:
-        - x: 427.0
-          y: 702.5
+      sameLine: false
+      coordinates: null
     -
       source: *Stop244
       destination: *Stop243
+      sameLine: true
       coordinates: null
     -
       source: *Stop243
       destination: *Stop124
-      coordinates:
-        - x: 446.0
-          y: 566.0
+      sameLine: false
+      coordinates: null
     -
       source: *Stop124
       destination: *Stop110
-      coordinates:
-        - x: 447.0
-          y: 491.5
+      sameLine: false
+      coordinates: null
     -
       source: *Stop110
       destination: *Stop102
-      coordinates:
-        - x: 451.5
-          y: 409.0
+      sameLine: false
+      coordinates: null
     -
       source: *Stop102
       destination: *Stop101
+      sameLine: true
       coordinates: null
     -
       source: *Stop101
       destination: *Stop125
-      coordinates:
-        - x: 459.5
-          y: 271.0
+      sameLine: false
+      coordinates: null
     -
       source: *Stop125
       destination: *Stop46
-      coordinates:
-        - x: 462.5
-          y: 162.5
+      sameLine: false
+      coordinates: null
     -
       source: *Stop46
       destination: *Stop131
-      coordinates:
-        - x: 467.0
-          y: 55.0
+      sameLine: false
+      coordinates: null
     -
       source: *Stop131
       destination: *Stop136
-      coordinates:
-        - x: 754.5
-          y: 47.5
+      sameLine: false
+      coordinates: null
     -
       source: *Stop136
       destination: *Stop138
+      sameLine: true
       coordinates: null
     -
       source: *Stop138
       destination: *Stop144
-      coordinates:
-        - x: 748.0
-          y: 273.5
+      sameLine: false
+      coordinates: null
 
 - &Line2 id: "lajna drei"
   paths:
     -
       source: *Stop75
       destination: *Stop81
-      coordinates:
-        - x: 56.5
-          y: 511.5
+      sameLine: false
+      coordinates: null
     -
       source: *Stop81
       destination: *Stop86
-      coordinates:
-        - x: 182.0
-          y: 507.5
+      sameLine: false
+      coordinates: null
     -
       source: *Stop86
       destination: *Stop93
-      coordinates:
-        - x: 184.0
-          y: 575.5
+      sameLine: false
+      coordinates: null
     -
       source: *Stop93
       destination: *Stop55
-      coordinates:
-        - x: 292.5
-          y: 563.5
+      sameLine: false
+      coordinates: null
     -
       source: *Stop55
       destination: *Stop58
+      sameLine: true
       coordinates: null
     -
       source: *Stop58
       destination: *Stop59
+      sameLine: true
       coordinates: null
     -
       source: *Stop59
       destination: *Stop35
-      coordinates:
-        - x: 297.0
-          y: 267.5
+      sameLine: false
+      coordinates: null
     -
       source: *Stop35
       destination: *Stop13
-      coordinates:
-        - x: 307.0
-          y: 161.0
+      sameLine: false
+      coordinates: null
     -
       source: *Stop13
       destination: *Stop9
-      coordinates:
-        - x: 317.5
-          y: 59.5
+      sameLine: false
+      coordinates: null
     -
       source: *Stop9
       destination: *Stop7
+      sameLine: true
       coordinates: null
     -
       source: *Stop7
       destination: *Stop0
-      coordinates:
-        - x: 65.5
-          y: 65.5
+      sameLine: false
+      coordinates: null
     -
       source: *Stop0
       destination: *Stop4
+      sameLine: true
       coordinates: null
     -
       source: *Stop4
       destination: *Stop70
-      coordinates:
-        - x: 66.5
-          y: 260.0
+      sameLine: false
+      coordinates: null
     -
       source: *Stop70
       destination: *Stop71
+      sameLine: true
       coordinates: null
     -
       source: *Stop71
       destination: *Stop75
-      coordinates:
-        - x: 63.0
-          y: 359.5
+      sameLine: false
+      coordinates: null
 
 connections:
 - id: "c1"
