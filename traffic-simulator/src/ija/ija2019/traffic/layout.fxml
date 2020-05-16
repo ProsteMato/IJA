@@ -14,7 +14,7 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ija.ija2019.traffic.Controller">
     <center>
         <ScrollPane hbarPolicy="NEVER" hvalue="0.5" pannable="true" prefHeight="200.0" prefWidth="200.0" vbarPolicy="NEVER" vvalue="0.5" BorderPane.alignment="CENTER">
-            <AnchorPane fx:id="map" minHeight="0.0" minWidth="0.0" onScroll="#changeZoom" prefHeight="1000.0" prefWidth="1500.0" scaleX="0.65" scaleY="0.65" translateX="220.0" translateY="100.0" />
+            <AnchorPane fx:id="map" minHeight="0.0" minWidth="0.0" onScroll="#changeZoom" prefHeight="1000.0" prefWidth="1000.0" scaleX="0.65" scaleY="0.65" translateX="80.0" translateY="100.0" />
         </ScrollPane>
     </center>
    <right>

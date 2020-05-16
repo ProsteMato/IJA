@@ -280,8 +280,14 @@ public class Controller {
         double zoomScale;
         if (scroll > 0){
             zoomScale = 1.1;
+            if (map.getScaleX() > 1.17){
+                return;
+            }
         } else {
             zoomScale = 0.9;
+            if (map.getScaleX() < 0.65){
+                return;
+            }
         }
         map.setScaleX(zoomScale * map.getScaleX());
         map.setScaleY(zoomScale * map.getScaleY());
