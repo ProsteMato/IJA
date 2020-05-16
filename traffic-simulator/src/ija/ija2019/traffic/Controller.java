@@ -180,7 +180,7 @@ public class Controller {
         // drawing street info nodes
         infoLabel.setText(street.getId());
 
-        Rectangle trafficCard = new Rectangle(5,39, 191, 414);
+        Rectangle trafficCard = new Rectangle(5,39, 191, 390);
         trafficCard.setArcHeight(5);
         trafficCard.setArcWidth(5);
         trafficCard.setFill(Color.WHITE);
