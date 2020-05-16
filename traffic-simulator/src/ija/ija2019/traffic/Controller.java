@@ -109,6 +109,42 @@ public class Controller {
         currentInfoAbout = o;
     }
 
+    public void strokeStreet(MouseEvent me) {
+        me.consume();
+        javafx.scene.shape.Line line = (javafx.scene.shape.Line) me.getSource();
+        line.setStrokeWidth(8.5);
+        Street street = data.getStreetById(line.getId());
+        List<Shape> shapes = new ArrayList<>();
+        for (Stop stop : street.getStops()) {
+            shapes.addAll(stop.getDrawableObjects());
+        }
+        for (Shape shape : shapes) {
+            if(shape instanceof Circle) {
+                Circle circle = (Circle) shape;
+                circle.setRadius(8.5);
+            }
+        }
+        line.setStroke(Color.DARKGREEN);
+    }
+
+    public void unStrokeStreet(MouseEvent me) {
+        me.consume();
+        javafx.scene.shape.Line line = (javafx.scene.shape.Line) me.getSource();
+        line.setStrokeWidth(5);
+        Street street = data.getStreetById(line.getId());
+        line.setStroke(Color.BLACK);
+        List<Shape> shapes = new ArrayList<>();
+        for (Stop stop : street.getStops()) {
+            shapes.addAll(stop.getDrawableObjects());
+        }
+        for (Shape shape : shapes) {
+            if(shape instanceof Circle) {
+                Circle circle = (Circle) shape;
+                circle.setRadius(6);
+            }
+        }
+    }
+
     public void showStreetInfo(MouseEvent me){
         me.consume();
         // finding street object

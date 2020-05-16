@@ -3,7 +3,7 @@ package ija.ija2019.traffic.maps;
 import java.util.List;
 
 public interface IStreet {
-    public boolean addStop(Stop stop);
+    public void addStop(Stop stop);
 
     public Coordinate begin();
 

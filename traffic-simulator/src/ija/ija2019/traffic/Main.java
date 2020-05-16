@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import ija.ija2019.traffic.maps.*;
 import javafx.application.Application;
+import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
@@ -46,6 +47,8 @@ public class Main extends Application {
                 for (Shape shape :drawable.getDrawableObjects()){
                     if (shape instanceof Line){
                         shape.addEventHandler(MouseEvent.MOUSE_PRESSED, controller::showStreetInfo);
+                        shape.addEventHandler(MouseEvent.MOUSE_ENTERED, controller::strokeStreet);
+                        shape.addEventHandler(MouseEvent.MOUSE_EXITED, controller::unStrokeStreet);
                     }
                 }
             }

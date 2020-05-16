@@ -16,7 +16,7 @@ public class Street implements IStreet, Drawable {
     private String id;
     private Coordinate begin;
     private Coordinate end;
-    private List<Stop> stops;
+    private List<Stop> stops = new ArrayList<>();
     private double traffic;
     private boolean isOpen;
     private List<Shape> drawableObjects = new ArrayList<>();
@@ -80,14 +80,8 @@ public class Street implements IStreet, Drawable {
         isOpen = open;
     }
 
-    public boolean addStop(Stop stop) {
-        Coordinate stopCoordinate = stop.getCoordinate();
-        if (distance(begin, stopCoordinate) + distance(stopCoordinate, end) == distance(begin, end)) {
-            stop.setStreet(this);
-            stops.add(stop);
-            return true;
-        }
-        return false;
+    public void addStop(Stop stop) {
+        stops.add(stop);
     }
 
     public double distance(Coordinate c1, Coordinate c2) {

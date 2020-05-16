@@ -85,7 +85,7 @@ public class Connection implements Drawable, DrawableUpdate {
 
     public void setDrawableObjects() {
         drawableObjects = new ArrayList<>();
-        Circle bus = new Circle(position.getX(), position.getY(), 8.0, Color.BLUE);
+        Circle bus = new Circle(position.getX(), position.getY(), 10.0, Color.BLUEVIOLET);
         bus.setId(id);
         drawableObjects.add(bus);
     }

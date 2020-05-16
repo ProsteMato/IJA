@@ -33,6 +33,10 @@ public class Stop implements IStop, Drawable{
         drawableObjects.add(new Circle(coordinate.getX(), coordinate.getY(), 6, Color.RED));
     }
 
+    public void addStreetStop() {
+        street.addStop(this);
+    }
+
     public Coordinate getCoordinate() {
         return this.coordinate;
     }
@@ -80,6 +84,7 @@ public class Stop implements IStop, Drawable{
         @Override
         public Stop convert(Stop stop) {
             stop.setDrawableObjects();
+            stop.addStreetStop();
             return stop;
         }
     }
