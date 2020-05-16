@@ -7,6 +7,7 @@ import javafx.application.Application;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Circle;
@@ -18,6 +19,7 @@ import java.io.File;
 import java.time.LocalTime;
 
 import ija.ija2019.traffic.Controller;
+import javafx.util.converter.DateTimeStringConverter;
 
 public class Main extends Application {
     @Override
@@ -36,6 +38,7 @@ public class Main extends Application {
         Controller controller = loader.getController();
         controller.setupSpeedSlider();
         controller.giveData(data);
+        controller.setupTime();
 
         for (Drawable drawable : data.getDrawables()){
             if (drawable instanceof Connection){

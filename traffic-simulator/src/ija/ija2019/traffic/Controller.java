@@ -7,10 +7,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Slider;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
@@ -20,7 +17,10 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
+import javafx.util.converter.DateTimeStringConverter;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -32,6 +32,11 @@ public class Controller {
     }
     private Data data;
     private long timeSpeed = 1;
+    @FXML
+    private TextField timeTextField;
+    private SimpleDateFormat timeFormat;
+    @FXML
+    private Button setTimeButton;
     @FXML
     private AnchorPane infoPanel;
     private Object currentInfoAbout;
@@ -67,11 +72,25 @@ public class Controller {
         this.infoLabel.setText(labelText);
     }
 
+    public void setupTime(){
+        timeFormat = new SimpleDateFormat("HH:mm");
+        try {
+            timeTextField.setTextFormatter(new TextFormatter<>(new DateTimeStringConverter(timeFormat), timeFormat.parse("00:00:00")));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void setupSpeedSlider() {
         speedLabel.textProperty().bind(
                 Bindings.format("%.0fx", speedSlider.valueProperty())
         );
         speedSlider.addEventHandler(MouseEvent.MOUSE_RELEASED, this::changeSpeed);
+    }
+
+    @FXML
+    private void setTime(MouseEvent me){
+        time = LocalTime.parse(timeTextField.getText());
     }
 
     private void changeSpeed(MouseEvent me){
