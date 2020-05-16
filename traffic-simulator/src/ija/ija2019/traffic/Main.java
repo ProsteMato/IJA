@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 
@@ -26,6 +27,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("layout.fxml"));
         BorderPane root = loader.load();
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         primaryStage.setTitle("Traffic Simulator");
         primaryStage.setScene(scene);
 
@@ -38,6 +40,12 @@ public class Main extends Application {
                 for (Shape shape :drawable.getDrawableObjects()){
                     if (shape instanceof Circle){
                         shape.addEventHandler(MouseEvent.MOUSE_PRESSED, controller::showConnectionInfo);
+                    }
+                }
+            } else if (drawable instanceof Street){
+                for (Shape shape :drawable.getDrawableObjects()){
+                    if (shape instanceof Line){
+                        shape.addEventHandler(MouseEvent.MOUSE_PRESSED, controller::showStreetInfo);
                     }
                 }
             }
