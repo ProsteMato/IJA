@@ -186,6 +186,7 @@ public class Connection implements Drawable, DrawableUpdate {
     public int update(LocalTime time) {
         double pathLength = currentPath.getPathLength();
         double speed = pathLength / 20.0;
+        speed = speed * currentPath.getTraffic(currentDestination);
         length += speed;
         if (length > pathLength) {
             updateGui(currentDestination);
@@ -200,6 +201,7 @@ public class Connection implements Drawable, DrawableUpdate {
             currentTotalLength = currentLength(position, currentDestination);
             pathLength = currentPath.getPathLength();
             speed = pathLength / 20.0;
+            speed = speed * currentPath.getTraffic(currentDestination);
             length += speed;
             if (indicators.size() > 0){
                 bindToNext();

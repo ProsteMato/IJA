@@ -54,14 +54,37 @@ public class Path {
     }
 
     private Coordinate commonCoordinate(Street firstStreet, Street secondStreet) {
-        if (firstStreet.getEnd().equals(secondStreet.getBegin()) ||
-                firstStreet.getBegin().equals(secondStreet.getBegin())){
-            return secondStreet.getBegin();
-        } else if (firstStreet.getBegin().equals(secondStreet.getEnd()) ||
-                firstStreet.getEnd().equals(secondStreet.getEnd())) {
-            return secondStreet.getEnd();
+        if (secondStreet.getEnd().equals(firstStreet.getBegin()) ||
+                secondStreet.getBegin().equals(firstStreet.getBegin())){
+            return firstStreet.getBegin();
+        } else if (secondStreet.getBegin().equals(firstStreet.getEnd()) ||
+                secondStreet.getEnd().equals(firstStreet.getEnd())) {
+            return firstStreet.getEnd();
         }
         return null;
+    }
+
+    private List<Street> getStreets() {
+        List<Street> streets = new ArrayList<>();
+        streets.add(source.getStreet());
+        if (coordinates != null) {
+            streets.addAll(coordinates);
+        }
+        streets.add(destination.getStreet());
+        return streets;
+    }
+
+    public double getTraffic(Coordinate position) {
+        List<Street> streets = getStreets();
+        if (destination.getCoordinate().equals(position)) {
+            return destination.getStreet().getTraffic();
+        }
+        for(Street street : streets) {
+            if (street.positionOnStreet(position)) {
+                return street.getTraffic();
+            }
+        }
+        return 0.6;
     }
 
     public List<Coordinate> getPath() {

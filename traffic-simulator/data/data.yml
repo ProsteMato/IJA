@@ -1287,8 +1287,8 @@ lines:
 connections:
 - id: "c1"
   line: *Line0
-- id: "c2"
-  line: *Line1
-- id: "c3"
-  line: *Line2
+#- id: "c2"
+#  line: *Line1
+#- id: "c3"
+#  line: *Line2
 

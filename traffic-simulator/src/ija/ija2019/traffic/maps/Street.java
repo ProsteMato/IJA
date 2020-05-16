@@ -7,12 +7,8 @@ import com.fasterxml.jackson.databind.util.StdConverter;
 import javafx.scene.Node;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
-import javafx.scene.text.Text;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @JsonDeserialize(converter = Street.StreetDeserialize.class)
@@ -54,6 +50,10 @@ public class Street implements IStreet, Drawable {
 
     public Coordinate getBegin() {
         return this.begin;
+    }
+
+    public boolean positionOnStreet(Coordinate position) {
+        return position.equals(begin) || position.equals(end);
     }
 
     public Coordinate getEnd() {
