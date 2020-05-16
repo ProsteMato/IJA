@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="750.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ija.ija2019.traffic.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ija.ija2019.traffic.Controller">
     <center>
-        <ScrollPane hbarPolicy="NEVER" hvalue="0.5" pannable="true" prefHeight="200.0" prefWidth="200.0"
-                    vbarPolicy="NEVER" vvalue="0.5" BorderPane.alignment="CENTER">
-            <AnchorPane fx:id="map" minHeight="0.0" minWidth="0.0" onScroll="#changeZoom" prefHeight="1000.0"
-                        prefWidth="1500.0" scaleX="0.65" scaleY="0.65" translateX="220.0" translateY="100.0"/>
+        <ScrollPane hbarPolicy="NEVER" hvalue="0.5" pannable="true" prefHeight="200.0" prefWidth="200.0" vbarPolicy="NEVER" vvalue="0.5" BorderPane.alignment="CENTER">
+            <AnchorPane fx:id="map" minHeight="0.0" minWidth="0.0" onScroll="#changeZoom" prefHeight="1000.0" prefWidth="1500.0" scaleX="0.65" scaleY="0.65" translateX="220.0" translateY="100.0" />
         </ScrollPane>
     </center>
    <right>
@@ -35,14 +37,14 @@
                </children>
             </AnchorPane>
             <Separator layoutY="77.0" prefWidth="200.0" />
-            <AnchorPane fx:id="infoPanel" layoutY="80.0" visible="false">
+            <AnchorPane fx:id="infoPanel" layoutY="80.0">
                <children>
                   <Label fx:id="infoLabel" alignment="CENTER" layoutX="34.0" prefHeight="47.0" prefWidth="134.0">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <ScrollPane layoutX="1.0" layoutY="47.0" prefHeight="435.0" prefWidth="200.0">
+                  <ScrollPane fx:id="infoScrollPane" layoutX="1.0" layoutY="47.0" prefHeight="435.0" prefWidth="200.0" visible="false">
                     <content>
                       <AnchorPane fx:id="connectionListPanel" minHeight="0.0" minWidth="0.0" prefHeight="513.0" prefWidth="184.0" />
                     </content>
