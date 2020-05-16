@@ -4,12 +4,15 @@ import ija.ija2019.traffic.maps.*;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 
 import java.time.LocalTime;
@@ -77,7 +80,7 @@ public class Controller {
         Circle bus = (Circle) me.getSource();
         // finding the connection
         for (Connection con : data.getConnections()) {
-            if (con.getId() == bus.getId()) {
+            if (con.getId().equals(bus.getId())) {
                 double yOffset = 5;
                 infoPanel.setVisible(true);
                 infoLabel.setText(con.getId());
