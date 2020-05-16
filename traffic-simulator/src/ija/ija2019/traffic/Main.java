@@ -51,7 +51,7 @@ public class Main extends Application {
             }
             controller.draw(drawable.getDrawableObjects());
             if (drawable instanceof DrawableUpdate)
-                controller.addUpdate((Connection) drawable);
+                controller.addUpdate((DrawableUpdate) drawable);
         }
 
         primaryStage.show();

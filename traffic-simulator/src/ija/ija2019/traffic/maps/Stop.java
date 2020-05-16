@@ -30,7 +30,7 @@ public class Stop implements IStop, Drawable{
     private Stop(){}
 
     public void setDrawableObjects() {
-        drawableObjects.add(new Circle(coordinate.getX(), coordinate.getY(), 4, Color.RED));
+        drawableObjects.add(new Circle(coordinate.getX(), coordinate.getY(), 6, Color.RED));
     }
 
     public Coordinate getCoordinate() {

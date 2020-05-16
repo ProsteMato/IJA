@@ -47,7 +47,7 @@ public class Controller {
     private Label timeLabel;
     @FXML
     private AnchorPane map;
-    private List<Connection> drawableUpdatesElements = new ArrayList<>();
+    private List<DrawableUpdate> drawableUpdatesElements = new ArrayList<>();
     private Timer timer;
     private LocalTime time = LocalTime.now();
 
@@ -57,7 +57,7 @@ public class Controller {
             timeLabel.setText(time.toString().substring(0,8));
         }
     };
-    public void addUpdate(Connection drawableUpdate) {
+    public void addUpdate(DrawableUpdate drawableUpdate) {
         drawableUpdatesElements.add(drawableUpdate);
     }
 
@@ -241,7 +241,7 @@ public class Controller {
             @Override
             public void run() {
                 time = time.plusSeconds(1);
-                for (Connection drawableUpdate : drawableUpdatesElements) {
+                for (DrawableUpdate drawableUpdate : drawableUpdatesElements) {
                     if (drawableUpdate.update(time) == 1) {
                         Platform.runLater(() -> map.getChildren().removeAll(drawableUpdate.getDrawableObjects()));
                         Platform.runLater(() -> drawableUpdatesElements.remove(drawableUpdate));
