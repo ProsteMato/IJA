@@ -1,7 +1,11 @@
 package ija.ija2019.traffic.maps;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
@@ -23,6 +27,43 @@ public class Connection implements Drawable, DrawableUpdate {
     private double currentTotalLength;
     private double length;
     private List<Shape> drawableObjects;
+    @JsonIgnore
+    private int nextStopIndex;
+    @JsonIgnore
+    public DoubleProperty currentProgress;
+    @JsonIgnore
+    public List<ProgressIndicator> indicators;
+
+    private void setCurrentProgress(double value){
+        currentProgress.set(value);
+    }
+
+    private void updatePathProgress(double pathLength){
+        currentProgress.set(length/pathLength);
+    }
+
+    public int getNextStopIndex() {
+        return nextStopIndex;
+    }
+
+    public double getCurrentProgress() {
+        return currentProgress.get();
+    }
+
+    public DoubleProperty currentProgressProperty() {
+        return currentProgress;
+    }
+
+    public List<ProgressIndicator> getIndicators() {
+        return indicators;
+    }
+
+    private void bindToNext(){
+        indicators.get(nextStopIndex).progressProperty().unbind();
+        indicators.get(nextStopIndex).progressProperty().set(1);
+        setCurrentProgress(0);
+        indicators.get(nextStopIndex + 1).progressProperty().bind(currentProgress);
+    }
 
     public Connection(){}
 
@@ -36,6 +77,9 @@ public class Connection implements Drawable, DrawableUpdate {
         this.currentDestination = coordinateListIterator.next();
         this.currentTotalLength = currentLength(position, currentDestination);
         this.length = 0.0;
+        this.nextStopIndex = 1;
+        this.currentProgress = new SimpleDoubleProperty(0);
+        this.indicators = new ArrayList<>();
         setDrawableObjects();
     }
 
@@ -157,6 +201,10 @@ public class Connection implements Drawable, DrawableUpdate {
             pathLength = currentPath.getPathLength();
             speed = pathLength / 20.0;
             length += speed;
+            if (indicators.size() > 0){
+                bindToNext();
+            }
+            nextStopIndex += 1;
         }
         if (length > currentTotalLength) {
             speed = length - currentTotalLength;
@@ -168,6 +216,7 @@ public class Connection implements Drawable, DrawableUpdate {
         Coordinate newPosition = line.calculateNewPosition(position, currentDestination, speed);
         updateGui(newPosition);
         position = newPosition;
+        updatePathProgress(pathLength);
         return 0;
     }
 }

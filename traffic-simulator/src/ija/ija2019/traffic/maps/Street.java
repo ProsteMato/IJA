@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.util.StdConverter;
+import javafx.scene.Node;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
@@ -23,6 +24,7 @@ public class Street implements IStreet, Drawable {
     private double traffic;
     private boolean isOpen;
     private List<Shape> drawableObjects = new ArrayList<>();
+    private List<Node> drawnInfoObjects = new ArrayList<>();
 
     public Street(String id, Coordinate begin, Coordinate end) {
         this.id = id;
@@ -32,8 +34,19 @@ public class Street implements IStreet, Drawable {
         setDrawableObjects();
     }
 
+    public void addInfoObject(Node node){
+        drawnInfoObjects.add(node);
+    }
+
+    public List<Node> getDrawnInfoObjects(){
+        return drawnInfoObjects;
+    }
+
     public void setDrawableObjects() {
-        drawableObjects.add(new Line(begin.getX(), begin.getY(), end.getX(), end.getY()));
+        Line street = new Line(begin.getX(), begin.getY(), end.getX(), end.getY());
+        street.setStrokeWidth(5);
+        street.setId(id);
+        drawableObjects.add(street);
         //drawableObjects.add(new Text((begin.getX() + end.getX())/2, (begin.getY() + end.getY())/2, id));
     }
 

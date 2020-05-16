@@ -14,6 +14,24 @@ public class Data {
         this.stops = stops;
     }
 
+    public Connection getConnectionById(String id){
+        for (Connection con : connections) {
+            if (con.getId().equals(id)) {
+                return con;
+            }
+        }
+        return null;
+    }
+
+    public Street getStreetById(String id){
+        for (Street s : streets){
+            if (s.getId().equals(id)){
+                return s;
+            }
+        }
+        return null;
+    }
+
     private Data(){}
 
     public List<Line> getLines() {
