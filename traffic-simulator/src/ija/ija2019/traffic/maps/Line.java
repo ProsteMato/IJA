@@ -15,7 +15,6 @@ import java.util.Map;
 public class Line implements ILine {
     private String id;
     private List<Path> paths;
-    private ListIterator<Path> pathsIterator;
 
     public Line(String id, List<Path> paths) {
         this.id = id;
@@ -23,10 +22,6 @@ public class Line implements ILine {
     }
 
     private Line(){}
-
-    public ListIterator<Path> getPathsIterator() {
-        return pathsIterator;
-    }
 
     public String getId() {
         return id;
@@ -63,7 +58,6 @@ public class Line implements ILine {
 
         @Override
         public Line convert(Line line) {
-            line.pathsIterator = line.getPaths().listIterator();
             return line;
         }
     }

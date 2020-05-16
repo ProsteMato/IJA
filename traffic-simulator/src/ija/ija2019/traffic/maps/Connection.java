@@ -28,6 +28,7 @@ public class Connection implements Drawable, DrawableUpdate {
     private double length;
     private List<Shape> drawableObjects;
     private List<Timetable> timetable;
+    private ListIterator<Path> pathsIterator;
     @JsonIgnore
     private int nextStopIndex;
     @JsonIgnore
@@ -80,7 +81,8 @@ public class Connection implements Drawable, DrawableUpdate {
     public Connection(@JsonProperty("id") String id, @JsonProperty("line") Line line) {
         this.id = id;
         this.line = line;
-        this.currentPath = line.getPathsIterator().next();
+        this.pathsIterator = line.getPaths().listIterator();
+        this.currentPath = this.pathsIterator.next();
         this.coordinateListIterator = currentPath.getPath().listIterator();
         this.position = coordinateListIterator.next();
         this.currentDestination = coordinateListIterator.next();
@@ -199,10 +201,10 @@ public class Connection implements Drawable, DrawableUpdate {
         length += speed;
         if (length > pathLength) {
             updateGui(currentDestination);
-            if (!line.getPathsIterator().hasNext()) {
+            if (!pathsIterator.hasNext()) {
                 return 1;
             }
-            currentPath = line.getPathsIterator().next();
+            currentPath = pathsIterator.next();
             coordinateListIterator = currentPath.getPath().listIterator();
             position = coordinateListIterator.next();
             currentDestination = coordinateListIterator.next();
