@@ -27,6 +27,7 @@ public class Connection implements Drawable, DrawableUpdate {
     private double currentTotalLength;
     private double length;
     private List<Shape> drawableObjects;
+    private List<Timetable> timetable;
     @JsonIgnore
     private int nextStopIndex;
     @JsonIgnore
@@ -56,6 +57,14 @@ public class Connection implements Drawable, DrawableUpdate {
 
     public List<ProgressIndicator> getIndicators() {
         return indicators;
+    }
+
+    public List<Timetable> getTimetable() {
+        return timetable;
+    }
+
+    public void setTimetable(List<Timetable> timetable) {
+        this.timetable = timetable;
     }
 
     private void bindToNext(){
