@@ -314,13 +314,14 @@ public class Controller {
         stopsLabel.setStyle("-fx-font-weight: bold;");
         street.addInfoObject(stopsLabel);
 
+        /**
         Button closeStreetButton = new Button("Close street");
         closeStreetButton.setLayoutX(96);
         closeStreetButton.setLayoutY(387);
         closeStreetButton.setPrefSize(80, 25);
         // handler closeStreetButton.
         street.addInfoObject(closeStreetButton);
-
+        **/
         double yOffset = 110;
 
         for (Stop s :street.getStops()){
