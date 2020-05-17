@@ -4,25 +4,23 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import ija.ija2019.traffic.maps.*;
 import javafx.application.Application;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.TextFormatter;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
-
 import java.io.File;
-import java.time.LocalTime;
-
-import ija.ija2019.traffic.Controller;
 import javafx.stage.WindowEvent;
-import javafx.util.converter.DateTimeStringConverter;
 
+/**
+ * This is main class of application here are all data loading and start of application.
+ * @version 1.0
+ * @author <a href="xkocim05@stud.fit.vutbr.cz">Martin Koči</a>
+ * @author <a href="xkoval17@stud.fit.vutbr.cz">Michal Koval</a>
+ */
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
