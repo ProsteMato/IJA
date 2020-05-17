@@ -63,6 +63,7 @@ public class Controller {
     private List<DrawableUpdate> drawableUpdatesElements = new CopyOnWriteArrayList<>();
     private Timer timer;
     private LocalTime time = LocalTime.now().truncatedTo(ChronoUnit.SECONDS);
+    private Color prevColor;
 
     Runnable updateTimer = new Runnable() {
         @Override
@@ -164,6 +165,9 @@ public class Controller {
             for (Stop s : con.getLine().getStops()){
                 highlightStop(s, Color.RED);
             }
+            for (Street s : con.getLine().getStreets()){
+                highlightStreet(s, Color.BLACK);
+            }
         } else if (currentInfoAbout instanceof Street){
             Street street = (Street) currentInfoAbout;
             infoPanel.getChildren().removeAll(street.getDrawnInfoObjects());
@@ -202,6 +206,7 @@ public class Controller {
                 circle.setRadius(8.5);
             }
         }
+        prevColor = (Color)line.getStroke();
         line.setStroke(Color.DARKGREEN);
     }
 
@@ -213,7 +218,7 @@ public class Controller {
             return;
         }
         line.setStrokeWidth(5);
-        line.setStroke(Color.BLACK);
+        line.setStroke(prevColor);
         List<Shape> shapes = new ArrayList<>();
         for (Stop stop : street.getStops()) {
             shapes.addAll(stop.getDrawableObjects());
@@ -386,6 +391,14 @@ public class Controller {
         }
     }
 
+    public void highlightStreet(Street street, Color color) {
+        for (Shape shape : street.getDrawableObjects()){
+            if (shape instanceof javafx.scene.shape.Line){
+                shape.setStroke(color);
+            }
+        }
+    }
+
     public void showConnectionInfo(MouseEvent me) {
         me.consume();
         // finding the connection
@@ -405,20 +418,29 @@ public class Controller {
         List<Stop> stops = line.getStops();
         int stopId = con.getNextStopIndex();
         List<Timetable> timetables = con.getTimetable();
+
+        for (Stop stop : stops) {
+            highlightStop(stop, line.getStopColor());
+        }
+        for (Street street : con.getLine().getStreets()) {
+            highlightStreet(street, line.getStopColor());
+        }
         VBox vbox = new VBox();
         // already passed stops
         for (int i = 0; i < stopId; i++){
             vbox.getChildren().add(createStopInfoGroup(stops.get(i), con, 1, timetables.get(i).getTime()));
-            highlightStop(stops.get(i), line.getStopColor());
+
         }
         // next stop
         vbox.getChildren().add(createStopInfoGroup(stops.get(stopId), con, 0, timetables.get(stopId).getTime()));
         con.getIndicators().get(stopId).progressProperty().bind(con.currentProgressProperty());
-        highlightStop(stops.get(stopId), line.getStopColor());
+//        highlightStop(stops.get(stopId), line.getStopColor());
+//        highlightStreet(stops.get(stopId).getStreet(), line.getStopColor());
         // upcoming stops
         for (int i = stopId+1; i < stops.size(); i++) {
             vbox.getChildren().add(createStopInfoGroup(stops.get(i), con, 0, timetables.get(i).getTime()));
-            highlightStop(stops.get(i), line.getStopColor());
+//            highlightStop(stops.get(i), line.getStopColor());
+//            highlightStreet(stops.get(i).getStreet(), line.getStopColor());
         }
         connectionListPanel.getChildren().add(vbox);
     }

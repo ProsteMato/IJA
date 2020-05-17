@@ -39,6 +39,17 @@ public class Line implements ILine {
         return stops;
     }
 
+    public List<Street> getStreets() {
+        List<Street> streets = new ArrayList<>();
+        for (Path path : paths) {
+            for (Street street : path.getStreets()) {
+                if (!streets.contains(street))
+                    streets.add(street);
+            }
+        }
+        return streets;
+    }
+
     public Color getBusColor() {
         return Color.web(busColor);
     }
