@@ -10,109 +10,155 @@ import javafx.scene.shape.Shape;
 
 import java.util.*;
 
+/**
+ * This class is representing one street
+ * @version 1.0
+ * @author <a href="xkocim05@stud.fit.vutbr.cz">Martin Koči</a>
+ * @author <a href="xkoval17@stud.fit.vutbr.cz">Michal Koval</a>
+ */
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @JsonDeserialize(converter = Street.StreetDeserialize.class)
-public class Street implements IStreet, Drawable {
+public class Street implements Drawable {
     private String id;
     private Coordinate begin;
     private Coordinate end;
-    private List<Stop> stops = new ArrayList<>();
+    private List<Stop> stops;
     private double traffic;
     private boolean isOpen;
-    private List<Shape> drawableObjects = new ArrayList<>();
-    private List<Node> drawnInfoObjects = new ArrayList<>();
-    public boolean isSelected = false;
+    private List<Shape> drawableObjects;
+    private List<Node> drawnInfoObjects;
+    private boolean isSelected = false;
 
-    public Street(String id, Coordinate begin, Coordinate end) {
+    public Street(String id, Coordinate begin, Coordinate end, List<Stop> stops, double traffic, boolean isOpen) {
         this.id = id;
         this.begin = begin;
         this.end = end;
-        stops = new ArrayList<>();
+        this.stops = stops;
+        this.traffic = traffic;
+        this.isOpen = isOpen;
         setDrawableObjects();
     }
 
+    /**
+     * This method is for checking if street was selected or not.
+     * @return true if selected or false if not selected.
+     */
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    /**
+     * This method is for setting if streets was selected
+     * @param selected true if selected false otherwise
+     */
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+
+    //TODO: dokumentacia
     public void addInfoObject(Node node){
         drawnInfoObjects.add(node);
     }
 
+    //TODO: dokumentacia
     public List<Node> getDrawnInfoObjects(){
         return drawnInfoObjects;
     }
 
+    /**
+     * This method is setup for drawing streets object.
+     */
     public void setDrawableObjects() {
+        drawableObjects = new ArrayList<>();
+        drawnInfoObjects = new ArrayList<>();
+        stops = new ArrayList<>();
         Line street = new Line(begin.getX(), begin.getY(), end.getX(), end.getY());
         street.setStrokeWidth(5);
         street.setId(id);
         drawableObjects.add(street);
-        //drawableObjects.add(new Text((begin.getX() + end.getX())/2, (begin.getY() + end.getY())/2, id));
-    }
+}
 
     private Street(){}
 
+    /**
+     * This method is returning begin coordinate of street.
+     * @return begin coordinate
+     */
     public Coordinate getBegin() {
         return this.begin;
     }
 
+    /**
+     * This method checks if position is begin or end coordinate
+     * @param position position
+     * @return true if position is begin or end, false otherwise
+     */
     public boolean positionOnStreet(Coordinate position) {
         return position.equals(begin) || position.equals(end);
     }
 
+    /**
+     * This function returns end of street
+     * @return Coordinate - end of street
+     */
     public Coordinate getEnd() {
         return this.end;
     }
 
+    /**
+     * This function check if street is open.
+     * @return true if street is open, false otherwise.
+     */
     public boolean getIsOpen() {
         return this.isOpen;
     }
+    /**
+     * This function sets if street is open or not
+     * @param open true if street is open, false otherwise.
+     */
+    public void setIsOpen(boolean open) {
+        this.isOpen = open;
+    }
 
+    /**
+     * This method returns traffic of street.
+     * @return street traffic
+     */
     public double getTraffic() {
         return traffic;
     }
 
+    /**
+     * This method is setting street traffic
+     * @param traffic value of traffic from 0.2 to 1.0
+     */
     public void setTraffic(double traffic) {
-        this.traffic = traffic;
+        if (traffic >= 0.2 || traffic <= 1.0)
+            this.traffic = traffic;
     }
 
-    public boolean isOpen() {
-        return isOpen;
-    }
-
-    public void setOpen(boolean open) {
-        isOpen = open;
-    }
-
+    /**
+     * This method adds stops to street
+     * @param stop stop on street
+     */
     public void addStop(Stop stop) {
         if(!stops.contains(stop)) {
             stops.add(stop);
         }
     }
 
-    public double distance(Coordinate c1, Coordinate c2) {
-        return Math.sqrt(Math.pow(c1.diffX(c2), 2) + Math.pow(c1.diffY(c2), 2));
-    }
-
-    public Coordinate begin() {
-        return begin;
-    }
-
-    public Coordinate end() {
-        return end;
-    }
-
-    public boolean follows(Street s) {
-        return (s.end().getX() == this.begin().getX() && s.end().getY() == this.begin().getY()) ||
-                (s.begin().getX() == this.end().getX() && s.begin().getY() == this.end().getY());
-
-    }
-
-    public List<Coordinate> getCoordinates() {
-        return Arrays.asList(begin, end);
-    }
-
+    /**
+     * This method returns id of street
+     * @return id
+     */
     public String getId() {
         return this.id;
     }
 
+    /**
+     * This method returns stops of street
+     * @return stops of street
+     */
     public List<Stop> getStops() {
         return this.stops;
     }
@@ -138,7 +184,10 @@ public class Street implements IStreet, Drawable {
         return id;
     }
 
-    @Override
+    /**
+     * This function return drawable objects
+     * @return drawable objects
+     */
     public List<Shape> getDrawableObjects() {
         return drawableObjects;
     }
