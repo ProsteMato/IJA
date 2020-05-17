@@ -88,17 +88,7 @@ public class Connection implements Drawable, DrawableUpdate {
     public Connection(@JsonProperty("id") String id, @JsonProperty("line") Line line) {
         this.id = id;
         this.line = line;
-        this.pathsIterator = line.getPaths().listIterator();
-        this.currentPath = this.pathsIterator.next();
-        this.coordinateListIterator = currentPath.getPath().listIterator();
-        this.position = coordinateListIterator.next();
-        this.currentDestination = coordinateListIterator.next();
-        this.currentTotalLength = currentLength(position, currentDestination);
-        this.length = 0.0;
-        this.nextStopIndex = 1;
-        this.currentProgress = new SimpleDoubleProperty(0);
-        this.indicators = new ArrayList<>();
-        setDrawableObjects();
+        setUpObject();
     }
 
     public void setDrawableObjects() {
@@ -219,6 +209,31 @@ public class Connection implements Drawable, DrawableUpdate {
         return duration;
     }
 
+    public void setUpObject() {
+        this.pathsIterator = line.getPaths().listIterator();
+        this.currentPath = this.pathsIterator.next();
+        this.coordinateListIterator = currentPath.getPath().listIterator();
+        this.position = coordinateListIterator.next();
+        this.currentDestination = coordinateListIterator.next();
+        this.currentTotalLength = currentLength(position, currentDestination);
+        this.length = 0.0;
+        this.nextStopIndex = 1;
+        this.currentProgress = new SimpleDoubleProperty(0);
+        this.indicators = new ArrayList<>();
+        setDrawableObjects();
+    }
+
+    public boolean isAffectedByTimeShift(LocalTime time) {
+        for (int i = 1; i < timetable.size(); i++) {
+            LocalTime source = timetable.get(i-1).getLocalTime();
+            LocalTime destination = timetable.get(i).getLocalTime();
+            if (time.isAfter(source) && time.isBefore(destination)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public int update(LocalTime time) {
         double pathLength = currentPath.getPathLength();
@@ -226,7 +241,6 @@ public class Connection implements Drawable, DrawableUpdate {
         speed = speed * currentPath.getTraffic(currentDestination);
         length += speed;
         if (length > pathLength) {
-            System.out.println("nastavil som novú path");
             updateGui(currentDestination);
             if (!pathsIterator.hasNext()) {
                 updatePathProgress(pathLength);

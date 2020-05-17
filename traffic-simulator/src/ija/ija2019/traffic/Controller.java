@@ -19,12 +19,14 @@ import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
 import javafx.util.converter.DateTimeStringConverter;
 
+import javax.swing.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.Timer;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Controller {
@@ -93,6 +95,32 @@ public class Controller {
     @FXML
     private void setTime(MouseEvent me){
         time = LocalTime.parse(timeTextField.getText());
+        startConnections();
+    }
+
+    private long timeDifference(LocalTime start) {
+        long duration = 0;
+        if (start.isAfter(time)) {
+            duration += ChronoUnit.SECONDS.between(start, LocalTime.parse("23:59:59"));
+            duration += ChronoUnit.SECONDS.between(LocalTime.parse("00:00"), time);
+        } else {
+            duration = ChronoUnit.SECONDS.between(start, time);
+        }
+        return duration;
+    }
+
+    public void startConnections(){
+        for (Connection connection : data.getConnections()) {
+            drawableUpdatesElements.remove(connection);
+            map.getChildren().removeAll(connection.getDrawableObjects());
+            connection.setUpObject();
+            if(connection.isAffectedByTimeShift(time)) {
+                for (int i = 0; i < timeDifference(connection.getStartTime()); i++) {
+                    connection.update(time);
+                }
+                setUpConnection(connection);
+            }
+        }
     }
 
     private void changeSpeed(MouseEvent me){
@@ -295,6 +323,11 @@ public class Controller {
     }
 
     public void setUpConnection(Connection connection) {
+        for (Shape shape : connection.getDrawableObjects()) {
+            if (shape instanceof Circle) {
+                shape.addEventHandler(MouseEvent.MOUSE_PRESSED, this::showConnectionInfo);
+            }
+        }
         addUpdate(connection);
         draw(connection.getDrawableObjects());
     }
@@ -305,6 +338,10 @@ public class Controller {
                 setUpConnection(connection);
             }
         }
+    }
+
+    public void resetObject(Connection connection) {
+        connection.setUpObject();
     }
 
     public void runTime() {
@@ -318,6 +355,7 @@ public class Controller {
                     if (drawableUpdate.update(time) == 1) {
                         Platform.runLater(() -> map.getChildren().removeAll(drawableUpdate.getDrawableObjects()));
                         Platform.runLater(() -> drawableUpdatesElements.remove(drawableUpdate));
+                        Platform.runLater(() -> resetObject((Connection) drawableUpdate));
                     }
                 }
                 // timer update

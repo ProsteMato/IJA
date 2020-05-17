@@ -41,13 +41,7 @@ public class Main extends Application {
         controller.setupTime();
 
         for (Drawable drawable : data.getDrawables()){
-            if (drawable instanceof Connection){
-                for (Shape shape :drawable.getDrawableObjects()){
-                    if (shape instanceof Circle){
-                        shape.addEventHandler(MouseEvent.MOUSE_PRESSED, controller::showConnectionInfo);
-                    }
-                }
-            } else if (drawable instanceof Street){
+            if (drawable instanceof Street){
                 for (Shape shape :drawable.getDrawableObjects()){
                     if (shape instanceof Line){
                         shape.addEventHandler(MouseEvent.MOUSE_PRESSED, controller::showStreetInfo);
@@ -62,6 +56,7 @@ public class Main extends Application {
         }
 
         primaryStage.show();
+        controller.startConnections();
         controller.runTime();
     }
 
