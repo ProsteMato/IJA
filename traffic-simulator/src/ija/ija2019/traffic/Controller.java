@@ -164,6 +164,8 @@ public class Controller {
             for (Stop s : con.getLine().getStops()){
                 highlightStop(s, Color.RED);
             }
+            // removing delay labels
+            infoPanel.getChildren().removeAll(con.getDelayLabels());
         } else if (currentInfoAbout instanceof Street){
             Street street = (Street) currentInfoAbout;
             infoPanel.getChildren().removeAll(street.getDrawnInfoObjects());
@@ -406,12 +408,14 @@ public class Controller {
         int stopId = con.getNextStopIndex();
         List<Timetable> timetables = con.getTimetable();
         // delay
+        List<Label> labelsList = con.getDelayLabels();
         Label delayTextLabel = new Label("Delay:");
         delayTextLabel.setLayoutX(7);
         delayTextLabel.setLayoutY(34);
         delayTextLabel.setPrefSize(122,47);
         delayTextLabel.setAlignment(Pos.CENTER_RIGHT);
         delayTextLabel.setFont(Font.font(17));
+        labelsList.add(delayTextLabel);
         infoPanel.getChildren().add(delayTextLabel);
         Label delayLabel = new Label();
         delayLabel.setLayoutX(137);
@@ -423,6 +427,7 @@ public class Controller {
                 Bindings.format("+%d min", con.delayPropertyProperty())
         );
         infoPanel.getChildren().add(delayLabel);
+        labelsList.add(delayLabel);
         VBox vbox = new VBox();
         // already passed stops
         for (int i = 0; i < stopId; i++){
@@ -432,7 +437,6 @@ public class Controller {
         // next stop
         vbox.getChildren().add(createStopInfoGroup(stops.get(stopId), con, 0, timetables.get(stopId).getTime()));
         con.getIndicators().get(stopId).progressProperty().bind(con.currentProgressProperty());
-        connectionListPanel.getChildren().get(connectionListPanel.getChildren().size()-1).setVisible(true);
         highlightStop(stops.get(stopId), line.getStopColor());
         // upcoming stops
         for (int i = stopId+1; i < stops.size(); i++) {

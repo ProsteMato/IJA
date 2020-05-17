@@ -47,7 +47,6 @@ public class Connection implements Drawable, DrawableUpdate {
     private List<ProgressIndicator> indicators;
     @JsonIgnore
     private List<Label> delayLabels;
-
     private void setCurrentProgress(double value){
         currentProgress.set(value);
     }
