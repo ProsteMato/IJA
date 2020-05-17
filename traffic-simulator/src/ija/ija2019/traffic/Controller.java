@@ -149,18 +149,18 @@ public class Controller {
         ProgressIndicator progressIndicator = new ProgressIndicator(progressValue);
         progressIndicator.setLayoutX(8);
         progressIndicator.setLayoutY(yOffset);
-        con.indicators.add(progressIndicator);
+        con.getIndicators().add(progressIndicator);
         Label timeLabel = new Label(time);
         timeLabel.setLayoutX(185);
         timeLabel.setLayoutY(yOffset);
         Label delayLabel = new Label();
         delayLabel.textProperty().bind(
-                Bindings.format("+%dm", con.delayProperty)
+                Bindings.format("+%dm", con.getDelayProperty())
         );
         delayLabel.setLayoutX(215);
         delayLabel.setLayoutY(yOffset);
         delayLabel.setVisible(false);
-        con.delayLabels.add(delayLabel);
+        con.getDelayLabels().add(delayLabel);
         connectionListPanel.getChildren().add(timeLabel);
         connectionListPanel.getChildren().add(progressIndicator);
         connectionListPanel.getChildren().add(label);
@@ -171,7 +171,7 @@ public class Controller {
     private void changeInfo(Object o){
         if (currentInfoAbout instanceof Connection){
             Connection con = (Connection) currentInfoAbout;
-            con.indicators.clear();
+            con.getIndicators().clear();
             connectionListPanel.getChildren().clear();
             infoScrollPane.setVisible(false);
             // changing the color of stops back to default
@@ -428,7 +428,7 @@ public class Controller {
         // next stop
         createStopInfoGroup(stops.get(stopId), con, yOffset, 0, timetables.get(stopId).getTime(), con.getDelay());
         yOffset += 30;
-        con.indicators.get(stopId).progressProperty().bind(con.currentProgress);
+        con.getIndicators().get(stopId).progressProperty().bind(con.currentProgressProperty());
         connectionListPanel.getChildren().get(connectionListPanel.getChildren().size()-1).setVisible(true);
         highlightStop(stops.get(stopId), line.getStopColor());
         // upcoming stops
