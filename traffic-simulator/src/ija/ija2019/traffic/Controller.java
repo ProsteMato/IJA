@@ -153,6 +153,10 @@ public class Controller {
             con.indicators.clear();
             connectionListPanel.getChildren().clear();
             infoScrollPane.setVisible(false);
+            // changing the color of stops back to default
+            for (Stop s : con.getLine().getStops()){
+                highlightStop(s, Color.RED);
+            }
         } else if (currentInfoAbout instanceof Street){
             Street street = (Street) currentInfoAbout;
             infoPanel.getChildren().removeAll(street.getDrawnInfoObjects());
@@ -277,6 +281,14 @@ public class Controller {
         street.setTraffic(slider.getValue());
     }
 
+    private void highlightStop(Stop s, Color color){
+        for (Shape shape : s.getDrawableObjects()){
+            if (shape instanceof Circle){
+                shape.setFill(color);
+            }
+        }
+    }
+
     public void showConnectionInfo(MouseEvent me) {
         me.consume();
         // finding the connection
@@ -299,15 +311,18 @@ public class Controller {
         for (int i = 0; i < stopId; i++){
             createStopInfoGroup(stops.get(i), con, yOffset, 1);
             yOffset += 30;
+            highlightStop(stops.get(i), line.getStopColor());
         }
         // next stop
         createStopInfoGroup(stops.get(stopId), con, yOffset, 0);
         yOffset += 30;
         con.indicators.get(stopId).progressProperty().bind(con.currentProgress);
+        highlightStop(stops.get(stopId), line.getStopColor());
         // upcoming stops
         for (int i = stopId+1; i < stops.size(); i++) {
             createStopInfoGroup(stops.get(i), con, yOffset, 0);
             yOffset += 30;
+            highlightStop(stops.get(i), line.getStopColor());
         }
     }
 
