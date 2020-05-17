@@ -142,16 +142,29 @@ public class Controller {
         this.data = data;
     }
 
-    private void createStopInfoGroup(Stop s, Connection con, double yOffset, double val){
+    private void createStopInfoGroup(Stop s, Connection con, double yOffset, double progressValue, String time, double delay){
         Label label = new Label(s.getId());
         label.setLayoutX(39);
         label.setLayoutY(yOffset);
-        ProgressIndicator progressIndicator = new ProgressIndicator(val);
+        ProgressIndicator progressIndicator = new ProgressIndicator(progressValue);
         progressIndicator.setLayoutX(8);
         progressIndicator.setLayoutY(yOffset);
         con.indicators.add(progressIndicator);
+        Label timeLabel = new Label(time);
+        timeLabel.setLayoutX(185);
+        timeLabel.setLayoutY(yOffset);
+        Label delayLabel = new Label();
+        delayLabel.textProperty().bind(
+                Bindings.format("+%dm", con.delayProperty)
+        );
+        delayLabel.setLayoutX(215);
+        delayLabel.setLayoutY(yOffset);
+        delayLabel.setVisible(false);
+        con.delayLabels.add(delayLabel);
+        connectionListPanel.getChildren().add(timeLabel);
         connectionListPanel.getChildren().add(progressIndicator);
         connectionListPanel.getChildren().add(label);
+        connectionListPanel.getChildren().add(delayLabel);
         yOffset += 30;
     }
 
@@ -252,7 +265,7 @@ public class Controller {
         // drawing street info nodes
         infoLabel.setText(street.getId());
 
-        Rectangle trafficCard = new Rectangle(5,39, 191, 390);
+        Rectangle trafficCard = new Rectangle(24,47, 221, 371);
         trafficCard.setArcHeight(5);
         trafficCard.setArcWidth(5);
         trafficCard.setFill(Color.WHITE);
@@ -261,16 +274,16 @@ public class Controller {
         street.addInfoObject(trafficCard);
 
         Label trafficLabel = new Label("Traffic:");
-        trafficLabel.setLayoutX(78);
+        trafficLabel.setLayoutX(98);
         trafficLabel.setLayoutY(47);
-        trafficLabel.setPrefSize(49, 29);
+        trafficLabel.setPrefSize(76, 29);
         trafficLabel.setAlignment(Pos.CENTER);
         trafficLabel.setFont(Font.font(13));
         trafficLabel.setStyle("-fx-font-weight: bold;");
         street.addInfoObject(trafficLabel);
 
         Label slowLabel = new Label("Slow");
-        slowLabel.setLayoutX(10);
+        slowLabel.setLayoutX(52);
         slowLabel.setLayoutY(75);
         slowLabel.setPrefSize(49, 29);
         slowLabel.setAlignment(Pos.CENTER);
@@ -279,7 +292,7 @@ public class Controller {
         street.addInfoObject(slowLabel);
 
         Label fastLabel = new Label("Fast");
-        fastLabel.setLayoutX(144);
+        fastLabel.setLayoutX(180);
         fastLabel.setLayoutY(75);
         fastLabel.setPrefSize(49, 29);
         fastLabel.setAlignment(Pos.CENTER);
@@ -288,8 +301,8 @@ public class Controller {
         street.addInfoObject(fastLabel);
 
         Slider trafficSlider = new Slider(0.2, 1, street.getTraffic());
-        trafficSlider.setLayoutX(31);
-        trafficSlider.setLayoutY(68);
+        trafficSlider.setLayoutX(66);
+        trafficSlider.setLayoutY(69);
         trafficSlider.setMajorTickUnit(0.1);
         trafficSlider.prefHeight(14);
         trafficSlider.prefWidth(141);
@@ -298,6 +311,74 @@ public class Controller {
         trafficSlider.setId(street.getId());
         trafficSlider.addEventHandler(MouseEvent.MOUSE_RELEASED, this::changeTraffic);
         street.addInfoObject(trafficSlider);
+
+        Label stopsLabel = new Label("Stops:");
+        stopsLabel.setLayoutX(26);
+        stopsLabel.setLayoutY(110);
+        stopsLabel.setPrefSize(60, 38);
+        stopsLabel.setAlignment(Pos.CENTER_RIGHT);
+        stopsLabel.setFont(Font.font(13));
+        stopsLabel.setStyle("-fx-font-weight: bold;");
+        street.addInfoObject(stopsLabel);
+
+        Button closeStreetButton = new Button("Close street");
+        closeStreetButton.setLayoutX(96);
+        closeStreetButton.setLayoutY(387);
+        closeStreetButton.setPrefSize(80, 25);
+        // handler closeStreetButton.
+        street.addInfoObject(closeStreetButton);
+
+        double yOffset = 110;
+
+        for (Stop s :street.getStops()){
+            Label stopLabel = new Label(s.getId());
+            stopLabel.setLayoutX(90);
+            stopLabel.setLayoutY(yOffset);
+            stopLabel.setPrefSize(120, 38);
+            stopLabel.setAlignment(Pos.CENTER_LEFT);
+            stopLabel.setFont(Font.font(13));
+            street.addInfoObject(stopLabel);
+            yOffset += 20;
+        }
+
+        // najdenie lines ulice
+        List<Line> lines = new ArrayList<>();
+        for (Line l : data.getLines()){
+            for (Path p : l.getPaths()){
+                for (Street s : p.getStreets()){
+                    if (s.getId().equals(street.getId())){
+                        if (!lines.contains(l)){
+                            lines.add(l);
+                        }
+                    }
+                }
+            }
+        }
+
+        if (stopsLabel.getLayoutY() == yOffset){
+            yOffset += 20;
+        }
+
+        Label linesLabel = new Label("Lines:");
+        linesLabel.setLayoutX(26);
+        linesLabel.setLayoutY(yOffset);
+        linesLabel.setPrefSize(60, 38);
+        linesLabel.setAlignment(Pos.CENTER_RIGHT);
+        linesLabel.setFont(Font.font(13));
+        linesLabel.setStyle("-fx-font-weight: bold;");
+        street.addInfoObject(linesLabel);
+        yOffset += 20;
+
+        for (Line l : lines){
+            Label lineLabel = new Label(l.getId());
+            lineLabel.setLayoutX(90);
+            lineLabel.setLayoutY(yOffset);
+            lineLabel.setPrefSize(120, 38);
+            lineLabel.setAlignment(Pos.CENTER_LEFT);
+            lineLabel.setFont(Font.font(13));
+            street.addInfoObject(lineLabel);
+            yOffset += 20;
+        }
 
         infoPanel.getChildren().addAll(street.getDrawnInfoObjects());
     }
@@ -337,24 +418,25 @@ public class Controller {
         Line line = con.getLine();
         List<Stop> stops = line.getStops();
         int stopId = con.getNextStopIndex();
+        List<Timetable> timetables = con.getTimetable();
         // already passed stops
         for (int i = 0; i < stopId; i++){
-            createStopInfoGroup(stops.get(i), con, yOffset, 1);
+            createStopInfoGroup(stops.get(i), con, yOffset, 1, timetables.get(i).getTime(), 0);
             yOffset += 30;
             highlightStop(stops.get(i), line.getStopColor());
         }
         // next stop
-        createStopInfoGroup(stops.get(stopId), con, yOffset, 0);
+        createStopInfoGroup(stops.get(stopId), con, yOffset, 0, timetables.get(stopId).getTime(), con.getDelay());
         yOffset += 30;
         con.indicators.get(stopId).progressProperty().bind(con.currentProgress);
+        connectionListPanel.getChildren().get(connectionListPanel.getChildren().size()-1).setVisible(true);
         highlightStop(stops.get(stopId), line.getStopColor());
         // upcoming stops
         for (int i = stopId+1; i < stops.size(); i++) {
-            createStopInfoGroup(stops.get(i), con, yOffset, 0);
+            createStopInfoGroup(stops.get(i), con, yOffset, 0, timetables.get(i).getTime(), con.getDelay());
             yOffset += 30;
             highlightStop(stops.get(i), line.getStopColor());
         }
-        con.getTimetable();
     }
 
     @FXML
