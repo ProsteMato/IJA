@@ -168,6 +168,8 @@ public class Controller {
             for (Street s : con.getLine().getStreets()){
                 highlightStreet(s, Color.BLACK);
             }
+            // removing delay labels
+            infoPanel.getChildren().removeAll(con.getDelayLabels());
         } else if (currentInfoAbout instanceof Street){
             Street street = (Street) currentInfoAbout;
             infoPanel.getChildren().removeAll(street.getDrawnInfoObjects());
@@ -419,12 +421,14 @@ public class Controller {
         int stopId = con.getNextStopIndex();
         List<Timetable> timetables = con.getTimetable();
         // delay
+        List<Label> labelsList = con.getDelayLabels();
         Label delayTextLabel = new Label("Delay:");
         delayTextLabel.setLayoutX(7);
         delayTextLabel.setLayoutY(34);
         delayTextLabel.setPrefSize(122,47);
         delayTextLabel.setAlignment(Pos.CENTER_RIGHT);
         delayTextLabel.setFont(Font.font(17));
+        labelsList.add(delayTextLabel);
         infoPanel.getChildren().add(delayTextLabel);
         Label delayLabel = new Label();
         delayLabel.setLayoutX(137);
@@ -443,6 +447,7 @@ public class Controller {
         for (Street street : con.getLine().getStreets()) {
             highlightStreet(street, line.getStopColor());
         }
+        labelsList.add(delayLabel);
         VBox vbox = new VBox();
         // already passed stops
         for (int i = 0; i < stopId; i++){
