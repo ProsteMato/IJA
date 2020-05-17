@@ -117,12 +117,14 @@ public class Controller {
     public void startConnections(){
         firstStart = true;
         for (Connection connection : data.getConnections()) {
+            LocalTime costumeTime = connection.getStartTime();
             drawableUpdatesElements.remove(connection);
             map.getChildren().removeAll(connection.getDrawableObjects());
             connection.setUpObject();
             if(connection.isAffectedByTimeShift(time)) {
                 for (int i = 0; i < timeDifference(connection.getStartTime()); i++) {
-                    connection.update(time);
+                    costumeTime = costumeTime.plusSeconds(1);
+                    connection.update(costumeTime);
                 }
                 setUpConnection(connection);
             }
@@ -305,14 +307,6 @@ public class Controller {
         // finding street object
         Slider slider = (Slider) me.getSource();
         Street street = data.getStreetById(slider.getId());
-        for (DrawableUpdate drawableUpdate : drawableUpdatesElements) {
-            if (drawableUpdate instanceof Connection) {
-                Connection connection = (Connection) drawableUpdate;
-                if (connection.getCurrentPath().isAffectedToTrafficChange(street, connection.getCurrentDestination())) {
-                    connection.setDelay();
-                }
-            }
-        }
         // changing the traffic
         street.setTraffic(slider.getValue());
     }
@@ -419,6 +413,7 @@ public class Controller {
                 if (!firstStart) {
                     Platform.runLater(() -> startConnections());
                 }
+                Platform.runLater(() -> checkConnections());
                 for (DrawableUpdate drawableUpdate : drawableUpdatesElements) {
                     if (drawableUpdate.update(time) == 1) {
                         Platform.runLater(() -> map.getChildren().removeAll(drawableUpdate.getDrawableObjects()));

@@ -223,19 +223,9 @@ public class Connection implements Drawable, DrawableUpdate {
         return delay;
     }
 
-    public void setDelay() {
-        LocalTime source = timetable.get(getIndexOfCurrentDestinationInTimeTable() - 1).getLocalTime();
-        Coordinate currentPosition = position;
-        double actualSpeed = currentPath.getPathLength() / getTimeForDestination();
-        long time = (long) (currentLength(currentPosition, currentDestination)
-                        / actualSpeed);
-        LocalTime expectedTime = source.plusSeconds(time+delay);
-        time = (long) (currentLength(currentPosition, currentDestination) / speed);
-        LocalTime actualTime = source.plusSeconds(time+delay);
-        long newDelay = this.delay + ChronoUnit.MINUTES.between(expectedTime, actualTime);
-        this.delay += ChronoUnit.MINUTES.between(expectedTime, actualTime);
-        System.out.format("Expected Time: %s\nActual Time: %s\nDelay: %d\n",expectedTime.toString(), actualTime.toString(),delay);
-
+    public void setDelay(LocalTime time) {
+        LocalTime destination = timetable.get(getIndexOfCurrentDestinationInTimeTable()).getLocalTime();
+        this.delay = ChronoUnit.MINUTES.between(destination, time);
     }
 
     public void setUpObject() {
@@ -273,6 +263,7 @@ public class Connection implements Drawable, DrawableUpdate {
         length += speed;
         if (length > pathLength) {
             updateGui(currentDestination);
+            setDelay(time);
             if (!pathsIterator.hasNext()) {
                 updatePathProgress(pathLength);
                 return 1;
