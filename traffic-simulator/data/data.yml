@@ -700,7 +700,7 @@ stops:
     x: 460.7968102550888
     y: 224.0986957742887
   street: *Street25
-- &Stop131 id: "Námestie maratónu mieru"
+- &Stop131 id: "Námestie mieru"
   coordinate:
     x: 619.8462335114903
     y: 51.012706951874165
