@@ -11,9 +11,14 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 
+/**
+ * This class represents Line
+ * @author <a href="xkocim05@stud.fit.vutbr.cz">Martin Koči</a>
+ * @author <a href="xkoval17@stud.fit.vutbr.cz">Michal Koval</a>
+ */
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @JsonDeserialize(converter = Line.LineDeserialize.class)
-public class Line implements ILine {
+public class Line {
     private String id;
     private String busColor;
     private String stopColor;

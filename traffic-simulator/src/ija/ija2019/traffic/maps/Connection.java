@@ -4,27 +4,26 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 
-import java.time.Duration;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.SimpleTimeZone;
 
-
-public class Connection implements Drawable, DrawableUpdate {
+/**
+ * @author <a href="xkocim05@stud.fit.vutbr.cz">Martin Koči</a>
+ * @author <a href="xkoval17@stud.fit.vutbr.cz">Michal Koval</a>
+ */
+public class Connection implements DrawableUpdate {
     private String id;
     private double speed;
     private Line line;
@@ -35,7 +34,7 @@ public class Connection implements Drawable, DrawableUpdate {
     private double currentTotalLength;
     private double length;
     private List<Shape> drawableObjects;
-    private List<Timetable> timetable;
+    private List<TimeTable> timetable;
     private ListIterator<Path> pathsIterator;
     private long delay;
     @JsonIgnore
@@ -47,6 +46,8 @@ public class Connection implements Drawable, DrawableUpdate {
     private List<ProgressIndicator> indicators;
     @JsonIgnore
     private List<Label> delayLabels;
+
+
     private void setCurrentProgress(double value){
         currentProgress.set(value);
     }
@@ -75,7 +76,7 @@ public class Connection implements Drawable, DrawableUpdate {
         return indicators;
     }
 
-    public List<Timetable> getTimetable() {
+    public List<TimeTable> getTimetable() {
         return timetable;
     }
 
@@ -83,7 +84,7 @@ public class Connection implements Drawable, DrawableUpdate {
         return timetable.get(0).getLocalTime();
     }
 
-    public void setTimetable(List<Timetable> timetable) {
+    public void setTimetable(List<TimeTable> timetable) {
         this.timetable = timetable;
     }
 

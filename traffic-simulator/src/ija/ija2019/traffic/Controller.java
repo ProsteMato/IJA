@@ -29,6 +29,8 @@ import java.util.Timer;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
+ * Controller of the application
+ * @version 1.0
  * @author <a href="xkocim05@stud.fit.vutbr.cz">Martin Koči</a>
  * @author <a href="xkoval17@stud.fit.vutbr.cz">Michal Koval</a>
  */
