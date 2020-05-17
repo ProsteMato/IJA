@@ -32,6 +32,7 @@ public class Connection implements Drawable, DrawableUpdate {
     private List<Shape> drawableObjects;
     private List<Timetable> timetable;
     private ListIterator<Path> pathsIterator;
+    private int delay;
     @JsonIgnore
     private int nextStopIndex;
     @JsonIgnore
@@ -209,6 +210,29 @@ public class Connection implements Drawable, DrawableUpdate {
         return duration;
     }
 
+    private int getIndexOfCurrentDestinationInTimeTable() {
+        for (int index = 1; index < timetable.size(); index++) {
+            if(timetable.get(index).getStop().equals(currentPath.getDestination())) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    public double getDelay() {
+        return delay;
+    }
+
+    public void setDelay() {
+        LocalTime source = timetable.get(getIndexOfCurrentDestinationInTimeTable() - 1).getLocalTime();
+        LocalTime destination = timetable.get(getIndexOfCurrentDestinationInTimeTable()).getLocalTime();
+        long duration = getTimeForDestination();
+        long time = (long) (currentPath.getPathLength() / speed);
+        LocalTime trueTime = source.plusSeconds(time);
+        this.delay = (int) ChronoUnit.MINUTES.between(destination, trueTime);
+        System.out.println(delay);
+    }
+
     public void setUpObject() {
         this.pathsIterator = line.getPaths().listIterator();
         this.currentPath = this.pathsIterator.next();
@@ -220,6 +244,8 @@ public class Connection implements Drawable, DrawableUpdate {
         this.nextStopIndex = 1;
         this.currentProgress = new SimpleDoubleProperty(0);
         this.indicators = new ArrayList<>();
+        this.speed = 0.0;
+        this.delay = 0;
         setDrawableObjects();
     }
 
@@ -237,7 +263,7 @@ public class Connection implements Drawable, DrawableUpdate {
     @Override
     public int update(LocalTime time) {
         double pathLength = currentPath.getPathLength();
-        double speed = pathLength / getTimeForDestination();
+        speed = pathLength / getTimeForDestination();
         speed = speed * currentPath.getTraffic(currentDestination);
         length += speed;
         if (length > pathLength) {

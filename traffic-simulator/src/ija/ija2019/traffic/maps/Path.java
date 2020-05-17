@@ -74,6 +74,15 @@ public class Path {
         return streets;
     }
 
+    public boolean isAffectedToTrafficChange(Street street) {
+        for(Street s : getStreets()) {
+            if (s.equals(street)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public double getTraffic(Coordinate position) {
         List<Street> streets = getStreets();
         if (destination.getCoordinate().equals(position)) {

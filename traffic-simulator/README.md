@@ -3,7 +3,7 @@
 - [X] spraviť posun v čase.
 - [ ] zvíraznienie linky pri kliknutí na vozidlo
 - [ ] pridanie viacej farieb vozidlám aj linkam
-- [ ] vypisovať meškanie do iterára vozidla
+- [ ] vypisovať meškanie do iterára vozidla(funkcia na získanie meškania je spravená v connection volá sa pri jednotlivých traffic ked sa zmení traffic na ulici ale nefunguje to tak ako by som chcel zatiaľ keby chceš môžeš sa na to pozrieť)
 - [ ] spraviť objíždky
 - [ ] spraviť readme
 - [ ] spraviť dokumentáciu

@@ -265,6 +265,14 @@ public class Controller {
         // finding street object
         Slider slider = (Slider) me.getSource();
         Street street = data.getStreetById(slider.getId());
+        for (DrawableUpdate drawableUpdate : drawableUpdatesElements) {
+            if (drawableUpdate instanceof Connection) {
+                Connection connection = (Connection) drawableUpdate;
+                if (connection.getCurrentPath().isAffectedToTrafficChange(street)) {
+                    connection.setDelay();
+                }
+            }
+        }
         // changing the traffic
         street.setTraffic(slider.getValue());
     }
