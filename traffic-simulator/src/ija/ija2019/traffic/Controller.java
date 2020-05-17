@@ -237,6 +237,12 @@ public class Controller {
         javafx.scene.shape.Line line = (javafx.scene.shape.Line) me.getSource();
         Street street = data.getStreetById(line.getId());
         street.isSelected = true;
+        // changing info panel
+        if (currentInfoAbout == street){
+            return;
+        } else{
+            changeInfo(street);
+        }
         // highlighting the street
         line.setStroke(Color.DARKGREEN);
         line.setStrokeWidth(8.5);
@@ -246,12 +252,6 @@ public class Controller {
                     ((Circle) shape).setRadius(8.5);
                 }
             }
-        }
-        // changing info panel
-        if (currentInfoAbout == street){
-            return;
-        } else{
-            changeInfo(street);
         }
         // drawing street info nodes
         infoLabel.setText(street.getId());
@@ -447,20 +447,14 @@ public class Controller {
         // already passed stops
         for (int i = 0; i < stopId; i++){
             vbox.getChildren().add(createStopInfoGroup(stops.get(i), con, 1, timetables.get(i).getTime()));
-
         }
         // next stop
         vbox.getChildren().add(createStopInfoGroup(stops.get(stopId), con, 0, timetables.get(stopId).getTime()));
         con.getIndicators().get(stopId).progressProperty().bind(con.currentProgressProperty());
-        connectionListPanel.getChildren().get(connectionListPanel.getChildren().size()-1).setVisible(true);
         highlightStop(stops.get(stopId), line.getStopColor());
-//        highlightStop(stops.get(stopId), line.getStopColor());
-//        highlightStreet(stops.get(stopId).getStreet(), line.getStopColor());
         // upcoming stops
         for (int i = stopId+1; i < stops.size(); i++) {
             vbox.getChildren().add(createStopInfoGroup(stops.get(i), con, 0, timetables.get(i).getTime()));
-//            highlightStop(stops.get(i), line.getStopColor());
-//            highlightStreet(stops.get(i).getStreet(), line.getStopColor());
         }
         connectionListPanel.getChildren().add(vbox);
     }
