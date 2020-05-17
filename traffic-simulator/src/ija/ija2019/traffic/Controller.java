@@ -418,6 +418,24 @@ public class Controller {
         List<Stop> stops = line.getStops();
         int stopId = con.getNextStopIndex();
         List<Timetable> timetables = con.getTimetable();
+        // delay
+        Label delayTextLabel = new Label("Delay:");
+        delayTextLabel.setLayoutX(7);
+        delayTextLabel.setLayoutY(34);
+        delayTextLabel.setPrefSize(122,47);
+        delayTextLabel.setAlignment(Pos.CENTER_RIGHT);
+        delayTextLabel.setFont(Font.font(17));
+        infoPanel.getChildren().add(delayTextLabel);
+        Label delayLabel = new Label();
+        delayLabel.setLayoutX(137);
+        delayLabel.setLayoutY(34);
+        delayLabel.setPrefSize(131,47);
+        delayLabel.setAlignment(Pos.CENTER_LEFT);
+        delayLabel.setFont(Font.font(17));
+        delayLabel.textProperty().bind(
+                Bindings.format("+%d min", con.delayPropertyProperty())
+        );
+        infoPanel.getChildren().add(delayLabel);
 
         for (Stop stop : stops) {
             highlightStop(stop, line.getStopColor());
@@ -434,6 +452,8 @@ public class Controller {
         // next stop
         vbox.getChildren().add(createStopInfoGroup(stops.get(stopId), con, 0, timetables.get(stopId).getTime()));
         con.getIndicators().get(stopId).progressProperty().bind(con.currentProgressProperty());
+        connectionListPanel.getChildren().get(connectionListPanel.getChildren().size()-1).setVisible(true);
+        highlightStop(stops.get(stopId), line.getStopColor());
 //        highlightStop(stops.get(stopId), line.getStopColor());
 //        highlightStreet(stops.get(stopId).getStreet(), line.getStopColor());
         // upcoming stops
