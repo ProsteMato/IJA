@@ -160,6 +160,22 @@ public class Controller {
         } else if (currentInfoAbout instanceof Street){
             Street street = (Street) currentInfoAbout;
             infoPanel.getChildren().removeAll(street.getDrawnInfoObjects());
+            ((Street) currentInfoAbout).isSelected = false;
+            javafx.scene.shape.Line line = null;
+            for (Shape shape : ((Street) currentInfoAbout).getDrawableObjects()){
+                if (shape instanceof javafx.scene.shape.Line){
+                    line = (javafx.scene.shape.Line) shape;
+                }
+            }
+            line.setStroke(Color.BLACK);
+            line.setStrokeWidth(5);
+            for (Stop s : street.getStops()){
+                for (Shape shape : s.getDrawableObjects()){
+                    if (shape instanceof Circle){
+                        ((Circle) shape).setRadius(6);
+                    }
+                }
+            }
         }
         currentInfoAbout = o;
     }
@@ -185,8 +201,11 @@ public class Controller {
     public void unStrokeStreet(MouseEvent me) {
         me.consume();
         javafx.scene.shape.Line line = (javafx.scene.shape.Line) me.getSource();
-        line.setStrokeWidth(5);
         Street street = data.getStreetById(line.getId());
+        if (street.isSelected) {
+            return;
+        }
+        line.setStrokeWidth(5);
         line.setStroke(Color.BLACK);
         List<Shape> shapes = new ArrayList<>();
         for (Stop stop : street.getStops()) {
@@ -205,6 +224,17 @@ public class Controller {
         // finding street object
         javafx.scene.shape.Line line = (javafx.scene.shape.Line) me.getSource();
         Street street = data.getStreetById(line.getId());
+        street.isSelected = true;
+        // highlighting the street
+        line.setStroke(Color.DARKGREEN);
+        line.setStrokeWidth(8.5);
+        for (Stop s : street.getStops()){
+            for (Shape shape : s.getDrawableObjects()){
+                if (shape instanceof Circle){
+                    ((Circle) shape).setRadius(8.5);
+                }
+            }
+        }
         // changing info panel
         if (currentInfoAbout == street){
             return;
@@ -324,6 +354,7 @@ public class Controller {
             yOffset += 30;
             highlightStop(stops.get(i), line.getStopColor());
         }
+        con.getTimetable();
     }
 
     @FXML
