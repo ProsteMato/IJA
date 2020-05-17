@@ -3,6 +3,7 @@ package ija.ija2019.traffic.maps;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import javafx.application.Platform;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -36,15 +37,11 @@ public class Connection implements Drawable, DrawableUpdate {
     private List<Timetable> timetable;
     private ListIterator<Path> pathsIterator;
     private long delay;
-    @JsonIgnore
-    private IntegerProperty delayProperty;
     private int nextStopIndex;
     @JsonIgnore
     private DoubleProperty currentProgress;
     @JsonIgnore
     private List<ProgressIndicator> indicators;
-    @JsonIgnore
-    private List<Label> delayLabels;
 
     private void setCurrentProgress(double value){
         currentProgress.set(value);
@@ -52,10 +49,6 @@ public class Connection implements Drawable, DrawableUpdate {
 
     private void updatePathProgress(double pathLength){
         currentProgress.set(length/pathLength);
-    }
-
-    public List<Label> getDelayLabels() {
-        return delayLabels;
     }
 
     public int getNextStopIndex() {
@@ -91,10 +84,6 @@ public class Connection implements Drawable, DrawableUpdate {
         indicators.get(nextStopIndex).progressProperty().set(1);
         setCurrentProgress(0);
         indicators.get(nextStopIndex + 1).progressProperty().bind(currentProgress);
-        // delay Labels
-        delayLabels.get(nextStopIndex).textProperty().unbind();
-        delayLabels.get(nextStopIndex).setVisible(false);
-        delayLabels.get(nextStopIndex + 1).setVisible(true);
     }
 
     public Connection(){}
@@ -127,14 +116,6 @@ public class Connection implements Drawable, DrawableUpdate {
 
     public String getId() {
         return id;
-    }
-
-    public int getDelayProperty() {
-        return delayProperty.get();
-    }
-
-    public IntegerProperty delayPropertyProperty() {
-        return delayProperty;
     }
 
     public double getSpeed() {
@@ -253,7 +234,6 @@ public class Connection implements Drawable, DrawableUpdate {
         } else {
             this.delay = ChronoUnit.MINUTES.between(destination, time);
         }
-        delayProperty.setValue((int)delay);
     }
 
     public void setUpObject() {
@@ -269,8 +249,6 @@ public class Connection implements Drawable, DrawableUpdate {
         this.indicators = new ArrayList<>();
         this.speed = 0.0;
         this.delay = 0;
-        this.delayProperty = new SimpleIntegerProperty(0);
-        this.delayLabels = new ArrayList<>();
         setDrawableObjects();
     }
 

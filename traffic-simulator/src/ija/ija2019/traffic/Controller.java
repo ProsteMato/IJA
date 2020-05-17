@@ -11,6 +11,8 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -142,30 +144,14 @@ public class Controller {
         this.data = data;
     }
 
-    private void createStopInfoGroup(Stop s, Connection con, double yOffset, double progressValue, String time, double delay){
+    private HBox createStopInfoGroup(Stop s, Connection con, double progressValue, String time){
         Label label = new Label(s.getId());
-        label.setLayoutX(39);
-        label.setLayoutY(yOffset);
         ProgressIndicator progressIndicator = new ProgressIndicator(progressValue);
-        progressIndicator.setLayoutX(8);
-        progressIndicator.setLayoutY(yOffset);
         con.getIndicators().add(progressIndicator);
         Label timeLabel = new Label(time);
-        timeLabel.setLayoutX(185);
-        timeLabel.setLayoutY(yOffset);
-        Label delayLabel = new Label();
-        delayLabel.textProperty().bind(
-                Bindings.format("+%dm", con.getDelayProperty())
-        );
-        delayLabel.setLayoutX(215);
-        delayLabel.setLayoutY(yOffset);
-        delayLabel.setVisible(false);
-        con.getDelayLabels().add(delayLabel);
-        connectionListPanel.getChildren().add(timeLabel);
-        connectionListPanel.getChildren().add(progressIndicator);
-        connectionListPanel.getChildren().add(label);
-        connectionListPanel.getChildren().add(delayLabel);
-        yOffset += 30;
+        HBox hBox = new HBox(10, progressIndicator, timeLabel, label);
+        hBox.setAlignment(Pos.CENTER_LEFT);
+        return hBox;
     }
 
     private void changeInfo(Object o){
@@ -419,24 +405,22 @@ public class Controller {
         List<Stop> stops = line.getStops();
         int stopId = con.getNextStopIndex();
         List<Timetable> timetables = con.getTimetable();
+        VBox vbox = new VBox();
         // already passed stops
         for (int i = 0; i < stopId; i++){
-            createStopInfoGroup(stops.get(i), con, yOffset, 1, timetables.get(i).getTime(), 0);
-            yOffset += 30;
+            vbox.getChildren().add(createStopInfoGroup(stops.get(i), con, 1, timetables.get(i).getTime()));
             highlightStop(stops.get(i), line.getStopColor());
         }
         // next stop
-        createStopInfoGroup(stops.get(stopId), con, yOffset, 0, timetables.get(stopId).getTime(), con.getDelay());
-        yOffset += 30;
+        vbox.getChildren().add(createStopInfoGroup(stops.get(stopId), con, 0, timetables.get(stopId).getTime()));
         con.getIndicators().get(stopId).progressProperty().bind(con.currentProgressProperty());
-        connectionListPanel.getChildren().get(connectionListPanel.getChildren().size()-1).setVisible(true);
         highlightStop(stops.get(stopId), line.getStopColor());
         // upcoming stops
         for (int i = stopId+1; i < stops.size(); i++) {
-            createStopInfoGroup(stops.get(i), con, yOffset, 0, timetables.get(i).getTime(), con.getDelay());
-            yOffset += 30;
+            vbox.getChildren().add(createStopInfoGroup(stops.get(i), con, 0, timetables.get(i).getTime()));
             highlightStop(stops.get(i), line.getStopColor());
         }
+        connectionListPanel.getChildren().add(vbox);
     }
 
     @FXML
