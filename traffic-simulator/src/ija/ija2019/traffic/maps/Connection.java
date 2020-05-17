@@ -7,7 +7,6 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -36,15 +35,10 @@ public class Connection implements Drawable, DrawableUpdate {
     private List<Timetable> timetable;
     private ListIterator<Path> pathsIterator;
     private long delay;
-    @JsonIgnore
+    private IntegerProperty delayProperty = new SimpleIntegerProperty(0);
     private int nextStopIndex;
-    @JsonIgnore
-    public DoubleProperty currentProgress;
-    @JsonIgnore
-    public List<ProgressIndicator> indicators;
-    public IntegerProperty delayProperty = new SimpleIntegerProperty(0);
-    @JsonIgnore
-    public List<Label> delayLabels = new ArrayList<>();
+    private DoubleProperty currentProgress;
+    private List<ProgressIndicator> indicators;
 
     private void setCurrentProgress(double value){
         currentProgress.set(value);
@@ -87,10 +81,6 @@ public class Connection implements Drawable, DrawableUpdate {
         indicators.get(nextStopIndex).progressProperty().set(1);
         setCurrentProgress(0);
         indicators.get(nextStopIndex + 1).progressProperty().bind(currentProgress);
-        // delay - index same as for progress indicators
-        delayLabels.get(nextStopIndex).textProperty().unbind();
-        delayLabels.get(nextStopIndex).setVisible(false);
-        delayLabels.get(nextStopIndex+1).setVisible(true);
     }
 
     public Connection(){}
@@ -123,6 +113,14 @@ public class Connection implements Drawable, DrawableUpdate {
 
     public String getId() {
         return id;
+    }
+
+    public int getDelayProperty() {
+        return delayProperty.get();
+    }
+
+    public IntegerProperty delayPropertyProperty() {
+        return delayProperty;
     }
 
     public double getSpeed() {
@@ -235,7 +233,12 @@ public class Connection implements Drawable, DrawableUpdate {
 
     public void setDelay(LocalTime time) {
         LocalTime destination = timetable.get(getIndexOfCurrentDestinationInTimeTable()).getLocalTime();
-        this.delay = ChronoUnit.MINUTES.between(destination, time);
+        if (destination.isAfter(time.plusSeconds(10))) {
+            this.delay = ChronoUnit.SECONDS.between(destination, LocalTime.parse("23:59:59"));
+            this.delay += ChronoUnit.SECONDS.between(LocalTime.MIDNIGHT, time);
+        } else {
+            this.delay = ChronoUnit.MINUTES.between(destination, time);
+        }
         delayProperty.setValue((int)delay);
     }
 
