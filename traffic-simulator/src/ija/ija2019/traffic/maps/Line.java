@@ -12,7 +12,7 @@ import java.util.ListIterator;
 import java.util.Map;
 
 /**
- * This class represents Line
+ * This class represents Line which has several stops and path how buses get to them
  * @author <a href="xkocim05@stud.fit.vutbr.cz">Martin Koči</a>
  * @author <a href="xkoval17@stud.fit.vutbr.cz">Michal Koval</a>
  */
@@ -24,17 +24,20 @@ public class Line {
     private String stopColor;
     private List<Path> paths;
 
-    public Line(String id, List<Path> paths) {
-        this.id = id;
-        this.paths = paths;
-    }
-
     private Line(){}
 
+    /**
+     * Method returns id of line
+     * @return id of line
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * Method returns list of stops of line
+     * @return list of stops of line
+     */
     public List<Stop> getStops(){
         List<Stop> stops = new ArrayList<>();
         for (Path path : paths) {
@@ -44,6 +47,10 @@ public class Line {
         return stops;
     }
 
+    /**
+     * Method returns list of streets that are part of line path
+     * @return list of streets
+     */
     public List<Street> getStreets() {
         List<Street> streets = new ArrayList<>();
         for (Path path : paths) {
@@ -55,26 +62,37 @@ public class Line {
         return streets;
     }
 
+    /**
+     * Method returns the bus color of this line in Color object
+     * @return color of buses
+     */
     public Color getBusColor() {
         return Color.web(busColor);
     }
 
-    public void setBusColor(String color) {
-        this.busColor = color;
-    }
-
+    /**
+     * Method returns the stop color of this line in Color object
+     * @return color of stops
+     */
     public Color getStopColor() {
         return Color.web(stopColor);
     }
 
-    public void setStopColor(String stopColor) {
-        this.stopColor = stopColor;
-    }
-
+    /**
+     * Method returns list representing the path of line containing Path objects
+     * @return list of Path objects
+     */
     public List<Path> getPaths() {
         return paths;
     }
 
+    /**
+     * Calculates new position on line TODO
+     * @param source current point
+     * @param destination destination point
+     * @param distance
+     * @return
+     */
     public Coordinate calculateNewPosition(Coordinate source, Coordinate destination, double distance) {
         Coordinate v = destination.subCoordinate(source);
         Coordinate u = v.normalizeCoordinate();

@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 /**
+ * This class represents one connection of line
  * @author <a href="xkocim05@stud.fit.vutbr.cz">Martin Koči</a>
  * @author <a href="xkoval17@stud.fit.vutbr.cz">Michal Koval</a>
  */
@@ -56,37 +57,54 @@ public class Connection implements DrawableUpdate {
         currentProgress.set(length/pathLength);
     }
 
+    /**
+     * Method return list of drawn labels providing delay info of the connection
+     * @return List of labels
+     */
     public List<Label> getDelayLabels() {
         return delayLabels;
     }
 
+    /**
+     * Method return index of next stop
+     * @return index of next stop
+     */
     public int getNextStopIndex() {
         return nextStopIndex;
     }
 
-    public double getCurrentProgress() {
-        return currentProgress.get();
-    }
-
+    /**
+     * Method returns currentProgressProperty of the connection for progress indicator binding
+     * @return currentProgressProperty
+     */
     public DoubleProperty currentProgressProperty() {
         return currentProgress;
     }
 
+    /**
+     * Method return list of progress indicators drawn for this connection
+     * @return list of progress indicators
+     */
     public List<ProgressIndicator> getIndicators() {
         return indicators;
     }
 
+    /**
+     * Method returns list of Timetable objects, representing the times when connection should be at certain stops
+     * @return list of Timetable objects
+     */
     public List<TimeTable> getTimetable() {
         return timetable;
     }
 
+    /**
+     * Method returns the time when bus leaves first stop of the line
+     * @return time of first stop in LocalTime
+     */
     public LocalTime getStartTime() {
         return timetable.get(0).getLocalTime();
     }
 
-    public void setTimetable(List<TimeTable> timetable) {
-        this.timetable = timetable;
-    }
 
     private void bindToNext(){
         indicators.get(nextStopIndex).progressProperty().unbind();
@@ -95,8 +113,16 @@ public class Connection implements DrawableUpdate {
         indicators.get(nextStopIndex + 1).progressProperty().bind(currentProgress);
     }
 
+    /**
+     * Empty constructor for jackson yaml parsing
+     */
     public Connection(){}
 
+    /**
+     * JsonCreator constructor for jackson yaml parsing
+     * @param id id of connection
+     * @param line line of connection
+     */
     @JsonCreator
     public Connection(@JsonProperty("id") String id, @JsonProperty("line") Line line) {
         this.id = id;
@@ -104,6 +130,9 @@ public class Connection implements DrawableUpdate {
         setUpObject();
     }
 
+    /**
+     * Sets initial drawable objects of the connection
+     */
     public void setDrawableObjects() {
         drawableObjects = new ArrayList<>();
         Circle bus = new Circle(position.getX(), position.getY(), 10.0, line.getBusColor());
@@ -111,90 +140,35 @@ public class Connection implements DrawableUpdate {
         drawableObjects.add(bus);
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
 
-    public void setLine(Line line) {
-        this.line = line;
-    }
-
+    /**
+     * Method returns line of connection
+     * @return line of connection
+     */
     public Line getLine() {
         return line;
     }
 
+    /**
+     * Method return Id of connection
+     * @return String id of connection
+     */
     public String getId() {
         return id;
     }
 
-    public int getDelayProperty() {
-        return delayProperty.get();
-    }
-
+    /**
+     * Method returns delayProperty of connection for binding to label displaying the delay
+     * @return IntegerProperty representing delay property of connection
+     */
     public IntegerProperty delayPropertyProperty() {
         return delayProperty;
     }
 
-    public double getSpeed() {
-        return speed;
-    }
-
-    public Coordinate getCurrentDestination() {
-        return currentDestination;
-    }
-
-    public void setCurrentDestination(Coordinate currentDestination) {
-        this.currentDestination = currentDestination;
-    }
-
-    public Path getCurrentPath() {
-        return currentPath;
-    }
-
-    public void setCurrentPath(Path currentPath) {
-        this.currentPath = currentPath;
-    }
-
-    public ListIterator<Coordinate> getCoordinateListIterator() {
-        return coordinateListIterator;
-    }
-
-    public void setCoordinateListIterator(ListIterator<Coordinate> coordinateListIterator) {
-        this.coordinateListIterator = coordinateListIterator;
-    }
-
-    public double getCurrentTotalLength() {
-        return currentTotalLength;
-    }
-
-    public void setCurrentTotalLength(double currentTotalLength) {
-        this.currentTotalLength = currentTotalLength;
-    }
-
-    public double getLength() {
-        return length;
-    }
-
-    public void setDrawableObjects(List<Shape> drawableObjects) {
-        this.drawableObjects = drawableObjects;
-    }
-
-    public void setLength(double length) {
-        this.length = length;
-    }
-
-    public void setSpeed(double speed) {
-        this.speed = speed;
-    }
-
-    public Coordinate getPosition() {
-        return position;
-    }
-
-    public void setPosition(Coordinate position) {
-        this.position = position;
-    }
-
+    /**
+     * Methods moves the drawable objects of connection to coordinate
+     * @param coordinate destination coordinate
+     */
     public void updateGui(Coordinate coordinate) {
         for (Shape shape : drawableObjects) {
             shape.setTranslateX(coordinate.getX() - position.getX() + shape.getTranslateX());
@@ -202,6 +176,10 @@ public class Connection implements DrawableUpdate {
         }
     }
 
+    /**
+     * Method returns list of drawable objects of connection
+     * @return list of drawable objects of connection
+     */
     @Override
     public List<Shape> getDrawableObjects() {
         return drawableObjects;
@@ -239,10 +217,10 @@ public class Connection implements DrawableUpdate {
         return -1;
     }
 
-    public double getDelay() {
-        return delay;
-    }
-
+    /**
+     * Method calculates and sets the current delay of connection
+     * @param time time for which the delay will be calculated
+     */
     public void setDelay(LocalTime time) {
         LocalTime destination = timetable.get(getIndexOfCurrentDestinationInTimeTable()).getLocalTime();
         if (destination.isAfter(time.plusSeconds(10))) {
@@ -258,6 +236,9 @@ public class Connection implements DrawableUpdate {
         });
     }
 
+    /**
+     * Initializes the attributes of object
+     */
     public void setUpObject() {
         this.pathsIterator = line.getPaths().listIterator();
         this.currentPath = this.pathsIterator.next();
@@ -276,6 +257,11 @@ public class Connection implements DrawableUpdate {
         setDrawableObjects();
     }
 
+    /**
+     * TODO
+     * @param time
+     * @return true if is affected by time shift otherwise false
+     */
     public boolean isAffectedByTimeShift(LocalTime time) {
         for (int i = 1; i < timetable.size(); i++) {
             LocalTime source = timetable.get(i-1).getLocalTime();
@@ -287,6 +273,11 @@ public class Connection implements DrawableUpdate {
         return false;
     }
 
+    /**
+     * Method calculates and updates position of connection and its attributes
+     * @param time actual current time
+     * @return 1 when lifetime of connection has ended, 0 otherwise
+     */
     @Override
     public int update(LocalTime time) {
         double pathLength = currentPath.getPathLength();

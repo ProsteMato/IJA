@@ -55,12 +55,18 @@ public class Street implements Drawable {
         isSelected = selected;
     }
 
-    //TODO: dokumentacia
+    /**
+     * This method adds Node to the list of drawnInfoObjects of the street
+     * @param node node that is to be added to the list
+     */
     public void addInfoObject(Node node){
         drawnInfoObjects.add(node);
     }
 
-    //TODO: dokumentacia
+    /**
+     * This method returns list of all currently drawn nodes providing info about street
+     * @return List of currently drawn nodes
+     */
     public List<Node> getDrawnInfoObjects(){
         return drawnInfoObjects;
     }
