@@ -64,7 +64,7 @@ public class Path {
         return null;
     }
 
-    private List<Street> getStreets() {
+    public List<Street> getStreets() {
         List<Street> streets = new ArrayList<>();
         streets.add(source.getStreet());
         if (coordinates != null) {
