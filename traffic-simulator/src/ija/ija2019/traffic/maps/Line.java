@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.util.StdConverter;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,8 @@ import java.util.Map;
 @JsonDeserialize(converter = Line.LineDeserialize.class)
 public class Line implements ILine {
     private String id;
+    private String busColor;
+    private String stopColor;
     private List<Path> paths;
 
     public Line(String id, List<Path> paths) {
@@ -34,6 +37,22 @@ public class Line implements ILine {
         }
         stops.add(paths.get(paths.size() - 1).getDestination());
         return stops;
+    }
+
+    public Color getBusColor() {
+        return Color.web(busColor);
+    }
+
+    public void setBusColor(String color) {
+        this.busColor = color;
+    }
+
+    public Color getStopColor() {
+        return Color.web(stopColor);
+    }
+
+    public void setStopColor(String stopColor) {
+        this.stopColor = stopColor;
     }
 
     public List<Path> getPaths() {
