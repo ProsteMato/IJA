@@ -91,6 +91,10 @@ public class Connection implements Drawable, DrawableUpdate {
         indicators.get(nextStopIndex).progressProperty().set(1);
         setCurrentProgress(0);
         indicators.get(nextStopIndex + 1).progressProperty().bind(currentProgress);
+        // delay Labels
+        delayLabels.get(nextStopIndex).textProperty().unbind();
+        delayLabels.get(nextStopIndex).setVisible(false);
+        delayLabels.get(nextStopIndex + 1).setVisible(true);
     }
 
     public Connection(){}
