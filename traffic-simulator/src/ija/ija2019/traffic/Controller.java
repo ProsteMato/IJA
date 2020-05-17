@@ -35,6 +35,7 @@ public class Controller {
     }
     private Data data;
     private long timeSpeed = 1;
+    private boolean firstStart = false;
     @FXML
     private TextField timeTextField;
     private SimpleDateFormat timeFormat;
@@ -110,6 +111,7 @@ public class Controller {
     }
 
     public void startConnections(){
+        firstStart = true;
         for (Connection connection : data.getConnections()) {
             drawableUpdatesElements.remove(connection);
             map.getChildren().removeAll(connection.getDrawableObjects());
@@ -302,7 +304,7 @@ public class Controller {
         for (DrawableUpdate drawableUpdate : drawableUpdatesElements) {
             if (drawableUpdate instanceof Connection) {
                 Connection connection = (Connection) drawableUpdate;
-                if (connection.getCurrentPath().isAffectedToTrafficChange(street)) {
+                if (connection.getCurrentPath().isAffectedToTrafficChange(street, connection.getCurrentDestination())) {
                     connection.setDelay();
                 }
             }
@@ -410,7 +412,9 @@ public class Controller {
             @Override
             public void run() {
                 time = time.plusSeconds(1);
-                Platform.runLater(() -> checkConnections());
+                if (!firstStart) {
+                    Platform.runLater(() -> startConnections());
+                }
                 for (DrawableUpdate drawableUpdate : drawableUpdatesElements) {
                     if (drawableUpdate.update(time) == 1) {
                         Platform.runLater(() -> map.getChildren().removeAll(drawableUpdate.getDrawableObjects()));

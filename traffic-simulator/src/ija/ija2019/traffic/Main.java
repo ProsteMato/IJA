@@ -56,7 +56,6 @@ public class Main extends Application {
         }
 
         primaryStage.show();
-        controller.startConnections();
         controller.runTime();
     }
 

@@ -32,7 +32,7 @@ public class Connection implements Drawable, DrawableUpdate {
     private List<Shape> drawableObjects;
     private List<Timetable> timetable;
     private ListIterator<Path> pathsIterator;
-    private int delay;
+    private long delay;
     @JsonIgnore
     private int nextStopIndex;
     @JsonIgnore
@@ -225,12 +225,17 @@ public class Connection implements Drawable, DrawableUpdate {
 
     public void setDelay() {
         LocalTime source = timetable.get(getIndexOfCurrentDestinationInTimeTable() - 1).getLocalTime();
-        LocalTime destination = timetable.get(getIndexOfCurrentDestinationInTimeTable()).getLocalTime();
-        long duration = getTimeForDestination();
-        long time = (long) (currentPath.getPathLength() / speed);
-        LocalTime trueTime = source.plusSeconds(time);
-        this.delay = (int) ChronoUnit.MINUTES.between(destination, trueTime);
-        System.out.println(delay);
+        Coordinate currentPosition = position;
+        double actualSpeed = currentPath.getPathLength() / getTimeForDestination();
+        long time = (long) (currentLength(currentPosition, currentDestination)
+                        / actualSpeed);
+        LocalTime expectedTime = source.plusSeconds(time+delay);
+        time = (long) (currentLength(currentPosition, currentDestination) / speed);
+        LocalTime actualTime = source.plusSeconds(time+delay);
+        long newDelay = this.delay + ChronoUnit.MINUTES.between(expectedTime, actualTime);
+        this.delay += ChronoUnit.MINUTES.between(expectedTime, actualTime);
+        System.out.format("Expected Time: %s\nActual Time: %s\nDelay: %d\n",expectedTime.toString(), actualTime.toString(),delay);
+
     }
 
     public void setUpObject() {
