@@ -110,6 +110,10 @@ public class Controller {
         return duration;
     }
 
+    public void closeTimer() {
+        timer.cancel();
+    }
+
     public void startConnections(){
         firstStart = true;
         for (Connection connection : data.getConnections()) {

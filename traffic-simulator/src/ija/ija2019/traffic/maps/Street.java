@@ -21,6 +21,7 @@ public class Street implements IStreet, Drawable {
     private boolean isOpen;
     private List<Shape> drawableObjects = new ArrayList<>();
     private List<Node> drawnInfoObjects = new ArrayList<>();
+    private double lastTraffic;
     public boolean isSelected = false;
 
     public Street(String id, Coordinate begin, Coordinate end) {
@@ -57,6 +58,14 @@ public class Street implements IStreet, Drawable {
         return position.equals(begin) || position.equals(end);
     }
 
+    public double getLastTraffic() {
+        return lastTraffic;
+    }
+
+    public void setLastTraffic(double lastTraffic) {
+        this.lastTraffic = lastTraffic;
+    }
+
     public Coordinate getEnd() {
         return this.end;
     }
@@ -70,6 +79,7 @@ public class Street implements IStreet, Drawable {
     }
 
     public void setTraffic(double traffic) {
+        this.lastTraffic = this.traffic;
         this.traffic = traffic;
     }
 
@@ -82,7 +92,9 @@ public class Street implements IStreet, Drawable {
     }
 
     public void addStop(Stop stop) {
-        stops.add(stop);
+        if(!stops.contains(stop)) {
+            stops.add(stop);
+        }
     }
 
     public double distance(Coordinate c1, Coordinate c2) {
@@ -146,6 +158,7 @@ public class Street implements IStreet, Drawable {
         @Override
         public Street convert(Street street) {
             street.setDrawableObjects();
+            street.setLastTraffic(street.getTraffic());
             return street;
         }
     }

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import ija.ija2019.traffic.maps.*;
 import javafx.application.Application;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TextFormatter;
@@ -19,6 +20,7 @@ import java.io.File;
 import java.time.LocalTime;
 
 import ija.ija2019.traffic.Controller;
+import javafx.stage.WindowEvent;
 import javafx.util.converter.DateTimeStringConverter;
 
 public class Main extends Application {
@@ -54,6 +56,13 @@ public class Main extends Application {
                 controller.draw(drawable.getDrawableObjects());
             }
         }
+
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                controller.closeTimer();
+                primaryStage.close();
+            }
+        });
 
         primaryStage.show();
         controller.runTime();
