@@ -21,6 +21,7 @@ public class Street implements IStreet, Drawable {
     private boolean isOpen;
     private List<Shape> drawableObjects = new ArrayList<>();
     private List<Node> drawnInfoObjects = new ArrayList<>();
+    public boolean isSelected = false;
 
     public Street(String id, Coordinate begin, Coordinate end) {
         this.id = id;
