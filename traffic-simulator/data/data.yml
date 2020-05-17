@@ -868,6 +868,8 @@ stops:
 
 lines:
 - &Line0 id: "lajna ein"
+  busColor: "CORNFLOWERBLUE"
+  stopColor: "DEEPSKYBLUE"
   paths:
     -
       source: *Stop0
@@ -928,6 +930,8 @@ lines:
         - *Street36
 
 - &Line1 id: "lajna zwei"
+  busColor: "BLUEVIOLET"
+  stopColor: "VIOLET"
   paths:
     -
       source: *Stop230
@@ -1016,6 +1020,8 @@ lines:
       coordinates: null
 
 - &Line2 id: "lajna drei"
+  busColor: "FORESTGREEN"
+  stopColor: "LAWNGREEN"
   paths:
     -
       source: *Stop75
