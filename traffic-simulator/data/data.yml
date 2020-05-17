@@ -867,7 +867,7 @@ stops:
   street: *Street52
 
 lines:
-- &Line0 id: "lajna ein"
+- &Line0 id: "Linka A"
   busColor: "CORNFLOWERBLUE"
   stopColor: "DEEPSKYBLUE"
   paths:
@@ -929,7 +929,7 @@ lines:
         - *Street37
         - *Street36
 
-- &Line1 id: "lajna zwei"
+- &Line1 id: "Linka B"
   busColor: "BLUEVIOLET"
   stopColor: "VIOLET"
   paths:
@@ -1019,7 +1019,7 @@ lines:
       sameLine: false
       coordinates: null
 
-- &Line2 id: "lajna drei"
+- &Line2 id: "Linka O"
   busColor: "FORESTGREEN"
   stopColor: "LAWNGREEN"
   paths:
