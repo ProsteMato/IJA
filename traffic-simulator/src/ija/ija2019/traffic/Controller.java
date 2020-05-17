@@ -5,8 +5,6 @@ import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
@@ -21,7 +19,6 @@ import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
 import javafx.util.converter.DateTimeStringConverter;
 
-import javax.swing.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
@@ -31,6 +28,10 @@ import java.util.*;
 import java.util.Timer;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * @author <a href="xkocim05@stud.fit.vutbr.cz">Martin Koči</a>
+ * @author <a href="xkoval17@stud.fit.vutbr.cz">Michal Koval</a>
+ */
 public class Controller {
     public AnchorPane getMap() {
         return map;
@@ -40,7 +41,6 @@ public class Controller {
     private boolean firstStart = false;
     @FXML
     private TextField timeTextField;
-    private SimpleDateFormat timeFormat;
     @FXML
     private Button setTimeButton;
     @FXML
@@ -71,16 +71,20 @@ public class Controller {
             timeLabel.setText(time.format(DateTimeFormatter.ofPattern("H:mm:ss")));
         }
     };
+
+    /**
+     * This function is adding updatable drawable objects in update list that will be updated.
+     * @param drawableUpdate updatable object.
+     */
     public void addUpdate(DrawableUpdate drawableUpdate) {
         drawableUpdatesElements.add(drawableUpdate);
     }
 
-    public void setLabelText(String labelText) {
-        this.infoLabel.setText(labelText);
-    }
-
+    /**
+     * This function setUp field for setting time.
+     */
     public void setupTime(){
-        timeFormat = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
         try {
             timeTextField.setTextFormatter(new TextFormatter<>(new DateTimeStringConverter(timeFormat), timeFormat.parse("00:00:00")));
         } catch (ParseException e) {
@@ -88,6 +92,9 @@ public class Controller {
         }
     }
 
+    /**
+     * This method setUps speed slider
+     */
     public void setupSpeedSlider() {
         speedLabel.textProperty().bind(
                 Bindings.format("%.0fx", speedSlider.valueProperty())
@@ -96,12 +103,20 @@ public class Controller {
         speedSlider.addEventHandler(MouseEvent.MOUSE_RELEASED, this::changeSpeed);
     }
 
+    /**
+     * This method sets new time and checks connections that have to be on they way in that time
+     */
     @FXML
-    private void setTime(MouseEvent me){
+    private void setTime(){
         time = LocalTime.parse(timeTextField.getText());
         startConnections();
     }
 
+    /**
+     * This function calculates time difference
+     * @param start start of time
+     * @return  difference of actual and given time.
+     */
     private long timeDifference(LocalTime start) {
         long duration = 0;
         if (start.isAfter(time)) {
@@ -113,10 +128,16 @@ public class Controller {
         return duration;
     }
 
+    /**
+     * Closes timer
+     */
     public void closeTimer() {
         timer.cancel();
     }
 
+    /**
+     * checks what connections needs to be on they way in given time and get there in position where they belong
+     */
     public void startConnections(){
         firstStart = true;
         for (Connection connection : data.getConnections()) {
@@ -141,6 +162,10 @@ public class Controller {
         runTime();
     }
 
+    /**
+     * This method gives data to controller
+     * @param data data
+     */
     public void giveData(Data data){
         this.data = data;
     }
@@ -173,15 +198,17 @@ public class Controller {
         } else if (currentInfoAbout instanceof Street){
             Street street = (Street) currentInfoAbout;
             infoPanel.getChildren().removeAll(street.getDrawnInfoObjects());
-            ((Street) currentInfoAbout).isSelected = false;
+            ((Street) currentInfoAbout).setSelected(false);
             javafx.scene.shape.Line line = null;
             for (Shape shape : ((Street) currentInfoAbout).getDrawableObjects()){
                 if (shape instanceof javafx.scene.shape.Line){
                     line = (javafx.scene.shape.Line) shape;
                 }
             }
-            line.setStroke(Color.BLACK);
-            line.setStrokeWidth(5);
+            if(line != null) {
+                line.setStroke(Color.BLACK);
+                line.setStrokeWidth(5);
+            }
             for (Stop s : street.getStops()){
                 for (Shape shape : s.getDrawableObjects()){
                     if (shape instanceof Circle){
@@ -193,6 +220,10 @@ public class Controller {
         currentInfoAbout = o;
     }
 
+    /**
+     * This method is highLighting street on mouse over event
+     * @param me mouse event
+     */
     public void strokeStreet(MouseEvent me) {
         me.consume();
         javafx.scene.shape.Line line = (javafx.scene.shape.Line) me.getSource();
@@ -212,11 +243,15 @@ public class Controller {
         line.setStroke(Color.DARKGREEN);
     }
 
+    /**
+     * This method is unHighLighting street when mouse goes from them.
+     * @param me mouse event
+     */
     public void unStrokeStreet(MouseEvent me) {
         me.consume();
         javafx.scene.shape.Line line = (javafx.scene.shape.Line) me.getSource();
         Street street = data.getStreetById(line.getId());
-        if (street.isSelected) {
+        if (street.isSelected()) {
             return;
         }
         line.setStrokeWidth(5);
@@ -233,12 +268,16 @@ public class Controller {
         }
     }
 
+    /**
+     * This function displays street info on click event on street
+     * @param me click event
+     */
     public void showStreetInfo(MouseEvent me){
         me.consume();
         // finding street object
         javafx.scene.shape.Line line = (javafx.scene.shape.Line) me.getSource();
         Street street = data.getStreetById(line.getId());
-        street.isSelected = true;
+        street.setSelected(true);
         // changing info panel
         if (currentInfoAbout == street){
             return;
@@ -393,7 +432,7 @@ public class Controller {
         }
     }
 
-    public void highlightStreet(Street street, Color color) {
+    private void highlightStreet(Street street, Color color) {
         for (Shape shape : street.getDrawableObjects()){
             if (shape instanceof javafx.scene.shape.Line){
                 shape.setStroke(color);
@@ -401,6 +440,10 @@ public class Controller {
         }
     }
 
+    /**
+     * This function displays connection info on click event on connection.
+     * @param me click event
+     */
     public void showConnectionInfo(MouseEvent me) {
         me.consume();
         // finding the connection
@@ -413,13 +456,12 @@ public class Controller {
             changeInfo(con);
         }
         // setting up drawing
-        double yOffset = 5;
         infoScrollPane.setVisible(true);
         infoLabel.setText(con.getId());
         Line line = con.getLine();
         List<Stop> stops = line.getStops();
         int stopId = con.getNextStopIndex();
-        List<Timetable> timetables = con.getTimetable();
+        List<TimeTable> timeTables = con.getTimetable();
         // delay
         List<Label> labelsList = con.getDelayLabels();
         Label delayTextLabel = new Label("Delay:");
@@ -451,19 +493,23 @@ public class Controller {
         VBox vbox = new VBox();
         // already passed stops
         for (int i = 0; i < stopId; i++){
-            vbox.getChildren().add(createStopInfoGroup(stops.get(i), con, 1, timetables.get(i).getTime()));
+            vbox.getChildren().add(createStopInfoGroup(stops.get(i), con, 1, timeTables.get(i).getTime()));
         }
         // next stop
-        vbox.getChildren().add(createStopInfoGroup(stops.get(stopId), con, 0, timetables.get(stopId).getTime()));
+        vbox.getChildren().add(createStopInfoGroup(stops.get(stopId), con, 0, timeTables.get(stopId).getTime()));
         con.getIndicators().get(stopId).progressProperty().bind(con.currentProgressProperty());
         highlightStop(stops.get(stopId), line.getStopColor());
         // upcoming stops
         for (int i = stopId+1; i < stops.size(); i++) {
-            vbox.getChildren().add(createStopInfoGroup(stops.get(i), con, 0, timetables.get(i).getTime()));
+            vbox.getChildren().add(createStopInfoGroup(stops.get(i), con, 0, timeTables.get(i).getTime()));
         }
         connectionListPanel.getChildren().add(vbox);
     }
 
+    /**
+     * This method changes zoom on scroll event
+     * @param event scroll event
+     */
     @FXML
     private void changeZoom(ScrollEvent event){
         event.consume();
@@ -484,11 +530,19 @@ public class Controller {
         map.setScaleY(zoomScale * map.getScaleY());
     }
 
+    /**
+     * This method draws objects
+     * @param shapes object to be drown
+     */
     public void draw(List<Shape> shapes){
         for (Shape s : shapes)
             map.getChildren().addAll(s);
     }
 
+    /**
+     * This function is setuping connections.
+     * @param connection connection
+     */
     public void setUpConnection(Connection connection) {
         for (Shape shape : connection.getDrawableObjects()) {
             if (shape instanceof Circle) {
@@ -499,6 +553,9 @@ public class Controller {
         draw(connection.getDrawableObjects());
     }
 
+    /**
+     * This method checks for start time of connetions and executing them
+     */
     public void checkConnections() {
         for (Connection connection : data.getConnections()) {
             if (connection.getStartTime().equals(time)) {
@@ -507,10 +564,17 @@ public class Controller {
         }
     }
 
+    /**
+     * This function resets connections
+     * @param connection connection to be reset.
+     */
     public void resetObject(Connection connection) {
         connection.setUpObject();
     }
 
+    /**
+     * This method is simulating time.
+     */
     public void runTime() {
         timer = new Timer(false);
         timer.scheduleAtFixedRate(new TimerTask() {
