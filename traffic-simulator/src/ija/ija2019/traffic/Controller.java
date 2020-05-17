@@ -155,7 +155,7 @@ public class Controller {
         timeLabel.setLayoutY(yOffset);
         Label delayLabel = new Label();
         delayLabel.textProperty().bind(
-                Bindings.format("+%dm", con.getDelayProperty())
+                Bindings.format("+%dm", con.delayPropertyProperty())
         );
         delayLabel.setLayoutX(215);
         delayLabel.setLayoutY(yOffset);
@@ -419,6 +419,24 @@ public class Controller {
         List<Stop> stops = line.getStops();
         int stopId = con.getNextStopIndex();
         List<Timetable> timetables = con.getTimetable();
+        // delay
+        Label delayTextLabel = new Label("Delay:");
+        delayTextLabel.setLayoutX(7);
+        delayTextLabel.setLayoutY(34);
+        delayTextLabel.setPrefSize(122,47);
+        delayTextLabel.setAlignment(Pos.CENTER_RIGHT);
+        delayTextLabel.setFont(Font.font(17));
+        infoPanel.getChildren().add(delayTextLabel);
+        Label delayLabel = new Label();
+        delayLabel.setLayoutX(137);
+        delayLabel.setLayoutY(34);
+        delayLabel.setPrefSize(131,47);
+        delayLabel.setAlignment(Pos.CENTER_LEFT);
+        delayLabel.setFont(Font.font(17));
+        delayLabel.textProperty().bind(
+                Bindings.format("+%d min", con.delayPropertyProperty())
+        );
+        infoPanel.getChildren().add(delayLabel);
         // already passed stops
         for (int i = 0; i < stopId; i++){
             createStopInfoGroup(stops.get(i), con, yOffset, 1, timetables.get(i).getTime(), 0);

@@ -3,6 +3,8 @@ package ija.ija2019.traffic.maps;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -20,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.SimpleTimeZone;
-
 
 public class Connection implements Drawable, DrawableUpdate {
     private String id;
@@ -91,10 +92,6 @@ public class Connection implements Drawable, DrawableUpdate {
         indicators.get(nextStopIndex).progressProperty().set(1);
         setCurrentProgress(0);
         indicators.get(nextStopIndex + 1).progressProperty().bind(currentProgress);
-        // delay Labels
-        delayLabels.get(nextStopIndex).textProperty().unbind();
-        delayLabels.get(nextStopIndex).setVisible(false);
-        delayLabels.get(nextStopIndex + 1).setVisible(true);
     }
 
     public Connection(){}
@@ -253,7 +250,11 @@ public class Connection implements Drawable, DrawableUpdate {
         } else {
             this.delay = ChronoUnit.MINUTES.between(destination, time);
         }
-        delayProperty.setValue((int)delay);
+        Platform.runLater(new Runnable() {
+            @Override public void run() {
+                delayProperty.setValue((int)delay);
+            }
+        });
     }
 
     public void setUpObject() {
