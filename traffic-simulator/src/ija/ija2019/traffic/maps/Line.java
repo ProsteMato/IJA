@@ -87,11 +87,11 @@ public class Line {
     }
 
     /**
-     * Calculates new position of connection
+     * Calculates new position on line
      * @param source current point
      * @param destination destination point
-     * @param distance this is current distance that connection have to make
-     * @return new position
+     * @param distance actual speed of connection
+     * @return new position of connection on line
      */
     public Coordinate calculateNewPosition(Coordinate source, Coordinate destination, double distance) {
         Coordinate v = destination.subCoordinate(source);
