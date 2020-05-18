@@ -258,7 +258,7 @@ public class Connection implements DrawableUpdate {
     }
 
     /**
-     * TODO
+     * This method returns if connection is affected by time shift.
      * @param time actual time
      * @return true if is affected by time shift otherwise false
      */
