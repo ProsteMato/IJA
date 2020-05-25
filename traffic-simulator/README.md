@@ -14,14 +14,14 @@ and then run in with
 ant run
 ```
 
-##Time shift and time speed
+## Time shift and time speed
 You can proceed time shift and change time speed.
 ![](images/time-shift-time-speed.gif)
 
-##Connection and line info
+## Connection and line info
 When you click on connection u can see its delay and on with line is going on.
 ![](images/line-show.gif)
 
-##Traffic and delay
+## Traffic and delay
 You can change traffic and see delay in street info panel
 ![](images/traffic-and-delay.gif)
